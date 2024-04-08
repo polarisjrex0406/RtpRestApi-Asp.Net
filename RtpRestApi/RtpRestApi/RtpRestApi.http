@@ -1,0 +1,6 @@
+@RtpRestApi_HostAddress = http://localhost:5170
+
+GET {{RtpRestApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

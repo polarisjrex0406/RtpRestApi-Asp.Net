@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "0DXtHRcYMtFQA+VT/XT80cWb6VoVXjVf+a5a87pA/nY=",
+  "Source": "RtpRestApi",
+  "BasePath": "_content/RtpRestApi",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
