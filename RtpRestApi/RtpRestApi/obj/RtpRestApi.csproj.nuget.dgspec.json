@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\_ZzZ_\\_Project_\\ChatGPT Research Tool\\RtpRestApi\\RtpRestApi\\RtpRestApi.csproj": {}
+    "D:\\_ZzZ_\\_Project_\\ChatGPT Research Tool\\RtpRestApi-Asp.Net\\RtpRestApi\\RtpRestApi\\RtpRestApi.csproj": {}
   },
   "projects": {
-    "D:\\_ZzZ_\\_Project_\\ChatGPT Research Tool\\RtpRestApi\\RtpRestApi\\RtpRestApi.csproj": {
+    "D:\\_ZzZ_\\_Project_\\ChatGPT Research Tool\\RtpRestApi-Asp.Net\\RtpRestApi\\RtpRestApi\\RtpRestApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\_ZzZ_\\_Project_\\ChatGPT Research Tool\\RtpRestApi\\RtpRestApi\\RtpRestApi.csproj",
+        "projectUniqueName": "D:\\_ZzZ_\\_Project_\\ChatGPT Research Tool\\RtpRestApi-Asp.Net\\RtpRestApi\\RtpRestApi\\RtpRestApi.csproj",
         "projectName": "RtpRestApi",
-        "projectPath": "D:\\_ZzZ_\\_Project_\\ChatGPT Research Tool\\RtpRestApi\\RtpRestApi\\RtpRestApi.csproj",
+        "projectPath": "D:\\_ZzZ_\\_Project_\\ChatGPT Research Tool\\RtpRestApi-Asp.Net\\RtpRestApi\\RtpRestApi\\RtpRestApi.csproj",
         "packagesPath": "C:\\Users\\root\\.nuget\\packages\\",
-        "outputPath": "D:\\_ZzZ_\\_Project_\\ChatGPT Research Tool\\RtpRestApi\\RtpRestApi\\obj\\",
+        "outputPath": "D:\\_ZzZ_\\_Project_\\ChatGPT Research Tool\\RtpRestApi-Asp.Net\\RtpRestApi\\RtpRestApi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\root\\AppData\\Roaming\\NuGet\\NuGet.Config",

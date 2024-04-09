@@ -4,6 +4,7 @@ using RtpRestApi.Middlewares;
 using RtpRestApi.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.Extensions.Configuration;
 
 namespace RtpRestApi
 {
@@ -14,6 +15,10 @@ namespace RtpRestApi
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            builder.Services.Configure<RtpDatabaseSettings>(builder.Configuration.GetSection("RtpDatabase"));
+
+            builder.Services.AddSingleton<AdminsService>();
+            builder.Services.AddSingleton<SettingsService>();
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -23,12 +28,13 @@ namespace RtpRestApi
             // lets add cors
             builder.Services.AddCors();
 
-            // configure strongly typed settings object
-            builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
-
             // configure dependency injection
             builder.Services.AddScoped<IUserRepository, UserRepository>();
             builder.Services.AddScoped<Services.IAuthenticationService, Services.AuthenticationService>();
+
+            // configure strongly typed settings object
+            builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
+
 
             // configure Cookie Authentication
             builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)

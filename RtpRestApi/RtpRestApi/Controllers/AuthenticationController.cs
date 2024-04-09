@@ -3,31 +3,44 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using System.Security.Claims;
+using RtpRestApi.Helpers;
+using RtpRestApi.Services;
+using Microsoft.Extensions.Options;
 
 namespace RtpRestApi.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+/*    [Route("api/[controller]")]*/
     public class AuthenticationController : Controller
     {
         private Services.IAuthenticationService authenticationService;
+        private readonly AppSettings _appSettings;
+        private readonly AdminsService _adminsService;
 
-        public AuthenticationController(Services.IAuthenticationService authenticationService)
+        public AuthenticationController(Services.IAuthenticationService authenticationService,
+            IOptions<AppSettings> appSettings, AdminsService adminsService)
         {
             this.authenticationService = authenticationService;
+            _appSettings = appSettings.Value;
+            _adminsService = adminsService;
         }
 
         // Login
         [HttpPost]
-        public async Task<IActionResult> Login(AuthRequest authRequest)
+        [Route("api/login")]
+        public async Task<IActionResult> Login([FromQuery] string timestamp, [FromBody] AuthRequest authRequest)
         {
             // Authenticate the user and get the response
-            AuthResponse? response = authenticationService.Authenticate(authRequest);
-
-            if (response == null)
+/*            AuthResponse? response = authenticationService.Authenticate(authRequest);*/
+            Admin? admin = await _adminsService.GetByEmailAsync(authRequest.Email);
+            if (admin == null)
             {
                 return Unauthorized(new { Message = "Invalid Login Credentials" });
             }
+
+            string token = JWTHelper.GenerateJsonWebToken(admin, _appSettings);
+
+            AuthResponse response = new AuthResponse(admin, token);
 
             // create the userclaims
             var userClaims = new List<Claim>
@@ -73,14 +86,24 @@ namespace RtpRestApi.Controllers
             // we can now sign in the user
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal, authProperties);
 
-            return Ok(new { Message = "Logged in successfully" });
+            return Ok(new {
+                success = true,
+                result = new {
+                    id = admin._id,
+                    name = admin.name,
+                    surname = admin.surname,
+                    role = admin.role,
+                    email = admin.email,
+                },
+                message = "Successfully login user",
+            });
         }
 
         /*
             Logging out the user
         */
         [HttpPost]
-        [Route("Logout")]
+        [Route("api/logout")]
         public async Task<IActionResult> Logout()
         {
             // simply call the SightOutAsync method in the HttpContext object to sign out user.

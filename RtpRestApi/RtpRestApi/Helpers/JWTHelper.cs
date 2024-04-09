@@ -1,5 +1,6 @@
 ﻿using Microsoft.IdentityModel.Tokens;
 using RtpRestApi.Entities;
+using RtpRestApi.Models;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -13,7 +14,7 @@ namespace RtpRestApi.Helpers
          * 
          * install Nuget System.IdentityModel.Tokens.Jwt
          */
-        public static string GenerateJsonWebToken(User user, AppSettings settings)
+        public static string GenerateJsonWebToken(Admin user, AppSettings settings)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(settings.SecretKey);
@@ -22,11 +23,10 @@ namespace RtpRestApi.Helpers
             {
                 // makes the properties of the user to be the claim identity, parding user into the token
                 Subject = new ClaimsIdentity(new[] {
-                    new Claim("id", user.Id.ToString()),
-                    new Claim("name", user.Name),
-                    new Claim("email", user.Email),
-                    new Claim("username", user.Username),
-                    new Claim("favoritecolor", user.FavoriteColor),
+                    new Claim("id", user._id),
+                    new Claim("name", user.name),
+                    new Claim("email", user.email),
+                    new Claim("username", user.surname),
                 }),
 
                 // Set the token expiry to a day
@@ -70,7 +70,6 @@ namespace RtpRestApi.Helpers
                 string name = jwtToken.Claims.First(x => x.Type == "name").Value;
                 string email = jwtToken.Claims.First(x => x.Type == "email").Value;
                 string username = jwtToken.Claims.First(x => x.Type == "username").Value;
-                string favoritecolor = jwtToken.Claims.First(x => x.Type == "favoritecolor").Value;
 
                 // Return the decoded user from the token
                 return new User
@@ -79,7 +78,6 @@ namespace RtpRestApi.Helpers
                     Name = name,
                     Email = email,
                     Username = username,
-                    FavoriteColor = favoritecolor
                 };
             }
             catch
