@@ -151,8 +151,6 @@ public class TopicsController : ControllerBase
             return NotFound();
         }
 
-        /*updatedTopic._id = topic._id;*/
-
         await _topicsService.UpdateAsync(id, updatedTopic);
 
         return NoContent();

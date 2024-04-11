@@ -10,7 +10,7 @@ namespace RtpRestApi.Services
         Task<string> InsertAsync(string payload);
         Task<string> InsertOneAsync(string collection, JObject documentObj);
         Task<string> UpdateAsync(string payload);
-        Task<string> UpdateOneAsync(string payload);
+        Task<string> UpdateOneAsync(string collection, JObject filterObj);
         Task<string> DeleteAsync(string payload);
         Task<string> DeleteOneAsync(string collection, JObject filterObj);
     }

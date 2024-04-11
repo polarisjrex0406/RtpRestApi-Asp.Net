@@ -119,7 +119,6 @@ namespace RtpRestApi.Services
         public async Task<TopicResponse?> CreateAsync(string? adminId, TopicRequest newTopicRequest)
         {
             TopicResponse topicResponse = new TopicResponse();
-            topicResponse.createdBy = adminId;
             topicResponse.name = newTopicRequest.name;
             topicResponse.goal = newTopicRequest.goal;
             topicResponse.group = newTopicRequest.group;
@@ -127,6 +126,11 @@ namespace RtpRestApi.Services
             string tmp = JsonSerializer.Serialize(topicResponse);
             JObject documentObj = JObject.Parse(tmp);
             documentObj.Remove("_id");
+            documentObj.Remove("createdBy");
+            documentObj["createdBy"] = new JObject
+            {
+                ["$oid"] = adminId
+            };
             
             string res = await _atlasService.InsertOneAsync(_collection, documentObj);
 
@@ -145,8 +149,17 @@ namespace RtpRestApi.Services
             return topicResponse;
         }
 
-        public async Task UpdateAsync(string id, TopicRequest updatedTopic)
+        public async Task<TopicResponse> UpdateAsync(string id, TopicRequest updatedTopic)
         {
+            JObject filterObj = new JObject
+            {
+                ["_id"] = new JObject
+                {
+                    ["$oid"] = id
+                }
+            };
+            string res = await _atlasService.UpdateOneAsync(_collection, filterObj);
+            return new TopicResponse();
         }
 
         public async Task<string> RemoveAsync(string id)

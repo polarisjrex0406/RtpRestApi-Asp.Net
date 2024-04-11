@@ -1,4 +1,5 @@
-﻿using DnsClient;
+﻿using Amazon.Runtime.Internal;
+using DnsClient;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json.Linq;
 using RtpRestApi.Helpers;
@@ -13,12 +14,17 @@ namespace RtpRestApi.Services
     {
         public async Task<string> MakeDataApiCall(string endpointRoute, string collection, JObject? filterObj, JObject? documentObj)
         {
-            var httpClient = httpClientFactory.CreateClient("Atlas");
-
             string baseUrl = rtpDatabaseAtlas.Value.BaseUrl;
             string apiKey = rtpDatabaseAtlas.Value.ApiKey;
             string dataSource = rtpDatabaseAtlas.Value.DataSource;
             string database = rtpDatabaseAtlas.Value.DatabaseName;
+
+            var httpClient = httpClientFactory.CreateClient("Atlas");
+            httpClient.BaseAddress = new Uri(baseUrl);
+            httpClient.DefaultRequestHeaders
+                    .Accept
+                    .Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
             var req = new JObject
             {
                 ["collection"] = collection,
@@ -35,19 +41,27 @@ namespace RtpRestApi.Services
             }
             string payload = req.ToString();
 
-            using var httpReq = new HttpRequestMessage(HttpMethod.Post, baseUrl + endpointRoute);
+            using var httpReq = new HttpRequestMessage(HttpMethod.Post, endpointRoute);
             httpReq.Headers.Add("api-key", $"{apiKey}");
-            var content = new StringContent(payload, Encoding.UTF8, "application/json");
-            httpReq.Content = content;
+            httpReq.Content = new StringContent(payload, Encoding.UTF8, "application/json"); ;
+            httpReq.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
-            using HttpResponseMessage? httpResponse = await httpClient.SendAsync(httpReq);
-/*            httpResponse.EnsureSuccessStatusCode();*/
+            /*using HttpResponseMessage? httpResponse = await httpClient.SendAsync(httpReq);*/
+            /*            httpResponse.EnsureSuccessStatusCode();*/
 
-            return await httpResponse.Content.ReadAsStringAsync();
+            /*return await httpResponse.Content.ReadAsStringAsync();*/
+            string content = string.Empty;
+            await httpClient.SendAsync(httpReq)
+                    .ContinueWith(async responseTask =>
+                    {
+                        Console.WriteLine("Response: {0}", responseTask.Result);
+                        content = await responseTask.Result.Content.ReadAsStringAsync();
+                    });
+            return content;
         }
         public async Task<string> FindAsync(string collection, JObject filterObj)
         {
-            string findRoute = "/action/find";
+            string findRoute = "action/find";
             string res = await MakeDataApiCall(findRoute, collection, filterObj, null);
             string doc;
             try
@@ -65,7 +79,7 @@ namespace RtpRestApi.Services
         }
         public async Task<string> FindOneAsync(string collection, JObject filterObj)
         {
-            string findOneRoute = "/action/findOne";
+            string findOneRoute = "action/findOne";
             string res = await MakeDataApiCall(findOneRoute, collection, filterObj, null);
             string doc;
             try
@@ -87,16 +101,17 @@ namespace RtpRestApi.Services
         }
         public async Task<string> InsertOneAsync(string collection, JObject documentObj)
         {
-            string insertOneRoute = "/action/insertOne";
+            string insertOneRoute = "action/insertOne";
             return await MakeDataApiCall(insertOneRoute, collection, null, documentObj);
         }
         public Task<string> UpdateAsync(string payload)
         {
             return null;
         }
-        public Task<string> UpdateOneAsync(string payload)
+        public async Task<string> UpdateOneAsync(string collection, JObject filterObj)
         {
-            return null;
+            string updateOneRoute = "action/updateOne";
+            return await MakeDataApiCall(updateOneRoute, collection, filterObj, null);
         }
         public Task<string> DeleteAsync(string payload)
         {
@@ -104,7 +119,7 @@ namespace RtpRestApi.Services
         }
         public async Task<string> DeleteOneAsync(string collection, JObject filterObj)
         {
-            string deleteOneRoute = "/action/deleteOne";
+            string deleteOneRoute = "action/deleteOne";
             return await MakeDataApiCall(deleteOneRoute, collection, filterObj, null);
         }
     }
