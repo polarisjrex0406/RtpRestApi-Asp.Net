@@ -18,6 +18,48 @@ namespace RtpRestApi.Services
             _collection = rtpDatabaseTopics.Value.ArtifactsCollectionName;
         }
 
+        private JsonSerializerOptions? SerializeOptions()
+        {
+            JsonSerializerOptions? options;
+            try
+            {
+                options = new JsonSerializerOptions
+                {
+                    TypeInfoResolver = new DefaultJsonTypeInfoResolver
+                    {
+                        Modifiers =
+                    {
+                        static typeInfo =>
+                        {
+                            if (typeInfo.Kind != JsonTypeInfoKind.Object)
+                                return;
+
+                            bool flagPassed = false;
+                            foreach (JsonPropertyInfo propertyInfo in typeInfo.Properties)
+                            {
+                                // Strip IsRequired constraint from every property.
+                                if (!flagPassed && propertyInfo.Name == "topic")
+                                {
+                                    propertyInfo.Name = "topicObj";
+                                    flagPassed = true;
+                                }
+                                if (propertyInfo.Name == "topicId")
+                                {
+                                    propertyInfo.Name = "topic";
+                                }
+                            }
+                        }
+                    }
+                    }
+                };
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            return options;
+        }
+
         public async Task<List<ArtifactResponse>?> GetAsync(string? adminId = null, string? q = null, string? fields = null)
         {
             JArray andArray = new JArray();
@@ -69,36 +111,7 @@ namespace RtpRestApi.Services
             var expObj = new List<ArtifactResponse>();
             try
             {
-                var options = new JsonSerializerOptions
-                {
-                    TypeInfoResolver = new DefaultJsonTypeInfoResolver
-                    {
-                        Modifiers =
-                    {
-                        static typeInfo =>
-                        {
-                            if (typeInfo.Kind != JsonTypeInfoKind.Object)
-                                return;
-
-                            bool flagPassed = false;
-                            foreach (JsonPropertyInfo propertyInfo in typeInfo.Properties)
-                            {
-                                // Strip IsRequired constraint from every property.
-                                if (!flagPassed && propertyInfo.Name == "topic")
-                                {
-                                    propertyInfo.Name = "topicObj";
-                                    flagPassed = true;
-                                }
-                                if (propertyInfo.Name == "topicId")
-                                {
-                                    propertyInfo.Name = "topic";
-                                }
-                            }
-                        }
-                    }
-                    }
-                };
-                expObj = JsonSerializer.Deserialize<List<ArtifactResponse>>(res, options);
+                expObj = JsonSerializer.Deserialize<List<ArtifactResponse>>(res, SerializeOptions());
             }
             catch (Exception)
             {
@@ -108,7 +121,7 @@ namespace RtpRestApi.Services
             return expObj;
         }
 
-        public async Task<TopicResponse?> GetAsync(string? adminId, string? id)
+        public async Task<ArtifactResponse?> GetAsync(string? adminId, string? id)
         {
             JObject filterObj = new JObject();
             filterObj["removed"] = false;
@@ -130,10 +143,10 @@ namespace RtpRestApi.Services
             }
 
             string res = await _atlasService.FindOneAsync(_collection, filterObj);
-            var expObj = new TopicResponse();
+            var expObj = new ArtifactResponse();
             try
             {
-                expObj = JsonSerializer.Deserialize<TopicResponse>(res);
+                expObj = JsonSerializer.Deserialize<ArtifactResponse>(res, SerializeOptions());
             }
             catch (Exception)
             {
@@ -143,15 +156,24 @@ namespace RtpRestApi.Services
             return expObj;
         }
 
-        public async Task<TopicResponse?> CreateAsync(string? adminId, TopicRequest newTopicRequest)
+        public async Task<ArtifactResponse?> CreateAsync(string? adminId, ArtifactRequest newArtifactRequest)
         {
-            TopicResponse topicResponse = new TopicResponse();
-            topicResponse.name = newTopicRequest.name;
-            topicResponse.goal = newTopicRequest.goal;
-            topicResponse.group = newTopicRequest.group;
-            topicResponse.topicPrompt = newTopicRequest.topicPrompt;
-            topicResponse.createdBy = adminId;
-            string tmp = JsonSerializer.Serialize(topicResponse);
+            ArtifactResponse artifactResponse = new ArtifactResponse();
+            artifactResponse.name = newArtifactRequest.name;
+            artifactResponse.goal = newArtifactRequest.goal;
+            artifactResponse.group = newArtifactRequest.group;
+            artifactResponse.topicId = newArtifactRequest.topic;
+            artifactResponse.promptEnhancers = newArtifactRequest.promptEnhancers;
+            artifactResponse.promptOutput = newArtifactRequest.promptOutput;
+            artifactResponse.examples = newArtifactRequest.examples;
+            artifactResponse.chatgptSettings = newArtifactRequest.chatgptSettings;
+            artifactResponse.useCache = newArtifactRequest.useCache;
+            artifactResponse.cacheTimeoutUnit = newArtifactRequest.cacheTimeoutUnit;
+            artifactResponse.cacheTimeoutValue = newArtifactRequest.cacheTimeoutValue;
+            artifactResponse.cacheConditions = newArtifactRequest.cacheConditions;
+            artifactResponse.cacheDescription = newArtifactRequest.cacheDescription;
+            artifactResponse.createdBy = adminId;
+            string tmp = JsonSerializer.Serialize(artifactResponse);
             JObject documentObj = JObject.Parse(tmp);
             documentObj.Remove("_id");
             documentObj.Remove("createdBy");
@@ -165,17 +187,17 @@ namespace RtpRestApi.Services
             {
                 var resObj = JObject.Parse(res);
                 var idObj = resObj["insertedId"];
-                topicResponse._id = idObj?.ToString();
+                artifactResponse._id = idObj?.ToString();
             }
             catch (Exception)
             {
                 return null;
             }
 
-            return topicResponse;
+            return artifactResponse;
         }
 
-        public async Task<TopicResponse?> UpdateAsync(string id, TopicRequest updatedTopic)
+        public async Task<ArtifactResponse?> UpdateAsync(string id, ArtifactRequest updatedArtifact)
         {
             JObject filterObj = new JObject
             {
@@ -184,7 +206,7 @@ namespace RtpRestApi.Services
                     ["$oid"] = id
                 }
             };
-            string tmp = JsonSerializer.Serialize(updatedTopic);
+            string tmp = JsonSerializer.Serialize(updatedArtifact);
             JObject setObj = JObject.Parse(tmp);
 
             string res = await _atlasService.UpdateOneAsync(_collection, filterObj, setObj);
@@ -205,7 +227,7 @@ namespace RtpRestApi.Services
 
             if (matchedCount > 0)
             {
-                return new TopicResponse();
+                return new ArtifactResponse();
             }
             else
             {

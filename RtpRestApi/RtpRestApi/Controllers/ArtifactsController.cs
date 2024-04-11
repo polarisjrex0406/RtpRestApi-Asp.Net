@@ -142,26 +142,30 @@ public class ArtifactsController : ControllerBase
             });
         }
     }
-
+*/
     [HttpPost]
     [Route("create")]
-    public async Task<IActionResult> Post([FromBody] TopicRequest newTopicRequest)
+    public async Task<IActionResult> Post([FromBody] ArtifactRequest newArtifactRequest)
     {
-        TopicResponse? res = await _topicsService.CreateAsync(CurrentUserId(), newTopicRequest);
+        var resObj = await _artifactsService.CreateAsync(CurrentUserId(), newArtifactRequest);
+        if (resObj != null)
+        {
+            resObj.topicObj = await _topicsService.GetAsync(CurrentUserId(), resObj.topicId);
+        }
 
         return Ok(new
         {
             success = true,
-            result = res,
+            result = resObj,
             message = "Successfully Created the document in Model",
         });
     }
-
+    
     [HttpPatch]
     [Route("update/{id:length(24)}")]
-    public async Task<IActionResult> Update(string id, [FromBody] TopicRequest updatedTopic)
+    public async Task<IActionResult> Update(string id, [FromBody] ArtifactRequest updatedArtifact)
     {
-        var res = await _topicsService.UpdateAsync(id, updatedTopic);
+        var res = await _artifactsService.UpdateAsync(id, updatedArtifact);
 
         if (res is null)
         {
@@ -175,22 +179,22 @@ public class ArtifactsController : ControllerBase
         }
         else
         {
-            var topic = await _topicsService.GetAsync(CurrentUserId(), id);
+            var artifactObj = await _artifactsService.GetAsync(CurrentUserId(), id);
 
             return Ok(new
             {
                 success = true,
-                result = topic,
+                result = artifactObj,
                 message = "we update this document",
             });
         }
     }
-
+    
     [HttpDelete]
     [Route("delete/{id:length(24)}")]
     public async Task<IActionResult> Delete(string id)
     {
-        var resObj = await _topicsService.GetAsync(CurrentUserId(), id);
+        var resObj = await _artifactsService.GetAsync(CurrentUserId(), id);
 
         if (resObj == null)
         {
@@ -204,7 +208,7 @@ public class ArtifactsController : ControllerBase
         }
         else
         {
-            await _topicsService.RemoveAsync(id);
+            await _artifactsService.RemoveAsync(id);
             return Ok(new
             {
                 success = true,
@@ -212,5 +216,5 @@ public class ArtifactsController : ControllerBase
                 message = "Successfully Deleted the document",
             });
         }
-    }*/
+    }
 }

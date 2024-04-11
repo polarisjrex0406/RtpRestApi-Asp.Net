@@ -29,6 +29,23 @@ namespace RtpRestApi.Models
         public string? changeDetection { set; get; }
     }
 
+    public class ArtifactRequest
+    {
+        public string? name { get; set; }
+        public string? group { get; set; } = null;
+        public string? goal { get; set; } = null;
+        public string? topic { get; set; }
+        public List<PromptEnhancer>? promptEnhancers { get; set; } = null;
+        public string? promptOutput { get; set; } = null;
+        public Example? examples { get; set; } = null;
+        public List<ChatGPTSetting>? chatgptSettings { get; set; } = null;
+        public bool useCache { get; set; } = false;
+        public string? cacheTimeoutUnit { get; set; } = null;
+        public int? cacheTimeoutValue { get; set; }
+        public List<CacheCondition>? cacheConditions { get; set; }
+        public string? cacheDescription { get; set; }
+    }
+
     public class ArtifactResponse
     {
         public string? _id { get; set; }
