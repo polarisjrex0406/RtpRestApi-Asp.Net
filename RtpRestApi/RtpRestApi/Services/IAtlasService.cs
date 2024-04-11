@@ -4,14 +4,11 @@ namespace RtpRestApi.Services
 {
     public interface IAtlasService
     {
-        Task<string> MakeDataApiCall(string endpointRoute, string collection, JObject? filterObj, JObject? documentObj);
+        Task<string> MakeDataApiCall(string endpointRoute, string collection, JObject? filterObj, JObject? documentObj, JObject? setObj);
         Task<string> FindAsync(string collection, JObject filterObj);
         Task<string> FindOneAsync(string payload, JObject filterObj);
-        Task<string> InsertAsync(string payload);
         Task<string> InsertOneAsync(string collection, JObject documentObj);
-        Task<string> UpdateAsync(string payload);
-        Task<string> UpdateOneAsync(string collection, JObject filterObj);
-        Task<string> DeleteAsync(string payload);
+        Task<string> UpdateOneAsync(string collection, JObject filterObj, JObject setObj);
         Task<string> DeleteOneAsync(string collection, JObject filterObj);
     }
 }

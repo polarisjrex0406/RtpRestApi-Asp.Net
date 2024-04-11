@@ -123,6 +123,7 @@ namespace RtpRestApi.Services
             topicResponse.goal = newTopicRequest.goal;
             topicResponse.group = newTopicRequest.group;
             topicResponse.topicPrompt = newTopicRequest.topicPrompt;
+            topicResponse.createdBy = adminId;
             string tmp = JsonSerializer.Serialize(topicResponse);
             JObject documentObj = JObject.Parse(tmp);
             documentObj.Remove("_id");
@@ -138,8 +139,7 @@ namespace RtpRestApi.Services
             {
                 var resObj = JObject.Parse(res);
                 var idObj = resObj["insertedId"];
-                string insertedId = idObj != null ? idObj.ToString() : string.Empty;
-                topicResponse._id = insertedId;
+                topicResponse._id = idObj?.ToString();
             }
             catch (Exception ex)
             {
@@ -149,7 +149,7 @@ namespace RtpRestApi.Services
             return topicResponse;
         }
 
-        public async Task<TopicResponse> UpdateAsync(string id, TopicRequest updatedTopic)
+        public async Task<TopicResponse?> UpdateAsync(string id, TopicRequest updatedTopic)
         {
             JObject filterObj = new JObject
             {
@@ -158,8 +158,34 @@ namespace RtpRestApi.Services
                     ["$oid"] = id
                 }
             };
-            string res = await _atlasService.UpdateOneAsync(_collection, filterObj);
-            return new TopicResponse();
+            string tmp = JsonSerializer.Serialize(updatedTopic);
+            JObject setObj = JObject.Parse(tmp);
+
+            string res = await _atlasService.UpdateOneAsync(_collection, filterObj, setObj);
+            int matchedCount = 0;
+
+            try
+            {
+                var resObj = JObject.Parse(res);
+                var idObj = resObj["matchedCount"];
+                if (idObj != null)
+                {
+                    matchedCount = int.Parse(idObj.ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+
+            if (matchedCount > 0)
+            {
+                return new TopicResponse();
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public async Task<string> RemoveAsync(string id)
@@ -171,8 +197,7 @@ namespace RtpRestApi.Services
                     ["$oid"] = id
                 }
             };
-            string res = await _atlasService.DeleteOneAsync(_collection, filterObj);
-            return res;
+            return await _atlasService.DeleteOneAsync(_collection, filterObj);
         }
     }
 }

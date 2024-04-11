@@ -101,7 +101,8 @@ public class TopicsController : ControllerBase
         }
     }
 
-    [HttpGet("{id:length(24)}")]
+    [HttpGet]
+    [Route("read/{id:length(24)}")]
     public async Task<ActionResult> Get(string id)
     {
         var resObj = await _topicsService.GetAsync(CurrentUserId(), id);
@@ -141,28 +142,60 @@ public class TopicsController : ControllerBase
         });
     }
 
-    [HttpPut("{id:length(24)}")]
-    public async Task<IActionResult> Update(string id, TopicRequest updatedTopic)
+    [HttpPatch]
+    [Route("update/{id:length(24)}")]
+    public async Task<IActionResult> Update(string id, [FromBody] TopicRequest updatedTopic)
     {
-        var topic = await _topicsService.GetAsync(CurrentUserId(), id);
+        var res = await _topicsService.UpdateAsync(id, updatedTopic);
 
-        if (topic is null)
+        if (res is null)
         {
-            return NotFound();
+            Response.StatusCode = StatusCodes.Status404NotFound;
+            return new JsonResult(new
+            {
+                success = false,
+                result = res,
+                message = "No document found"
+            });
         }
+        else
+        {
+            var topic = await _topicsService.GetAsync(CurrentUserId(), id);
 
-        await _topicsService.UpdateAsync(id, updatedTopic);
-
-        return NoContent();
+            return Ok(new
+            {
+                success = true,
+                result = topic,
+                message = "we update this document",
+            });
+        }
     }
 
-    [HttpDelete("{id:length(24)}")]
+    [HttpDelete]
+    [Route("delete/{id:length(24)}")]
     public async Task<IActionResult> Delete(string id)
     {
         var resObj = await _topicsService.GetAsync(CurrentUserId(), id);
 
-        await _topicsService.RemoveAsync(id);
-
-        return NoContent();
+        if (resObj == null)
+        {
+            Response.StatusCode = StatusCodes.Status404NotFound;
+            return new JsonResult(new
+            {
+                success = false,
+                result = resObj,
+                message = "No document found"
+            });
+        }
+        else
+        {
+            await _topicsService.RemoveAsync(id);
+            return Ok(new
+            {
+                success = true,
+                result = resObj,
+                message = "Successfully Deleted the document",
+            });
+        }
     }
 }

@@ -12,7 +12,7 @@ namespace RtpRestApi.Services
     public class AtlasService(IOptions<RtpDatabaseSettings> rtpDatabaseAtlas, IHttpClientFactory httpClientFactory)
         : IAtlasService
     {
-        public async Task<string> MakeDataApiCall(string endpointRoute, string collection, JObject? filterObj, JObject? documentObj)
+        public async Task<string> MakeDataApiCall(string endpointRoute, string collection, JObject? filterObj, JObject? documentObj, JObject? setObj)
         {
             string baseUrl = rtpDatabaseAtlas.Value.BaseUrl;
             string apiKey = rtpDatabaseAtlas.Value.ApiKey;
@@ -39,6 +39,13 @@ namespace RtpRestApi.Services
             {
                 req["document"] = documentObj;
             }
+            if (setObj != null)
+            {
+                req["update"] = new JObject
+                {
+                    ["$set"] = setObj
+                };
+            }
             string payload = req.ToString();
 
             using var httpReq = new HttpRequestMessage(HttpMethod.Post, endpointRoute);
@@ -62,7 +69,7 @@ namespace RtpRestApi.Services
         public async Task<string> FindAsync(string collection, JObject filterObj)
         {
             string findRoute = "action/find";
-            string res = await MakeDataApiCall(findRoute, collection, filterObj, null);
+            string res = await MakeDataApiCall(findRoute, collection, filterObj, null, null);
             string doc;
             try
             {
@@ -80,7 +87,7 @@ namespace RtpRestApi.Services
         public async Task<string> FindOneAsync(string collection, JObject filterObj)
         {
             string findOneRoute = "action/findOne";
-            string res = await MakeDataApiCall(findOneRoute, collection, filterObj, null);
+            string res = await MakeDataApiCall(findOneRoute, collection, filterObj, null, null);
             string doc;
             try
             {
@@ -95,32 +102,20 @@ namespace RtpRestApi.Services
 
             return doc;
         }
-        public Task<string> InsertAsync(string payload)
-        {
-            return null;
-        }
         public async Task<string> InsertOneAsync(string collection, JObject documentObj)
         {
             string insertOneRoute = "action/insertOne";
-            return await MakeDataApiCall(insertOneRoute, collection, null, documentObj);
+            return await MakeDataApiCall(insertOneRoute, collection, null, documentObj, null);
         }
-        public Task<string> UpdateAsync(string payload)
-        {
-            return null;
-        }
-        public async Task<string> UpdateOneAsync(string collection, JObject filterObj)
+        public async Task<string> UpdateOneAsync(string collection, JObject filterObj, JObject setObj)
         {
             string updateOneRoute = "action/updateOne";
-            return await MakeDataApiCall(updateOneRoute, collection, filterObj, null);
-        }
-        public Task<string> DeleteAsync(string payload)
-        {
-            return null;
+            return await MakeDataApiCall(updateOneRoute, collection, filterObj, null, setObj);
         }
         public async Task<string> DeleteOneAsync(string collection, JObject filterObj)
         {
             string deleteOneRoute = "action/deleteOne";
-            return await MakeDataApiCall(deleteOneRoute, collection, filterObj, null);
+            return await MakeDataApiCall(deleteOneRoute, collection, filterObj, null, null);
         }
     }
 }
