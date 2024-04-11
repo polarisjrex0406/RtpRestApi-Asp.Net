@@ -3,21 +3,22 @@ using System.Text.Json;
 using Newtonsoft.Json.Linq;
 using RtpRestApi.Helpers;
 using RtpRestApi.Models;
+using System.Text.Json.Serialization.Metadata;
 
 namespace RtpRestApi.Services
 {
-    public class TopicsService
+    public class ArtifactsService
     {
         IAtlasService _atlasService;
         private readonly string _collection;
 
-        public TopicsService(IOptions<RtpDatabaseSettings> rtpDatabaseTopics, IAtlasService atlasService)
+        public ArtifactsService(IOptions<RtpDatabaseSettings> rtpDatabaseTopics, IAtlasService atlasService)
         {
             _atlasService = atlasService;
-            _collection = rtpDatabaseTopics.Value.TopicsCollectionName;
+            _collection = rtpDatabaseTopics.Value.ArtifactsCollectionName;
         }
 
-        public async Task<List<TopicResponse>?> GetAsync(string? adminId = null, string? q = null, string? fields=null)
+        public async Task<List<ArtifactResponse>?> GetAsync(string? adminId = null, string? q = null, string? fields = null)
         {
             JArray andArray = new JArray();
             JObject removed = new JObject
@@ -37,7 +38,7 @@ namespace RtpRestApi.Services
                 };
                 andArray.Add(createdBy);
             }
-                        
+
             if (q != null && fields != null)
             {
                 List<string> fieldsList = new List<string>(fields.Split(','));
@@ -65,14 +66,43 @@ namespace RtpRestApi.Services
             };
 
             string res = await _atlasService.FindAsync(_collection, filterObj);
-            var expObj = new List<TopicResponse>();
+            var expObj = new List<ArtifactResponse>();
             try
             {
-                expObj = JsonSerializer.Deserialize<List<TopicResponse>>(res);
+                var options = new JsonSerializerOptions
+                {
+                    TypeInfoResolver = new DefaultJsonTypeInfoResolver
+                    {
+                        Modifiers =
+                    {
+                        static typeInfo =>
+                        {
+                            if (typeInfo.Kind != JsonTypeInfoKind.Object)
+                                return;
+
+                            bool flagPassed = false;
+                            foreach (JsonPropertyInfo propertyInfo in typeInfo.Properties)
+                            {
+                                // Strip IsRequired constraint from every property.
+                                if (!flagPassed && propertyInfo.Name == "topic")
+                                {
+                                    propertyInfo.Name = "topicObj";
+                                    flagPassed = true;
+                                }
+                                if (propertyInfo.Name == "topicId")
+                                {
+                                    propertyInfo.Name = "topic";
+                                }
+                            }
+                        }
+                    }
+                    }
+                };
+                expObj = JsonSerializer.Deserialize<List<ArtifactResponse>>(res, options);
             }
             catch (Exception)
             {
-                return new List<TopicResponse>();
+                return new List<ArtifactResponse>();
             }
 
             return expObj;
@@ -129,7 +159,7 @@ namespace RtpRestApi.Services
             {
                 ["$oid"] = adminId
             };
-            
+
             string res = await _atlasService.InsertOneAsync(_collection, documentObj);
             try
             {

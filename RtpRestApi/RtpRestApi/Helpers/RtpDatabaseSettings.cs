@@ -14,6 +14,8 @@
 
         public string TopicsCollectionName { get; set; } = null!;
 
+        public string ArtifactsCollectionName { get; set; } = null!;
+
         public string BaseUrl { get; set; } = null!;
 
         public string ApiKey { get; set; } = null!;

@@ -77,7 +77,7 @@ namespace RtpRestApi.Services
                 var documentObj = resObj["documents"];
                 doc = documentObj != null ? documentObj.ToString() : string.Empty;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return res;
             }
@@ -95,7 +95,7 @@ namespace RtpRestApi.Services
                 var documentObj = resObj["document"];
                 doc = documentObj != null ? documentObj.ToString() : string.Empty;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return res;
             }
