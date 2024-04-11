@@ -105,3 +105,7 @@ D:\_ZzZ_\_Project_\ChatGPT Research Tool\RtpRestApi-Asp.Net\RtpRestApi\RtpRestAp
 D:\_ZzZ_\_Project_\ChatGPT Research Tool\RtpRestApi-Asp.Net\RtpRestApi\RtpRestApi\obj\Debug\net8.0\RtpRestApi.pdb
 D:\_ZzZ_\_Project_\ChatGPT Research Tool\RtpRestApi-Asp.Net\RtpRestApi\RtpRestApi\obj\Debug\net8.0\RtpRestApi.genruntimeconfig.cache
 D:\_ZzZ_\_Project_\ChatGPT Research Tool\RtpRestApi-Asp.Net\RtpRestApi\RtpRestApi\obj\Debug\net8.0\ref\RtpRestApi.dll
+D:\_ZzZ_\_Project_\ChatGPT Research Tool\RtpRestApi-Asp.Net\RtpRestApi\RtpRestApi\bin\Debug\net8.0\Microsoft.AspNetCore.JsonPatch.dll
+D:\_ZzZ_\_Project_\ChatGPT Research Tool\RtpRestApi-Asp.Net\RtpRestApi\RtpRestApi\bin\Debug\net8.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+D:\_ZzZ_\_Project_\ChatGPT Research Tool\RtpRestApi-Asp.Net\RtpRestApi\RtpRestApi\bin\Debug\net8.0\Newtonsoft.Json.dll
+D:\_ZzZ_\_Project_\ChatGPT Research Tool\RtpRestApi-Asp.Net\RtpRestApi\RtpRestApi\bin\Debug\net8.0\Newtonsoft.Json.Bson.dll

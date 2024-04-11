@@ -24,10 +24,10 @@ namespace RtpRestApi.Services
              * note that it is a best practice to hash the password and don't expose the
              * plain text password
              */
-            users.Add(new User { Id = 1, Name = "Jayharron Mar Abejar", Email = "jay@email.com", FavoriteColor = "Blue", Username = "jay123", Password = "jay456" });
-            users.Add(new User { Id = 2, Name = "Pia Abellana", Email = "pia@email.com", FavoriteColor = "Red", Username = "pia123", Password = "pia456" });
-            users.Add(new User { Id = 3, Name = "Rey Vincent De los Reyes", Email = "rey@email.com", FavoriteColor = "Green", Username = "rey123", Password = "rey456" });
-            users.Add(new User { Id = 4, Name = "James Dylan Caramonte", Email = "james@email.com", FavoriteColor = "Red", Username = "james123", Password = "james456" });
+            users.Add(new User { Id = "1", Name = "Jayharron Mar Abejar", Email = "jay@email.com", FavoriteColor = "Blue", Username = "jay123", Password = "jay456" });
+            users.Add(new User { Id = "2", Name = "Pia Abellana", Email = "pia@email.com", FavoriteColor = "Red", Username = "pia123", Password = "pia456" });
+            users.Add(new User { Id = "3", Name = "Rey Vincent De los Reyes", Email = "rey@email.com", FavoriteColor = "Green", Username = "rey123", Password = "rey456" });
+            users.Add(new User { Id = "4", Name = "James Dylan Caramonte", Email = "james@email.com", FavoriteColor = "Red", Username = "james123", Password = "james456" });
         }
 
         public IEnumerable<User> GetAllUsers()

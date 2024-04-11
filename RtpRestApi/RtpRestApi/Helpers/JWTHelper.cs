@@ -18,7 +18,7 @@ namespace RtpRestApi.Helpers
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(settings.SecretKey);
-            var date = DateTime.Now;
+            var date = DateTime.UtcNow;
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 // makes the properties of the user to be the claim identity, parding user into the token
@@ -30,7 +30,7 @@ namespace RtpRestApi.Helpers
                 }),
 
                 // Set the token expiry to a day
-                Expires = DateTime.Now.AddMinutes(settings.IntExpireHour * 60),
+                Expires = DateTime.UtcNow.AddMinutes(settings.IntExpireHour * 60),
                 NotBefore = date,
 
                 // setting the signing credentials
@@ -66,7 +66,7 @@ namespace RtpRestApi.Helpers
                 Console.WriteLine("Cookie was issued at " + jwtToken.IssuedAt);
                 Console.WriteLine("Cookie was valid to " + jwtToken.ValidTo);
 
-                int id = int.Parse(jwtToken.Claims.First(x => x.Type == "id").Value);
+                string id = jwtToken.Claims.First(x => x.Type == "id").Value;
                 string name = jwtToken.Claims.First(x => x.Type == "name").Value;
                 string email = jwtToken.Claims.First(x => x.Type == "email").Value;
                 string username = jwtToken.Claims.First(x => x.Type == "username").Value;

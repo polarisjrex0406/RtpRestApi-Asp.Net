@@ -17,8 +17,11 @@ namespace RtpRestApi
             // Add services to the container.
             builder.Services.Configure<RtpDatabaseSettings>(builder.Configuration.GetSection("RtpDatabase"));
 
+            builder.Services.AddSingleton<IAtlasService, AtlasService>();
             builder.Services.AddSingleton<AdminsService>();
             builder.Services.AddSingleton<SettingsService>();
+            builder.Services.AddSingleton<IExperimentService, ExperimentService>();
+            builder.Services.AddSingleton<TopicsService>();
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -27,6 +30,8 @@ namespace RtpRestApi
 
             // lets add cors
             builder.Services.AddCors();
+
+            builder.Services.AddHttpClient();
 
             // configure dependency injection
             builder.Services.AddScoped<IUserRepository, UserRepository>();
@@ -59,7 +64,7 @@ namespace RtpRestApi
             // global cors policy
             app.UseCors(options => options.SetIsOriginAllowed(x => _ = true).AllowAnyMethod().AllowCredentials().AllowAnyHeader());
 
-            app.UseHttpsRedirection();
+            /*app.UseHttpsRedirection();*/
 
             app.UseAuthentication();
             app.UseAuthorization();

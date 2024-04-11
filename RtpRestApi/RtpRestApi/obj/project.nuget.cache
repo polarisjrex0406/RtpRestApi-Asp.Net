@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Nhw1PHYQTlc5BlX2lRHq9fdcoyfRmUL+Donaz6n+F+i3S0N3xlkqHIHVmi2uiJH4ssJsyW+1B1CT2mZoWdamHA==",
+  "dgSpecHash": "omuBGVsOoKCim2zvOD/zrniT1y6OL0nQRCdcZymtQkyM1c+QaeRBB+htTNuOmThjDVouW8Q4rP8d7aFZEQRLgg==",
   "success": true,
   "projectFilePath": "D:\\_ZzZ_\\_Project_\\ChatGPT Research Tool\\RtpRestApi-Asp.Net\\RtpRestApi\\RtpRestApi\\RtpRestApi.csproj",
   "expectedPackageFiles": [
@@ -8,6 +8,9 @@
     "C:\\Users\\root\\.nuget\\packages\\awssdk.securitytoken\\3.7.100.14\\awssdk.securitytoken.3.7.100.14.nupkg.sha512",
     "C:\\Users\\root\\.nuget\\packages\\dnsclient\\1.6.1\\dnsclient.1.6.1.nupkg.sha512",
     "C:\\Users\\root\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\8.0.3\\microsoft.aspnetcore.authentication.jwtbearer.8.0.3.nupkg.sha512",
+    "C:\\Users\\root\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\8.0.4\\microsoft.aspnetcore.jsonpatch.8.0.4.nupkg.sha512",
+    "C:\\Users\\root\\.nuget\\packages\\microsoft.aspnetcore.mvc.newtonsoftjson\\8.0.4\\microsoft.aspnetcore.mvc.newtonsoftjson.8.0.4.nupkg.sha512",
+    "C:\\Users\\root\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\root\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
     "C:\\Users\\root\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\2.0.0\\microsoft.extensions.logging.abstractions.2.0.0.nupkg.sha512",
     "C:\\Users\\root\\.nuget\\packages\\microsoft.identitymodel.abstractions\\7.1.2\\microsoft.identitymodel.abstractions.7.1.2.nupkg.sha512",
@@ -23,6 +26,8 @@
     "C:\\Users\\root\\.nuget\\packages\\mongodb.driver\\2.24.0\\mongodb.driver.2.24.0.nupkg.sha512",
     "C:\\Users\\root\\.nuget\\packages\\mongodb.driver.core\\2.24.0\\mongodb.driver.core.2.24.0.nupkg.sha512",
     "C:\\Users\\root\\.nuget\\packages\\mongodb.libmongocrypt\\1.8.2\\mongodb.libmongocrypt.1.8.2.nupkg.sha512",
+    "C:\\Users\\root\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
+    "C:\\Users\\root\\.nuget\\packages\\newtonsoft.json.bson\\1.0.2\\newtonsoft.json.bson.1.0.2.nupkg.sha512",
     "C:\\Users\\root\\.nuget\\packages\\sharpcompress\\0.30.1\\sharpcompress.0.30.1.nupkg.sha512",
     "C:\\Users\\root\\.nuget\\packages\\snappier\\1.0.0\\snappier.1.0.0.nupkg.sha512",
     "C:\\Users\\root\\.nuget\\packages\\swashbuckle.aspnetcore\\6.4.0\\swashbuckle.aspnetcore.6.4.0.nupkg.sha512",
