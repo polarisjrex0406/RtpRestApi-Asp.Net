@@ -116,11 +116,60 @@ public class ArtifactsController : ControllerBase
         }
     }
 
-/*    [HttpGet]
+    [HttpGet]
+    [Route("search")]
+    public async Task<IActionResult> Get([FromQuery] string? q, [FromQuery] string? fields)
+    {
+        var resObj = await _artifactsService.GetAsync(CurrentUserId(), q, fields);
+
+        if (resObj == null)
+        {
+            return NoContent();
+        }
+
+        if (resObj.Count == 0)
+        {
+            Response.StatusCode = StatusCodes.Status203NonAuthoritative;
+            return new JsonResult(new
+            {
+                success = true,
+                result = resObj,
+                pagination = new
+                {
+                    page = 1,
+                    pages = 1,
+                    count = resObj.Count
+                },
+                message = "Collection is Empty",
+            });
+        }
+        else
+        {
+            foreach (var resItem in resObj)
+            {
+                resItem.topicObj = await _topicsService.GetAsync(CurrentUserId(), resItem.topicId);
+            }
+            return Ok(new
+            {
+                success = true,
+                result = resObj,
+                pagination = new
+                {
+                    page = 1,
+                    pages = 1,
+                    count = resObj.Count
+                },
+                message = "Successfully found all documents",
+            });
+        }
+    }
+
+
+    [HttpGet]
     [Route("read/{id:length(24)}")]
     public async Task<ActionResult> Get(string id)
     {
-        var resObj = await _topicsService.GetAsync(CurrentUserId(), id);
+        var resObj = await _artifactsService.GetAsync(CurrentUserId(), id);
 
         if (resObj == null)
         {
@@ -134,6 +183,7 @@ public class ArtifactsController : ControllerBase
         }
         else
         {
+            resObj.topicObj = await _topicsService.GetAsync(CurrentUserId(), resObj.topicId);
             return Ok(new
             {
                 success = true,
@@ -142,7 +192,7 @@ public class ArtifactsController : ControllerBase
             });
         }
     }
-*/
+
     [HttpPost]
     [Route("create")]
     public async Task<IActionResult> Post([FromBody] ArtifactRequest newArtifactRequest)
@@ -180,6 +230,10 @@ public class ArtifactsController : ControllerBase
         else
         {
             var artifactObj = await _artifactsService.GetAsync(CurrentUserId(), id);
+            if (artifactObj != null)
+            {
+                artifactObj.topicObj = await _topicsService.GetAsync(CurrentUserId(), artifactObj.topicId);
+            }
 
             return Ok(new
             {
@@ -209,6 +263,10 @@ public class ArtifactsController : ControllerBase
         else
         {
             await _artifactsService.RemoveAsync(id);
+            if (resObj != null)
+            {
+                resObj.topicObj = await _topicsService.GetAsync(CurrentUserId(), resObj.topicId);
+            }
             return Ok(new
             {
                 success = true,

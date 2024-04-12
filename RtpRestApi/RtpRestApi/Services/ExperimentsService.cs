@@ -7,15 +7,15 @@ using System.Text.Json.Serialization.Metadata;
 
 namespace RtpRestApi.Services
 {
-    public class ArtifactsService
+    public class ExperimentsService
     {
         IAtlasService _atlasService;
         private readonly string _collection;
 
-        public ArtifactsService(IOptions<RtpDatabaseSettings> rtpDatabaseTopics, IAtlasService atlasService)
+        public ExperimentsService(IOptions<RtpDatabaseSettings> rtpDatabaseTopics, IAtlasService atlasService)
         {
             _atlasService = atlasService;
-            _collection = rtpDatabaseTopics.Value.ArtifactsCollectionName;
+            _collection = rtpDatabaseTopics.Value.ExperimentsCollectionName;
         }
 
         private JsonSerializerOptions? SerializeOptions()
@@ -34,18 +34,29 @@ namespace RtpRestApi.Services
                             if (typeInfo.Kind != JsonTypeInfoKind.Object)
                                 return;
 
-                            bool flagPassed = false;
+                            bool flagTopic = false;
+                            bool flagTemplate = false;
                             foreach (JsonPropertyInfo propertyInfo in typeInfo.Properties)
                             {
                                 // Strip IsRequired constraint from every property.
-                                if (!flagPassed && propertyInfo.Name == "topic")
+                                if (!flagTopic && propertyInfo.Name == "topic")
                                 {
                                     propertyInfo.Name = "topicObj";
-                                    flagPassed = true;
+                                    flagTopic = true;
                                 }
                                 if (propertyInfo.Name == "topicId")
                                 {
                                     propertyInfo.Name = "topic";
+                                }
+
+                                if (!flagTemplate && propertyInfo.Name == "templateCode")
+                                {
+                                    propertyInfo.Name = "templateObj";
+                                    flagTemplate = true;
+                                }
+                                if (propertyInfo.Name == "templateId")
+                                {
+                                    propertyInfo.Name = "templateCode";
                                 }
                             }
                         }
@@ -60,7 +71,7 @@ namespace RtpRestApi.Services
             return options;
         }
 
-        public async Task<List<ArtifactResponse>?> GetAsync(string? adminId = null, string? q = null, string? fields = null)
+        public async Task<List<ExperimentResponse>?> GetAsync(string? adminId = null, string? q = null, string? fields = null)
         {
             JArray andArray = new JArray();
             JObject removed = new JObject
@@ -108,20 +119,20 @@ namespace RtpRestApi.Services
             };
 
             string res = await _atlasService.FindAsync(_collection, filterObj);
-            var expObj = new List<ArtifactResponse>();
+            var expObj = new List<ExperimentResponse>();
             try
             {
-                expObj = JsonSerializer.Deserialize<List<ArtifactResponse>>(res, SerializeOptions());
+                expObj = JsonSerializer.Deserialize<List<ExperimentResponse>>(res, SerializeOptions());
             }
             catch (Exception)
             {
-                return new List<ArtifactResponse>();
+                return new List<ExperimentResponse>();
             }
 
             return expObj;
         }
 
-        public async Task<ArtifactResponse?> GetAsync(string? adminId, string? id)
+        public async Task<ExperimentResponse?> GetAsync(string? adminId, string? id)
         {
             JObject filterObj = new JObject();
             filterObj["removed"] = false;
@@ -143,10 +154,10 @@ namespace RtpRestApi.Services
             }
 
             string res = await _atlasService.FindOneAsync(_collection, filterObj);
-            var expObj = new ArtifactResponse();
+            var expObj = new ExperimentResponse();
             try
             {
-                expObj = JsonSerializer.Deserialize<ArtifactResponse>(res, SerializeOptions());
+                expObj = JsonSerializer.Deserialize<ExperimentResponse>(res, SerializeOptions());
             }
             catch (Exception)
             {
@@ -156,23 +167,18 @@ namespace RtpRestApi.Services
             return expObj;
         }
 
-        public async Task<ArtifactResponse?> CreateAsync(string? adminId, ArtifactRequest newArtifactRequest)
+        public async Task<ExperimentResponse?> CreateAsync(string? adminId, ExperimentRequest newExperimentRequest)
         {
-            ArtifactResponse artifactResponse = new ArtifactResponse();
-            artifactResponse.name = newArtifactRequest.name;
-            artifactResponse.goal = newArtifactRequest.goal;
-            artifactResponse.group = newArtifactRequest.group;
-            artifactResponse.promptEnhancers = newArtifactRequest.promptEnhancers;
-            artifactResponse.promptOutput = newArtifactRequest.promptOutput;
-            artifactResponse.examples = newArtifactRequest.examples;
-            artifactResponse.chatgptSettings = newArtifactRequest.chatgptSettings;
-            artifactResponse.useCache = newArtifactRequest.useCache;
-            artifactResponse.cacheTimeoutUnit = newArtifactRequest.cacheTimeoutUnit;
-            artifactResponse.cacheTimeoutValue = newArtifactRequest.cacheTimeoutValue;
-            artifactResponse.cacheConditions = newArtifactRequest.cacheConditions;
-            artifactResponse.cacheDescription = newArtifactRequest.cacheDescription;
-            artifactResponse.createdBy = adminId;
-            string tmp = JsonSerializer.Serialize(artifactResponse, SerializeOptions());
+            ExperimentResponse experimentResponse = new ExperimentResponse();
+            experimentResponse.experimentCode = newExperimentRequest.experimentCode;
+            experimentResponse.description = newExperimentRequest.description;
+            experimentResponse.style = newExperimentRequest.style;
+            experimentResponse.initPrompt = newExperimentRequest.initPrompt;
+            experimentResponse.topicId = newExperimentRequest.topic;
+            experimentResponse.ruleLogic = newExperimentRequest.ruleLogic;
+            experimentResponse.rules = newExperimentRequest.rules;
+            experimentResponse.createdBy = adminId;
+            string tmp = JsonSerializer.Serialize(experimentResponse, SerializeOptions());
             JObject documentObj = JObject.Parse(tmp);
             documentObj.Remove("_id");
             documentObj.Remove("topicObj");
@@ -183,25 +189,52 @@ namespace RtpRestApi.Services
             };
             documentObj["topic"] = new JObject
             {
-                ["$oid"] = newArtifactRequest.topic
+                ["$oid"] = newExperimentRequest.topic
             };
+            if (newExperimentRequest.templates != null && newExperimentRequest.templates.Count > 0)
+            {
+                JArray jArray = new JArray();
+                foreach (var template in newExperimentRequest.templates)
+                {
+                    jArray.Add(new JObject
+                    {
+                        ["order"] = template.order,
+                        ["templateCode"] = new JObject
+                        {
+                            ["$oid"] = template.templateCode
+                        }
+                    });
+                }
+                documentObj["templates"] = jArray;
+            }
 
             string res = await _atlasService.InsertOneAsync(_collection, documentObj);
             try
             {
                 var resObj = JObject.Parse(res);
                 var idObj = resObj["insertedId"];
-                artifactResponse._id = idObj?.ToString();
+                experimentResponse._id = idObj?.ToString();
+                if (newExperimentRequest.templates != null && newExperimentRequest.templates.Count > 0)
+                {
+                    experimentResponse.templates = new List<TemplateInResponse>();
+                    foreach (var template in newExperimentRequest.templates)
+                    {
+                        TemplateInResponse tmpInRes = new TemplateInResponse();
+                        tmpInRes.order = template.order;
+                        tmpInRes.templateId = template.templateCode;
+                        experimentResponse.templates.Add(tmpInRes);
+                    }
+                }
             }
             catch (Exception)
             {
                 return null;
             }
 
-            return artifactResponse;
+            return experimentResponse;
         }
 
-        public async Task<ArtifactResponse?> UpdateAsync(string id, ArtifactRequest updatedArtifact)
+        public async Task<ExperimentResponse?> UpdateAsync(string id, ExperimentRequest updatedExperiment)
         {
             JObject filterObj = new JObject
             {
@@ -210,7 +243,7 @@ namespace RtpRestApi.Services
                     ["$oid"] = id
                 }
             };
-            string tmp = JsonSerializer.Serialize(updatedArtifact);
+            string tmp = JsonSerializer.Serialize(updatedExperiment);
             JObject setObj = JObject.Parse(tmp);
 
             string res = await _atlasService.UpdateOneAsync(_collection, filterObj, setObj);
@@ -231,7 +264,7 @@ namespace RtpRestApi.Services
 
             if (matchedCount > 0)
             {
-                return new ArtifactResponse();
+                return new ExperimentResponse();
             }
             else
             {

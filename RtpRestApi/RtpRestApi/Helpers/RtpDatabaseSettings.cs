@@ -16,6 +16,8 @@
 
         public string ArtifactsCollectionName { get; set; } = null!;
 
+        public string ExperimentsCollectionName { get; set; } = null!;
+
         public string BaseUrl { get; set; } = null!;
 
         public string ApiKey { get; set; } = null!;

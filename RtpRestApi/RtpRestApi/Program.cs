@@ -20,9 +20,9 @@ namespace RtpRestApi
             builder.Services.AddSingleton<IAtlasService, AtlasService>();
             builder.Services.AddSingleton<AdminsService>();
             builder.Services.AddSingleton<SettingsService>();
-            builder.Services.AddSingleton<IExperimentService, ExperimentService>();
             builder.Services.AddSingleton<TopicsService>();
             builder.Services.AddSingleton<ArtifactsService>();
+            builder.Services.AddSingleton<ExperimentsService>();
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -51,7 +51,7 @@ namespace RtpRestApi
                         // validates the cookie
                         await CookieHelper.ValidateCookie(context, builder.Configuration["AppSettings:SecretKey"]);
                     }
-                });
+            });
 
             var app = builder.Build();
 

@@ -2,17 +2,23 @@
 using RtpRestApi.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
+using System.Text.Json;
+using System.Text.Json.Serialization.Metadata;
 
 namespace RtpRestApi.Controllers;
 
 [ApiController]
-[Route("api/topic")]
-public class TopicsController : ControllerBase
+[Route("api/experiment")]
+public class ExperimentsController : ControllerBase
 {
+    private readonly ExperimentsService _experimentsService;
+    private readonly ArtifactsService _artifactsService;
     private readonly TopicsService _topicsService;
 
-    public TopicsController(TopicsService topicsService)
+    public ExperimentsController(ExperimentsService experimentsService, ArtifactsService artifactsService, TopicsService topicsService)
     {
+        _experimentsService = experimentsService;
+        _artifactsService = artifactsService;
         _topicsService = topicsService;
     }
 
@@ -31,7 +37,7 @@ public class TopicsController : ControllerBase
     [Route("listAll")]
     public async Task<IActionResult> Get()
     {
-        var resObj = await _topicsService.GetAsync();
+        var resObj = await _experimentsService.GetAsync();
         if (resObj == null)
         {
             return NoContent();
@@ -49,6 +55,18 @@ public class TopicsController : ControllerBase
         }
         else
         {
+            foreach (var resItem in resObj)
+            {
+                resItem.topicObj = await _topicsService.GetAsync(CurrentUserId(), resItem.topicId);
+                if (resItem.templates != null)
+                {
+                    foreach (var resArtifact in resItem.templates)
+                    {
+                        resArtifact.templateObj = await _artifactsService.GetAsync(CurrentUserId(), resArtifact.templateId);
+                    }
+                }
+            }
+
             return Ok(new
             {
                 success = true,
@@ -57,19 +75,20 @@ public class TopicsController : ControllerBase
             });
         }
     }
-
+    
     [HttpGet]
     [Route("list")]
     public async Task<IActionResult> Get([FromQuery] int? page, [FromQuery] int? items, [FromQuery] string? q, [FromQuery] string? fields)
     {
-        var resObj = await _topicsService.GetAsync(CurrentUserId(), q, fields);
+        var resObj = await _experimentsService.GetAsync(CurrentUserId(), q, fields);
 
         if (resObj == null)
         {
             return NoContent();
         }
 
-        if (resObj.Count == 0) {
+        if (resObj.Count == 0)
+        {
             Response.StatusCode = StatusCodes.Status203NonAuthoritative;
             return new JsonResult(new
             {
@@ -86,6 +105,18 @@ public class TopicsController : ControllerBase
         }
         else
         {
+            foreach (var resItem in resObj)
+            {
+                resItem.topicObj = await _topicsService.GetAsync(CurrentUserId(), resItem.topicId);
+                if (resItem.templates != null)
+                {
+                    foreach (var resArtifact in resItem.templates)
+                    {
+                        resArtifact.templateObj = await _artifactsService.GetAsync(CurrentUserId(), resArtifact.templateId);
+                    }
+                }
+            }
+
             return Ok(new
             {
                 success = true,
@@ -105,7 +136,7 @@ public class TopicsController : ControllerBase
     [Route("search")]
     public async Task<IActionResult> Get([FromQuery] string? q, [FromQuery] string? fields)
     {
-        var resObj = await _topicsService.GetAsync(CurrentUserId(), q, fields);
+        var resObj = await _experimentsService.GetAsync(CurrentUserId(), q, fields);
 
         if (resObj == null)
         {
@@ -130,6 +161,17 @@ public class TopicsController : ControllerBase
         }
         else
         {
+            foreach (var resItem in resObj)
+            {
+                resItem.topicObj = await _topicsService.GetAsync(CurrentUserId(), resItem.topicId);
+                if (resItem.templates != null)
+                {
+                    foreach (var resArtifact in resItem.templates)
+                    {
+                        resArtifact.templateObj = await _artifactsService.GetAsync(CurrentUserId(), resArtifact.templateId);
+                    }
+                }
+            }
             return Ok(new
             {
                 success = true,
@@ -145,11 +187,12 @@ public class TopicsController : ControllerBase
         }
     }
 
+
     [HttpGet]
     [Route("read/{id:length(24)}")]
     public async Task<ActionResult> Get(string id)
     {
-        var resObj = await _topicsService.GetAsync(CurrentUserId(), id);
+        var resObj = await _experimentsService.GetAsync(CurrentUserId(), id);
 
         if (resObj == null)
         {
@@ -163,6 +206,14 @@ public class TopicsController : ControllerBase
         }
         else
         {
+            resObj.topicObj = await _topicsService.GetAsync(CurrentUserId(), resObj.topicId);
+            if (resObj.templates != null)
+            {
+                foreach (var resItem in resObj.templates)
+                {
+                    resItem.templateObj = await _artifactsService.GetAsync(CurrentUserId(), resItem.templateId);
+                }
+            }
             return Ok(new
             {
                 success = true,
@@ -174,23 +225,34 @@ public class TopicsController : ControllerBase
 
     [HttpPost]
     [Route("create")]
-    public async Task<IActionResult> Post([FromBody] TopicRequest newTopicRequest)
+    public async Task<IActionResult> Post([FromBody] ExperimentRequest newExperimentRequest)
     {
-        TopicResponse? res = await _topicsService.CreateAsync(CurrentUserId(), newTopicRequest);
+        var resObj = await _experimentsService.CreateAsync(CurrentUserId(), newExperimentRequest);
+        if (resObj != null)
+        {
+            resObj.topicObj = await _topicsService.GetAsync(CurrentUserId(), resObj.topicId);
+            if (resObj.templates != null)
+            {
+                foreach (var resItem in resObj.templates)
+                {
+                    resItem.templateObj = await _artifactsService.GetAsync(CurrentUserId(), resItem.templateId);
+                }
+            }
+        }
 
         return Ok(new
         {
             success = true,
-            result = res,
+            result = resObj,
             message = "Successfully Created the document in Model",
         });
     }
 
     [HttpPatch]
     [Route("update/{id:length(24)}")]
-    public async Task<IActionResult> Update(string id, [FromBody] TopicRequest updatedTopic)
+    public async Task<IActionResult> Update(string id, [FromBody] ExperimentRequest updatedExperiment)
     {
-        var res = await _topicsService.UpdateAsync(id, updatedTopic);
+        var res = await _experimentsService.UpdateAsync(id, updatedExperiment);
 
         if (res is null)
         {
@@ -204,12 +266,23 @@ public class TopicsController : ControllerBase
         }
         else
         {
-            var topic = await _topicsService.GetAsync(CurrentUserId(), id);
+            var expObj = await _experimentsService.GetAsync(CurrentUserId(), id);
+            if (expObj != null)
+            {
+                expObj.topicObj = await _topicsService.GetAsync(CurrentUserId(), expObj.topicId);
+                if (expObj.templates != null)
+                {
+                    foreach (var resItem in expObj.templates)
+                    {
+                        resItem.templateObj = await _artifactsService.GetAsync(CurrentUserId(), resItem.templateId);
+                    }
+                }
+            }
 
             return Ok(new
             {
                 success = true,
-                result = topic,
+                result = expObj,
                 message = "we update this document",
             });
         }
@@ -219,7 +292,18 @@ public class TopicsController : ControllerBase
     [Route("delete/{id:length(24)}")]
     public async Task<IActionResult> Delete(string id)
     {
-        var resObj = await _topicsService.GetAsync(CurrentUserId(), id);
+        var resObj = await _experimentsService.GetAsync(CurrentUserId(), id);
+        if (resObj != null)
+        {
+            resObj.topicObj = await _topicsService.GetAsync(CurrentUserId(), resObj.topicId);
+            if (resObj.templates != null)
+            {
+                foreach (var resItem in resObj.templates)
+                {
+                    resItem.templateObj = await _artifactsService.GetAsync(CurrentUserId(), resItem.templateId);
+                }
+            }
+        }
 
         if (resObj == null)
         {
@@ -233,7 +317,7 @@ public class TopicsController : ControllerBase
         }
         else
         {
-            await _topicsService.RemoveAsync(id);
+            await _experimentsService.RemoveAsync(id);
             return Ok(new
             {
                 success = true,

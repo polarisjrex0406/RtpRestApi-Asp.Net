@@ -50,7 +50,7 @@ namespace RtpRestApi.Services
 
             using var httpReq = new HttpRequestMessage(HttpMethod.Post, endpointRoute);
             httpReq.Headers.Add("api-key", $"{apiKey}");
-            httpReq.Content = new StringContent(payload, Encoding.UTF8, "application/json"); ;
+            httpReq.Content = new StringContent(payload, Encoding.UTF8, "application/json");
             httpReq.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
             /*using HttpResponseMessage? httpResponse = await httpClient.SendAsync(httpReq);*/
