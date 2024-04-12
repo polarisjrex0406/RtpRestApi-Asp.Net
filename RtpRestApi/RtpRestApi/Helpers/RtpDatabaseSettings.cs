@@ -18,6 +18,10 @@
 
         public string ExperimentsCollectionName { get; set; } = null!;
 
+        public string TestsCollectionName { get; set; } = null!;
+
+        public string CachePromptsCollectionName { get; set; } = null!;
+
         public string BaseUrl { get; set; } = null!;
 
         public string ApiKey { get; set; } = null!;

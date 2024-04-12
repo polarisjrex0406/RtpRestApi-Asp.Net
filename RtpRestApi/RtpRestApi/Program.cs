@@ -23,6 +23,7 @@ namespace RtpRestApi
             builder.Services.AddSingleton<TopicsService>();
             builder.Services.AddSingleton<ArtifactsService>();
             builder.Services.AddSingleton<ExperimentsService>();
+            builder.Services.AddSingleton<TestsService>();
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
