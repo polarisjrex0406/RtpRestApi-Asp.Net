@@ -21,7 +21,7 @@ namespace RtpRestApi.Models
     public class Rule
     {
         public string? ruleName { get; set; }
-        public string? conditionLogic { get; set; }
+        public string? conditionsLogic { get; set; }
         public string? conditionName { get; set; }
         public string? conditionType { get; set; }
         public string? conditionItem { get; set; }
