@@ -66,7 +66,7 @@ namespace RtpRestApi.Services
                     });
             return content;
         }
-        public async Task<string> FindAsync(string collection, JObject filterObj)
+        public async Task<string> FindAsync(string collection, JObject? filterObj)
         {
             string findRoute = "action/find";
             string res = await MakeDataApiCall(findRoute, collection, filterObj, null, null);
