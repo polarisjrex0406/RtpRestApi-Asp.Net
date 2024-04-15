@@ -118,17 +118,49 @@ namespace RtpRestApi.Services
 
         public async Task CreateAsync(Admin newAdmin)
         {
-
+            string tmp = JsonSerializer.Serialize(newAdmin);
+            JObject documentObj = JObject.Parse(tmp);
+            await _atlasService.InsertOneAsync(_collection, documentObj);
         }
 
         public async Task UpdateAsync(string id, Admin updatedAdmin)
         {
+            JObject filterObj = new JObject
+            {
+                ["_id"] = new JObject
+                {
+                    ["$oid"] = id
+                }
+            };
+            string tmp = JsonSerializer.Serialize(updatedAdmin);
+            JObject setObj = JObject.Parse(tmp);
 
+            string res = await _atlasService.UpdateOneAsync(_collection, filterObj, setObj);
+            int matchedCount = 0;
+            try
+            {
+                var resObj = JObject.Parse(res);
+                var idObj = resObj["matchedCount"];
+                if (idObj != null)
+                {
+                    matchedCount = int.Parse(idObj.ToString());
+                }
+            }
+            catch (Exception)
+            {
+            }
         }
 
         public async Task RemoveAsync(string id)
         {
-
+            JObject filterObj = new JObject
+            {
+                ["_id"] = new JObject
+                {
+                    ["$oid"] = id
+                }
+            };
+            await _atlasService.DeleteOneAsync(_collection, filterObj);
         }
     }
 }

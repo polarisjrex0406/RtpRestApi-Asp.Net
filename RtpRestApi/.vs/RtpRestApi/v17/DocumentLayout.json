@@ -3,32 +3,40 @@
   "WorkspaceRootPath": "D:\\_ZzZ_\\_Project_\\ChatGPT Research Tool\\RtpRestApi-Asp.Net\\RtpRestApi\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{67290810-E492-4ABB-ACAB-9061C5BF9637}|RtpRestApi\\RtpRestApi.csproj|d:\\_zzz_\\_project_\\chatgpt research tool\\rtprestapi-asp.net\\rtprestapi\\rtprestapi\\services\\settingsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{67290810-E492-4ABB-ACAB-9061C5BF9637}|RtpRestApi\\RtpRestApi.csproj|solutionrelative:rtprestapi\\services\\settingsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{67290810-E492-4ABB-ACAB-9061C5BF9637}|RtpRestApi\\RtpRestApi.csproj|D:\\_ZzZ_\\_Project_\\ChatGPT Research Tool\\RtpRestApi-Asp.Net\\RtpRestApi\\rtprestapi\\services\\adminsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{67290810-E492-4ABB-ACAB-9061C5BF9637}|RtpRestApi\\RtpRestApi.csproj|solutionrelative:rtprestapi\\services\\adminsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{67290810-E492-4ABB-ACAB-9061C5BF9637}|RtpRestApi\\RtpRestApi.csproj|D:\\_ZzZ_\\_Project_\\ChatGPT Research Tool\\RtpRestApi-Asp.Net\\RtpRestApi\\rtprestapi\\services\\artifactsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{67290810-E492-4ABB-ACAB-9061C5BF9637}|RtpRestApi\\RtpRestApi.csproj|solutionrelative:rtprestapi\\services\\artifactsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{67290810-E492-4ABB-ACAB-9061C5BF9637}|RtpRestApi\\RtpRestApi.csproj|d:\\_zzz_\\_project_\\chatgpt research tool\\rtprestapi-asp.net\\rtprestapi\\rtprestapi\\controllers\\settingscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{67290810-E492-4ABB-ACAB-9061C5BF9637}|RtpRestApi\\RtpRestApi.csproj|solutionrelative:rtprestapi\\controllers\\settingscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{67290810-E492-4ABB-ACAB-9061C5BF9637}|RtpRestApi\\RtpRestApi.csproj|d:\\_zzz_\\_project_\\chatgpt research tool\\rtprestapi-asp.net\\rtprestapi\\rtprestapi\\services\\atlasservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{67290810-E492-4ABB-ACAB-9061C5BF9637}|RtpRestApi\\RtpRestApi.csproj|solutionrelative:rtprestapi\\services\\atlasservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{67290810-E492-4ABB-ACAB-9061C5BF9637}|RtpRestApi\\RtpRestApi.csproj|d:\\_zzz_\\_project_\\chatgpt research tool\\rtprestapi-asp.net\\rtprestapi\\rtprestapi\\services\\adminsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{67290810-E492-4ABB-ACAB-9061C5BF9637}|RtpRestApi\\RtpRestApi.csproj|solutionrelative:rtprestapi\\services\\adminsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{67290810-E492-4ABB-ACAB-9061C5BF9637}|RtpRestApi\\RtpRestApi.csproj|d:\\_zzz_\\_project_\\chatgpt research tool\\rtprestapi-asp.net\\rtprestapi\\rtprestapi\\controllers\\authenticationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{67290810-E492-4ABB-ACAB-9061C5BF9637}|RtpRestApi\\RtpRestApi.csproj|solutionrelative:rtprestapi\\controllers\\authenticationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{67290810-E492-4ABB-ACAB-9061C5BF9637}|RtpRestApi\\RtpRestApi.csproj|d:\\_zzz_\\_project_\\chatgpt research tool\\rtprestapi-asp.net\\rtprestapi\\rtprestapi\\services\\artifactsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{67290810-E492-4ABB-ACAB-9061C5BF9637}|RtpRestApi\\RtpRestApi.csproj|solutionrelative:rtprestapi\\services\\artifactsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{67290810-E492-4ABB-ACAB-9061C5BF9637}|RtpRestApi\\RtpRestApi.csproj|d:\\_zzz_\\_project_\\chatgpt research tool\\rtprestapi-asp.net\\rtprestapi\\rtprestapi\\services\\testsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{67290810-E492-4ABB-ACAB-9061C5BF9637}|RtpRestApi\\RtpRestApi.csproj|D:\\_ZzZ_\\_Project_\\ChatGPT Research Tool\\RtpRestApi-Asp.Net\\RtpRestApi\\rtprestapi\\services\\testsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{67290810-E492-4ABB-ACAB-9061C5BF9637}|RtpRestApi\\RtpRestApi.csproj|solutionrelative:rtprestapi\\services\\testsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{67290810-E492-4ABB-ACAB-9061C5BF9637}|RtpRestApi\\RtpRestApi.csproj|d:\\_zzz_\\_project_\\chatgpt research tool\\rtprestapi-asp.net\\rtprestapi\\rtprestapi\\models\\admin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{67290810-E492-4ABB-ACAB-9061C5BF9637}|RtpRestApi\\RtpRestApi.csproj|solutionrelative:rtprestapi\\models\\admin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{67290810-E492-4ABB-ACAB-9061C5BF9637}|RtpRestApi\\RtpRestApi.csproj|D:\\_ZzZ_\\_Project_\\ChatGPT Research Tool\\RtpRestApi-Asp.Net\\RtpRestApi\\rtprestapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{67290810-E492-4ABB-ACAB-9061C5BF9637}|RtpRestApi\\RtpRestApi.csproj|solutionrelative:rtprestapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{67290810-E492-4ABB-ACAB-9061C5BF9637}|RtpRestApi\\RtpRestApi.csproj|d:\\_zzz_\\_project_\\chatgpt research tool\\rtprestapi-asp.net\\rtprestapi\\rtprestapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{67290810-E492-4ABB-ACAB-9061C5BF9637}|RtpRestApi\\RtpRestApi.csproj|solutionrelative:rtprestapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{67290810-E492-4ABB-ACAB-9061C5BF9637}|RtpRestApi\\RtpRestApi.csproj|D:\\_ZzZ_\\_Project_\\ChatGPT Research Tool\\RtpRestApi-Asp.Net\\RtpRestApi\\rtprestapi\\controllers\\authenticationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{67290810-E492-4ABB-ACAB-9061C5BF9637}|RtpRestApi\\RtpRestApi.csproj|solutionrelative:rtprestapi\\controllers\\authenticationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{67290810-E492-4ABB-ACAB-9061C5BF9637}|RtpRestApi\\RtpRestApi.csproj|D:\\_ZzZ_\\_Project_\\ChatGPT Research Tool\\RtpRestApi-Asp.Net\\RtpRestApi\\rtprestapi\\models\\admin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{67290810-E492-4ABB-ACAB-9061C5BF9637}|RtpRestApi\\RtpRestApi.csproj|solutionrelative:rtprestapi\\models\\admin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{67290810-E492-4ABB-ACAB-9061C5BF9637}|RtpRestApi\\RtpRestApi.csproj|D:\\_ZzZ_\\_Project_\\ChatGPT Research Tool\\RtpRestApi-Asp.Net\\RtpRestApi\\rtprestapi\\controllers\\testscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -42,11 +50,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 9,
               "Title": "TestsController.cs",
               "DocumentMoniker": "D:\\_ZzZ_\\_Project_\\ChatGPT Research Tool\\RtpRestApi-Asp.Net\\RtpRestApi\\RtpRestApi\\Controllers\\TestsController.cs",
               "RelativeDocumentMoniker": "RtpRestApi\\Controllers\\TestsController.cs",
@@ -55,18 +63,17 @@
               "ViewState": "AQIAAHAAAAAAAAAAAADwvwMBAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-12T16:52:58.089Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "TestsService.cs",
               "DocumentMoniker": "D:\\_ZzZ_\\_Project_\\ChatGPT Research Tool\\RtpRestApi-Asp.Net\\RtpRestApi\\RtpRestApi\\Services\\TestsService.cs",
               "RelativeDocumentMoniker": "RtpRestApi\\Services\\TestsService.cs",
               "ToolTip": "D:\\_ZzZ_\\_Project_\\ChatGPT Research Tool\\RtpRestApi-Asp.Net\\RtpRestApi\\RtpRestApi\\Services\\TestsService.cs",
               "RelativeToolTip": "RtpRestApi\\Services\\TestsService.cs",
-              "ViewState": "AQIAAAQAAAAAAAAAAAAQwAoAAAAFAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-12T16:58:24.63Z",
               "IsPinned": true,
@@ -74,13 +81,39 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "SettingsController.cs",
+              "DocumentMoniker": "D:\\_ZzZ_\\_Project_\\ChatGPT Research Tool\\RtpRestApi-Asp.Net\\RtpRestApi\\RtpRestApi\\Controllers\\SettingsController.cs",
+              "RelativeDocumentMoniker": "RtpRestApi\\Controllers\\SettingsController.cs",
+              "ToolTip": "D:\\_ZzZ_\\_Project_\\ChatGPT Research Tool\\RtpRestApi-Asp.Net\\RtpRestApi\\RtpRestApi\\Controllers\\SettingsController.cs",
+              "RelativeToolTip": "RtpRestApi\\Controllers\\SettingsController.cs",
+              "ViewState": "AQIAADIAAAAAAAAAAAAawEIAAAAfAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-15T21:19:34.367Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "SettingsService.cs",
+              "DocumentMoniker": "D:\\_ZzZ_\\_Project_\\ChatGPT Research Tool\\RtpRestApi-Asp.Net\\RtpRestApi\\RtpRestApi\\Services\\SettingsService.cs",
+              "RelativeDocumentMoniker": "RtpRestApi\\Services\\SettingsService.cs",
+              "ToolTip": "D:\\_ZzZ_\\_Project_\\ChatGPT Research Tool\\RtpRestApi-Asp.Net\\RtpRestApi\\RtpRestApi\\Services\\SettingsService.cs",
+              "RelativeToolTip": "RtpRestApi\\Services\\SettingsService.cs",
+              "ViewState": "AQIAABMAAAAAAAAAAAAgwF8AAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-15T21:08:08.37Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "AtlasService.cs",
               "DocumentMoniker": "D:\\_ZzZ_\\_Project_\\ChatGPT Research Tool\\RtpRestApi-Asp.Net\\RtpRestApi\\RtpRestApi\\Services\\AtlasService.cs",
               "RelativeDocumentMoniker": "RtpRestApi\\Services\\AtlasService.cs",
               "ToolTip": "D:\\_ZzZ_\\_Project_\\ChatGPT Research Tool\\RtpRestApi-Asp.Net\\RtpRestApi\\RtpRestApi\\Services\\AtlasService.cs",
               "RelativeToolTip": "RtpRestApi\\Services\\AtlasService.cs",
-              "ViewState": "AQIAAFQAAAAAAAAAAAAowFsAAAAPAAAA",
+              "ViewState": "AQIAABUAAAAAAAAAAAAcwGoAAAA3AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-15T19:39:33.865Z",
               "EditorCaption": ""
@@ -93,27 +126,27 @@
               "RelativeDocumentMoniker": "RtpRestApi\\Services\\AdminsService.cs",
               "ToolTip": "D:\\_ZzZ_\\_Project_\\ChatGPT Research Tool\\RtpRestApi-Asp.Net\\RtpRestApi\\RtpRestApi\\Services\\AdminsService.cs",
               "RelativeToolTip": "RtpRestApi\\Services\\AdminsService.cs",
-              "ViewState": "AQIAAFMAAAAAAAAAAAAkwGgAAAAMAAAA",
+              "ViewState": "AQIAAGkAAAAAAAAAAAAqwHgAAAA8AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-15T19:19:29.867Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "ArtifactsService.cs",
               "DocumentMoniker": "D:\\_ZzZ_\\_Project_\\ChatGPT Research Tool\\RtpRestApi-Asp.Net\\RtpRestApi\\RtpRestApi\\Services\\ArtifactsService.cs",
               "RelativeDocumentMoniker": "RtpRestApi\\Services\\ArtifactsService.cs",
               "ToolTip": "D:\\_ZzZ_\\_Project_\\ChatGPT Research Tool\\RtpRestApi-Asp.Net\\RtpRestApi\\RtpRestApi\\Services\\ArtifactsService.cs",
               "RelativeToolTip": "RtpRestApi\\Services\\ArtifactsService.cs",
-              "ViewState": "AQIAABIAAAAAAAAAAAAAAD0AAAAAAAAA",
+              "ViewState": "AQIAAOcAAAAAAAAAAAAAAPMAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-15T19:30:40.189Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 8,
               "Title": "Admin.cs",
               "DocumentMoniker": "D:\\_ZzZ_\\_Project_\\ChatGPT Research Tool\\RtpRestApi-Asp.Net\\RtpRestApi\\RtpRestApi\\Models\\Admin.cs",
               "RelativeDocumentMoniker": "RtpRestApi\\Models\\Admin.cs",
@@ -121,8 +154,7 @@
               "RelativeToolTip": "RtpRestApi\\Models\\Admin.cs",
               "ViewState": "AQIAAAYAAAAAAAAAAAAAAAgAAAAQAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-15T19:25:51.448Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-15T19:25:51.448Z"
             },
             {
               "$type": "Document",
@@ -132,14 +164,14 @@
               "RelativeDocumentMoniker": "RtpRestApi\\Program.cs",
               "ToolTip": "D:\\_ZzZ_\\_Project_\\ChatGPT Research Tool\\RtpRestApi-Asp.Net\\RtpRestApi\\RtpRestApi\\Program.cs",
               "RelativeToolTip": "RtpRestApi\\Program.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAAAAAAA",
+              "ViewState": "AQIAADQAAAAAAAAAAAAgwFsAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-15T18:17:06.245Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 7,
               "Title": "AuthenticationController.cs",
               "DocumentMoniker": "D:\\_ZzZ_\\_Project_\\ChatGPT Research Tool\\RtpRestApi-Asp.Net\\RtpRestApi\\RtpRestApi\\Controllers\\AuthenticationController.cs",
               "RelativeDocumentMoniker": "RtpRestApi\\Controllers\\AuthenticationController.cs",
@@ -147,8 +179,7 @@
               "RelativeToolTip": "RtpRestApi\\Controllers\\AuthenticationController.cs",
               "ViewState": "AQIAABgAAAAAAAAAAAAAACUAAAAQAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-15T18:15:29.739Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-15T18:15:29.739Z"
             }
           ]
         }

@@ -1,39 +1,135 @@
-﻿using Microsoft.Extensions.Options;
+﻿using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.Extensions.Options;
 using MongoDB.Driver;
+using Newtonsoft.Json.Linq;
 using RtpRestApi.Helpers;
 using RtpRestApi.Models;
+using System.Text.Json;
 
 namespace RtpRestApi.Services
 {
     public class SettingsService
     {
-        private readonly IMongoCollection<Setting> _settingsCollection;
+        IAtlasService _atlasService;
+        private readonly string _collection;
 
-        public SettingsService(IOptions<RtpServerSettings> RtpServerSettings)
+        public SettingsService(IOptions<RtpServerSettings> rtpDatabaseTopics, IAtlasService atlasService)
         {
-            var mongoClient = new MongoClient(
-                RtpServerSettings.Value.ConnectionString);
-
-            var mongoDatabase = mongoClient.GetDatabase(
-                RtpServerSettings.Value.DatabaseName);
-
-            _settingsCollection = mongoDatabase.GetCollection<Setting>(
-                RtpServerSettings.Value.SettingsCollectionName);
+            _atlasService = atlasService;
+            _collection = rtpDatabaseTopics.Value.SettingsCollectionName;
         }
 
-        public async Task<List<Setting>> GetAsync() =>
-            await _settingsCollection.Find(_ => true).ToListAsync();
+        public async Task<List<Setting>> GetAsync()
+        {
+            JArray andArray = new JArray();
+            JObject removed = new JObject
+            {
+                ["removed"] = false
+            };
+            andArray.Add(removed);
 
-        public async Task<Setting?> GetAsync(string id) =>
-            await _settingsCollection.Find(x => x._id == id).FirstOrDefaultAsync();
+            JObject filterObj = new JObject
+            {
+                ["$and"] = andArray
+            };
 
-        public async Task CreateAsync(Setting newSetting) =>
-            await _settingsCollection.InsertOneAsync(newSetting);
+            string res = await _atlasService.FindAsync(_collection, filterObj);
+            var settingObj = new List<Setting>();
+            try
+            {
+                settingObj = JsonSerializer.Deserialize<List<Setting>>(res);
+            }
+            catch (Exception)
+            {
+                return new List<Setting>();
+            }
 
-        public async Task UpdateAsync(string id, Setting updatedSetting) =>
-            await _settingsCollection.ReplaceOneAsync(x => x._id == id, updatedSetting);
+            return settingObj;
+        }
 
-        public async Task RemoveAsync(string id) =>
-            await _settingsCollection.DeleteOneAsync(x => x._id == id);
+        public async Task<Setting?> GetAsync(string id)
+        {
+            JArray andArray = new JArray();
+            JObject removed = new JObject
+            {
+                ["removed"] = false
+            };
+            andArray.Add(removed);
+
+            JObject adminId = new JObject
+            {
+                ["_id"] = new JObject
+                {
+                    ["$oid"] = id
+                }
+            };
+            andArray.Add(adminId);
+
+            JObject filterObj = new JObject
+            {
+                ["$and"] = andArray
+            };
+
+            string res = await _atlasService.FindAsync(_collection, filterObj);
+            var settingObj = new Setting();
+            try
+            {
+                settingObj = JsonSerializer.Deserialize<Setting>(res);
+            }
+            catch (Exception)
+            {
+                return new Setting();
+            }
+
+            return settingObj;
+
+        }
+
+        public async Task CreateAsync(Setting newSetting)
+        {
+            string tmp = JsonSerializer.Serialize(newSetting);
+            JObject documentObj = JObject.Parse(tmp);
+            await _atlasService.InsertOneAsync(_collection, documentObj);
+        }
+
+        public async Task UpdateAsync(string id, Setting updatedSetting)
+        {
+            JObject filterObj = new JObject
+            {
+                ["_id"] = new JObject
+                {
+                    ["$oid"] = id
+                }
+            };
+            string tmp = JsonSerializer.Serialize(updatedSetting);
+            JObject setObj = JObject.Parse(tmp);
+
+            string res = await _atlasService.UpdateOneAsync(_collection, filterObj, setObj);
+            int matchedCount = 0;
+            try
+            {
+                var resObj = JObject.Parse(res);
+                var idObj = resObj["matchedCount"];
+                if (idObj != null)
+                {
+                    matchedCount = int.Parse(idObj.ToString());
+                }
+            }
+            catch (Exception)
+            {
+            }
+        }
+
+        public async Task RemoveAsync(string id)
+        {
+            JObject filterObj = new JObject
+            {
+                ["_id"] = new JObject
+                {
+                    ["$oid"] = id
+                }
+            };
+            await _atlasService.DeleteOneAsync(_collection, filterObj);
+        }
     }
 }
