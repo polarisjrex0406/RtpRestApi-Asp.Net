@@ -15,7 +15,7 @@ namespace RtpRestApi
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-            builder.Services.Configure<RtpDatabaseSettings>(builder.Configuration.GetSection("RtpDatabase"));
+            builder.Services.Configure<RtpServerSettings>(builder.Configuration.GetSection("RtpDatabase"));
 
             builder.Services.AddSingleton<IAtlasService, AtlasService>();
             builder.Services.AddSingleton<AdminsService>();
@@ -24,6 +24,9 @@ namespace RtpRestApi
             builder.Services.AddSingleton<ArtifactsService>();
             builder.Services.AddSingleton<ExperimentsService>();
             builder.Services.AddSingleton<TestsService>();
+            builder.Services.AddSingleton<QueuesService>();
+            builder.Services.AddSingleton<CachePromptsService>();
+            builder.Services.AddSingleton<ChatGptService>();
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -58,6 +61,11 @@ namespace RtpRestApi
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
+            {
+                app.UseSwagger();
+                app.UseSwaggerUI();
+            }
+            else
             {
                 app.UseSwagger();
                 app.UseSwaggerUI();

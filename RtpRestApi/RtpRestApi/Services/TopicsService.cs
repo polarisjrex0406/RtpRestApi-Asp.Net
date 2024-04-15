@@ -11,7 +11,7 @@ namespace RtpRestApi.Services
         IAtlasService _atlasService;
         private readonly string _collection;
 
-        public TopicsService(IOptions<RtpDatabaseSettings> rtpDatabaseTopics, IAtlasService atlasService)
+        public TopicsService(IOptions<RtpServerSettings> rtpDatabaseTopics, IAtlasService atlasService)
         {
             _atlasService = atlasService;
             _collection = rtpDatabaseTopics.Value.TopicsCollectionName;

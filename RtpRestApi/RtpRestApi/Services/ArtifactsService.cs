@@ -12,7 +12,7 @@ namespace RtpRestApi.Services
         IAtlasService _atlasService;
         private readonly string _collection;
 
-        public ArtifactsService(IOptions<RtpDatabaseSettings> rtpDatabaseTopics, IAtlasService atlasService)
+        public ArtifactsService(IOptions<RtpServerSettings> rtpDatabaseTopics, IAtlasService atlasService)
         {
             _atlasService = atlasService;
             _collection = rtpDatabaseTopics.Value.ArtifactsCollectionName;

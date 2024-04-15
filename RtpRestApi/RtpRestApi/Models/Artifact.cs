@@ -41,7 +41,7 @@ namespace RtpRestApi.Models
         public List<ChatGPTSetting>? chatgptSettings { get; set; } = null;
         public bool useCache { get; set; } = false;
         public string? cacheTimeoutUnit { get; set; } = null;
-        public int? cacheTimeoutValue { get; set; }
+        public int cacheTimeoutValue { get; set; }
         public List<CacheCondition>? cacheConditions { get; set; }
         public string? cacheDescription { get; set; }
     }

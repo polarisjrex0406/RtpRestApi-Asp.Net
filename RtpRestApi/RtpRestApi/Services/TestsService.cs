@@ -12,7 +12,7 @@ namespace RtpRestApi.Services
         IAtlasService _atlasService;
         private readonly string _collection;
 
-        public TestsService(IOptions<RtpDatabaseSettings> rtpDatabaseTopics, IAtlasService atlasService)
+        public TestsService(IOptions<RtpServerSettings> rtpDatabaseTopics, IAtlasService atlasService)
         {
             _atlasService = atlasService;
             _collection = rtpDatabaseTopics.Value.TestsCollectionName;
@@ -178,71 +178,29 @@ namespace RtpRestApi.Services
             return expObj;
         }
 
-        public async Task<ExperimentResponse?> CreateAsync(string? adminId, ExperimentRequest newExperimentRequest)
+        public async Task<TestResponse?> CreateAsync(TestResponse testResponse)
         {
-            ExperimentResponse experimentResponse = new ExperimentResponse();
-            experimentResponse.experimentCode = newExperimentRequest.experimentCode;
-            experimentResponse.description = newExperimentRequest.description;
-            experimentResponse.style = newExperimentRequest.style;
-            experimentResponse.initPrompt = newExperimentRequest.initPrompt;
-            experimentResponse.topicId = newExperimentRequest.topic;
-            experimentResponse.ruleLogic = newExperimentRequest.ruleLogic;
-            experimentResponse.rules = newExperimentRequest.rules;
-            experimentResponse.createdBy = adminId;
-            string tmp = JsonSerializer.Serialize(experimentResponse, SerializeOptions());
+            string tmp = JsonSerializer.Serialize(testResponse, SerializeOptions());
             JObject documentObj = JObject.Parse(tmp);
             documentObj.Remove("_id");
-            documentObj.Remove("topicObj");
+            documentObj.Remove("description");
+
+            documentObj.Remove("topic");
+            documentObj.Remove("topicId");
+            documentObj["topic"] = new JObject
+            {
+                ["$oid"] = testResponse.topicId
+            };
+
             documentObj.Remove("createdBy");
             documentObj["createdBy"] = new JObject
             {
-                ["$oid"] = adminId
+                ["$oid"] = testResponse.createdBy
             };
-            documentObj["topic"] = new JObject
-            {
-                ["$oid"] = newExperimentRequest.topic
-            };
-            if (newExperimentRequest.templates != null && newExperimentRequest.templates.Count > 0)
-            {
-                JArray jArray = new JArray();
-                foreach (var template in newExperimentRequest.templates)
-                {
-                    jArray.Add(new JObject
-                    {
-                        ["order"] = template.order,
-                        ["templateCode"] = new JObject
-                        {
-                            ["$oid"] = template.templateCode
-                        }
-                    });
-                }
-                documentObj["templates"] = jArray;
-            }
 
-            string res = await _atlasService.InsertOneAsync(_collection, documentObj);
-            try
-            {
-                var resObj = JObject.Parse(res);
-                var idObj = resObj["insertedId"];
-                experimentResponse._id = idObj?.ToString();
-                if (newExperimentRequest.templates != null && newExperimentRequest.templates.Count > 0)
-                {
-                    experimentResponse.templates = new List<TemplateInResponse>();
-                    foreach (var template in newExperimentRequest.templates)
-                    {
-                        TemplateInResponse tmpInRes = new TemplateInResponse();
-                        tmpInRes.order = template.order;
-                        tmpInRes.templateId = template.templateCode;
-                        experimentResponse.templates.Add(tmpInRes);
-                    }
-                }
-            }
-            catch (Exception)
-            {
-                return null;
-            }
+            await _atlasService.InsertOneAsync(_collection, documentObj);
 
-            return experimentResponse;
+            return testResponse;
         }
 
         public async Task<TestResponse?> UpdateAsync(string id, TestRequest updatedTest)

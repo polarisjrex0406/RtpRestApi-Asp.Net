@@ -12,7 +12,7 @@ namespace RtpRestApi.Services
         IAtlasService _atlasService;
         private readonly string _collection;
 
-        public ExperimentsService(IOptions<RtpDatabaseSettings> rtpDatabaseTopics, IAtlasService atlasService)
+        public ExperimentsService(IOptions<RtpServerSettings> rtpDatabaseTopics, IAtlasService atlasService)
         {
             _atlasService = atlasService;
             _collection = rtpDatabaseTopics.Value.ExperimentsCollectionName;

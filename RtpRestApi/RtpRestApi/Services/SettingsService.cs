@@ -9,16 +9,16 @@ namespace RtpRestApi.Services
     {
         private readonly IMongoCollection<Setting> _settingsCollection;
 
-        public SettingsService(IOptions<RtpDatabaseSettings> rtpDatabaseSettings)
+        public SettingsService(IOptions<RtpServerSettings> RtpServerSettings)
         {
             var mongoClient = new MongoClient(
-                rtpDatabaseSettings.Value.ConnectionString);
+                RtpServerSettings.Value.ConnectionString);
 
             var mongoDatabase = mongoClient.GetDatabase(
-                rtpDatabaseSettings.Value.DatabaseName);
+                RtpServerSettings.Value.DatabaseName);
 
             _settingsCollection = mongoDatabase.GetCollection<Setting>(
-                rtpDatabaseSettings.Value.SettingsCollectionName);
+                RtpServerSettings.Value.SettingsCollectionName);
         }
 
         public async Task<List<Setting>> GetAsync() =>

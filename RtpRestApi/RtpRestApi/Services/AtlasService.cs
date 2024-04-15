@@ -9,7 +9,7 @@ using System.Text;
 
 namespace RtpRestApi.Services
 {
-    public class AtlasService(IOptions<RtpDatabaseSettings> rtpDatabaseAtlas, IHttpClientFactory httpClientFactory)
+    public class AtlasService(IOptions<RtpServerSettings> rtpDatabaseAtlas, IHttpClientFactory httpClientFactory)
         : IAtlasService
     {
         public async Task<string> MakeDataApiCall(string endpointRoute, string collection, JObject? filterObj, JObject? documentObj, JObject? setObj)

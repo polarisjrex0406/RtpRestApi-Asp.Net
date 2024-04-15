@@ -25,7 +25,7 @@ namespace RtpRestApi.Models
     {
         public string? testCode { get; set; }
         public string? topic { get; set; }
-        public List<ExperimentRequest>? experiments { get; set; }
+        public List<string>? experiments { get; set; }
     }
     public class TestResponse
     {
