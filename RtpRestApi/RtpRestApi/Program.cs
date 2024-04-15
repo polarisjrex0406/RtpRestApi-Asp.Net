@@ -34,16 +34,19 @@ namespace RtpRestApi
             builder.Services.AddSwaggerGen();
 
             // lets add cors
-            var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+/*            var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
             builder.Services.AddCors(options =>
             {
                 options.AddPolicy(name: MyAllowSpecificOrigins,
-                                  policy =>
-                                  {
-                                      policy.WithOrigins("https://ruletheprompt.com",
-                                                          "https://ai-poc-lake.vercel.app/");
-                                  });
-            });
+                    builder =>
+                    {
+                        builder.WithOrigins("https://ruletheprompt.com", "http://ruletheprompt.com",
+                            "https://ai-poc-lake.vercel.app", "http://ai-poc-lake.vercel.app")
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
+                        .SetIsOriginAllowedToAllowWildcardSubdomains();
+                    });
+            });*/
 
             builder.Services.AddHttpClient();
 
@@ -85,7 +88,14 @@ namespace RtpRestApi
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseRouting();
-            app.UseCors(MyAllowSpecificOrigins);
+
+            app.UseCors(builder =>
+                builder.WithOrigins("https://ruletheprompt.com", "http://ruletheprompt.com",
+                    "https://ai-poc-lake.vercel.app", "http://ai-poc-lake.vercel.app")
+                .AllowAnyMethod()
+                .AllowCredentials()
+                .AllowAnyHeader()
+            );
 
             app.UseAuthentication();
             app.UseAuthorization();
