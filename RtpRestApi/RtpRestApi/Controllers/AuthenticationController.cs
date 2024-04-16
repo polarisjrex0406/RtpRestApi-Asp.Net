@@ -84,6 +84,7 @@ namespace RtpRestApi.Controllers
                 var userClaims = new List<Claim>
             {
                 new Claim(ClaimTypes.NameIdentifier, response.Id),
+                new Claim(ClaimTypes.Role, response.Role),
 
                 // specify custom claims
                 new Claim("token", response.Token)

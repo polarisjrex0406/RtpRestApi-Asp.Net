@@ -9,13 +9,22 @@ namespace RtpRestApi.Models
         public string name { get; set; } = null!;
 
         [BsonElement("country")]
-        public string country { get; set; } = null!;
+        public string? country { get; set; } = null!;
 
         [BsonElement("email")]
         public string email { get; set; } = null!;
 
         [BsonElement("password")]
-        public string password { get; set; } = null!;
+        public string? password { get; set; } = null!;
+
+        [BsonElement("surname")]
+        public string? surname { get; set; } = null!;
+
+        [BsonElement("enabled")]
+        public bool? enabled { get; set; }
+
+        [BsonElement("role")]
+        public string? role { get; set; }
     }
 
     [BsonIgnoreExtraElements]

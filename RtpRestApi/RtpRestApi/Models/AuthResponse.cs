@@ -8,6 +8,7 @@ namespace RtpRestApi.Models
         public string Name { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty;
         public string Token { get; set; } = string.Empty;
+        public string Role { get; set; } = string.Empty;
 
         public AuthResponse(Admin user, string token)
         {
@@ -16,6 +17,7 @@ namespace RtpRestApi.Models
             Email = user.email;
             Token = token;
             Name = user.name;
+            Role = user.role;
         }
     }
 }

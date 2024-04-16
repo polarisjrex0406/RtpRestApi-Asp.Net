@@ -17,7 +17,7 @@ namespace RtpRestApi.Services
             _collection = rtpDatabaseTopics.Value.AdminsCollectionName;
         }
 
-        public async Task<List<Admin>?> GetAsync()
+        public async Task<List<Admin>?> GetAsync(string? q = null, string? fields = null)
         {
             JArray andArray = new JArray();
             JObject removed = new JObject
@@ -25,6 +25,27 @@ namespace RtpRestApi.Services
                 ["removed"] = false
             };
             andArray.Add(removed);
+
+            if (q != null && fields != null)
+            {
+                List<string> fieldsList = new List<string>(fields.Split(','));
+                JArray objArray = new JArray();
+                foreach (string field in fieldsList)
+                {
+                    objArray.Add(new JObject
+                    {
+                        [$"{field}"] = new JObject
+                        {
+                            ["$regex"] = q,
+                            ["$options"] = "i"
+                        }
+                    });
+                }
+                andArray.Add(new JObject
+                {
+                    ["$or"] = objArray
+                });
+            }
 
             JObject filterObj = new JObject
             {
@@ -148,6 +169,7 @@ namespace RtpRestApi.Services
             };
             string tmp = JsonSerializer.Serialize(updatedAdmin);
             JObject setObj = JObject.Parse(tmp);
+            setObj.Remove("_id");
 
             string res = await _atlasService.UpdateOneAsync(_collection, filterObj, setObj);
             int matchedCount = 0;

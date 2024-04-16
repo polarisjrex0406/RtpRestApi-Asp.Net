@@ -82,7 +82,7 @@ namespace RtpRestApi.Services
             await _atlasService.InsertOneAsync(_collection, documentObj);
         }
 
-        public async Task UpdateAsync(string id, Admin updatedAdmin)
+        public async Task UpdateAsync(string id, AdminPassword updatedAdminPassword)
         {
             JObject filterObj = new JObject
             {
@@ -91,7 +91,7 @@ namespace RtpRestApi.Services
                     ["$oid"] = id
                 }
             };
-            string tmp = JsonSerializer.Serialize(updatedAdmin);
+            string tmp = JsonSerializer.Serialize(updatedAdminPassword);
             JObject setObj = JObject.Parse(tmp);
 
             string res = await _atlasService.UpdateOneAsync(_collection, filterObj, setObj);

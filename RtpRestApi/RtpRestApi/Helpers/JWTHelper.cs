@@ -27,6 +27,7 @@ namespace RtpRestApi.Helpers
                     new Claim("name", user.name),
                     new Claim("email", user.email),
                     new Claim("username", user.surname),
+                    new Claim("role", user.role)
                 }),
 
                 // Set the token expiry to a day
