@@ -57,3 +57,4 @@ D:\_ZzZ_\_Project_\ChatGPT Research Tool\RtpRestApi-Asp.Net\RtpRestApi\RtpRestAp
 D:\_ZzZ_\_Project_\ChatGPT Research Tool\RtpRestApi-Asp.Net\RtpRestApi\RtpRestApi\obj\Release\net8.0\RtpRestApi.genruntimeconfig.cache
 D:\_ZzZ_\_Project_\ChatGPT Research Tool\RtpRestApi-Asp.Net\RtpRestApi\RtpRestApi\obj\Release\net8.0\ref\RtpRestApi.dll
 D:\_ZzZ_\_Project_\ChatGPT Research Tool\RtpRestApi-Asp.Net\RtpRestApi\RtpRestApi\bin\Release\net8.0\.filenesting.json
+D:\_ZzZ_\_Project_\ChatGPT Research Tool\RtpRestApi-Asp.Net\RtpRestApi\RtpRestApi\bin\Release\net8.0\BCrypt.Net-Next.dll

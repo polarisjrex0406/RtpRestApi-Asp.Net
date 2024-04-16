@@ -110,3 +110,4 @@ D:\_ZzZ_\_Project_\ChatGPT Research Tool\RtpRestApi-Asp.Net\RtpRestApi\RtpRestAp
 D:\_ZzZ_\_Project_\ChatGPT Research Tool\RtpRestApi-Asp.Net\RtpRestApi\RtpRestApi\bin\Debug\net8.0\Newtonsoft.Json.dll
 D:\_ZzZ_\_Project_\ChatGPT Research Tool\RtpRestApi-Asp.Net\RtpRestApi\RtpRestApi\bin\Debug\net8.0\Newtonsoft.Json.Bson.dll
 D:\_ZzZ_\_Project_\ChatGPT Research Tool\RtpRestApi-Asp.Net\RtpRestApi\RtpRestApi\bin\Debug\net8.0\.filenesting.json
+D:\_ZzZ_\_Project_\ChatGPT Research Tool\RtpRestApi-Asp.Net\RtpRestApi\RtpRestApi\bin\Debug\net8.0\BCrypt.Net-Next.dll

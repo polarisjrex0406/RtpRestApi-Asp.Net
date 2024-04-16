@@ -110,17 +110,31 @@ namespace RtpRestApi.Services
             }
             catch (Exception)
             {
-                return new Admin();
+                return null;
             }
 
             return adminObj;
         }
 
-        public async Task CreateAsync(Admin newAdmin)
+        public async Task<string?> CreateAsync(Admin newAdmin)
         {
             string tmp = JsonSerializer.Serialize(newAdmin);
             JObject documentObj = JObject.Parse(tmp);
-            await _atlasService.InsertOneAsync(_collection, documentObj);
+            documentObj.Remove("_id");
+            string res = await _atlasService.InsertOneAsync(_collection, documentObj);
+            string? insertedId = null;
+            try
+            {
+                if (res != null)
+                {
+                    insertedId = JObject.Parse(res)["insertedId"]?.ToString();
+                }
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            return insertedId;
         }
 
         public async Task UpdateAsync(string id, Admin updatedAdmin)

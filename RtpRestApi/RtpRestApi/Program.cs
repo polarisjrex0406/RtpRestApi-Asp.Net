@@ -27,26 +27,12 @@ namespace RtpRestApi
             builder.Services.AddSingleton<QueuesService>();
             builder.Services.AddSingleton<CachePromptsService>();
             builder.Services.AddSingleton<ChatGptService>();
+            builder.Services.AddSingleton<AdminPasswordsService>();
 
             builder.Services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
-
-            // lets add cors
-/*            var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
-            builder.Services.AddCors(options =>
-            {
-                options.AddPolicy(name: MyAllowSpecificOrigins,
-                    builder =>
-                    {
-                        builder.WithOrigins("https://ruletheprompt.com", "http://ruletheprompt.com",
-                            "https://ai-poc-lake.vercel.app", "http://ai-poc-lake.vercel.app")
-                        .AllowAnyMethod()
-                        .AllowAnyHeader()
-                        .SetIsOriginAllowedToAllowWildcardSubdomains();
-                    });
-            });*/
 
             builder.Services.AddHttpClient();
 
@@ -83,15 +69,14 @@ namespace RtpRestApi
                 app.UseSwaggerUI();
             }
 
-            // global cors policy
-            /*app.UseCors(options => options.SetIsOriginAllowed(x => _ = true).AllowAnyMethod().AllowCredentials().AllowAnyHeader());*/
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseRouting();
 
             app.UseCors(builder =>
                 builder.WithOrigins("https://ruletheprompt.com", "http://ruletheprompt.com",
-                    "https://ai-poc-lake.vercel.app", "http://ai-poc-lake.vercel.app")
+                    "https://ai-poc-lake.vercel.app", "http://ai-poc-lake.vercel.app",
+                    "http://localhost:3000", "https://localhost:3000")
                 .AllowAnyMethod()
                 .AllowCredentials()
                 .AllowAnyHeader()

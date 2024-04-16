@@ -8,6 +8,7 @@ D:\_ZzZ_\_Project_\ChatGPT Research Tool\RtpRestApi-Asp.Net\RtpRestApi\RtpRestAp
 D:\_ZzZ_\_Project_\ChatGPT Research Tool\RtpRestApi-Asp.Net\RtpRestApi\RtpRestApi\obj\Release\net8.0\PubTmp\Out\RtpRestApi.pdb
 D:\_ZzZ_\_Project_\ChatGPT Research Tool\RtpRestApi-Asp.Net\RtpRestApi\RtpRestApi\obj\Release\net8.0\PubTmp\Out\AWSSDK.Core.dll
 D:\_ZzZ_\_Project_\ChatGPT Research Tool\RtpRestApi-Asp.Net\RtpRestApi\RtpRestApi\obj\Release\net8.0\PubTmp\Out\AWSSDK.SecurityToken.dll
+D:\_ZzZ_\_Project_\ChatGPT Research Tool\RtpRestApi-Asp.Net\RtpRestApi\RtpRestApi\obj\Release\net8.0\PubTmp\Out\BCrypt.Net-Next.dll
 D:\_ZzZ_\_Project_\ChatGPT Research Tool\RtpRestApi-Asp.Net\RtpRestApi\RtpRestApi\obj\Release\net8.0\PubTmp\Out\DnsClient.dll
 D:\_ZzZ_\_Project_\ChatGPT Research Tool\RtpRestApi-Asp.Net\RtpRestApi\RtpRestApi\obj\Release\net8.0\PubTmp\Out\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 D:\_ZzZ_\_Project_\ChatGPT Research Tool\RtpRestApi-Asp.Net\RtpRestApi\RtpRestApi\obj\Release\net8.0\PubTmp\Out\Microsoft.AspNetCore.JsonPatch.dll

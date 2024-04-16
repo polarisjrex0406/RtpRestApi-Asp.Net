@@ -3,6 +3,21 @@ using MongoDB.Bson;
 
 namespace RtpRestApi.Models
 {
+    public class AdminRequest
+    {
+        [BsonElement("name")]
+        public string name { get; set; } = null!;
+
+        [BsonElement("country")]
+        public string country { get; set; } = null!;
+
+        [BsonElement("email")]
+        public string email { get; set; } = null!;
+
+        [BsonElement("password")]
+        public string password { get; set; } = null!;
+    }
+
     [BsonIgnoreExtraElements]
     public class Admin
     {
@@ -18,9 +33,9 @@ namespace RtpRestApi.Models
         [BsonElement("photo")]
         public string photo { get; set; } = null!;
         [BsonElement("role")]
-        public string role { get; set; } = null!;
+        public string role { get; set; } = "employee";
         [BsonElement("created")]
-        public DateTime created { get; set; }
+        public DateTime created { get; set; } = DateTime.Now;
         [BsonElement("enabled")]
         public bool enabled { get; set; } = false!;
         [BsonElement("removed")]

@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "omuBGVsOoKCim2zvOD/zrniT1y6OL0nQRCdcZymtQkyM1c+QaeRBB+htTNuOmThjDVouW8Q4rP8d7aFZEQRLgg==",
+  "dgSpecHash": "mqq5MmDpm1g6Fm3hdEPC9VjnQY7UWTBm8WirJNl5ciV3zJZGZhnYACWvliUEAlYmIncqG4qyYycgGCJ29E5fNg==",
   "success": true,
   "projectFilePath": "D:\\_ZzZ_\\_Project_\\ChatGPT Research Tool\\RtpRestApi-Asp.Net\\RtpRestApi\\RtpRestApi\\RtpRestApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\root\\.nuget\\packages\\awssdk.core\\3.7.100.14\\awssdk.core.3.7.100.14.nupkg.sha512",
     "C:\\Users\\root\\.nuget\\packages\\awssdk.securitytoken\\3.7.100.14\\awssdk.securitytoken.3.7.100.14.nupkg.sha512",
+    "C:\\Users\\root\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\root\\.nuget\\packages\\dnsclient\\1.6.1\\dnsclient.1.6.1.nupkg.sha512",
     "C:\\Users\\root\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\8.0.3\\microsoft.aspnetcore.authentication.jwtbearer.8.0.3.nupkg.sha512",
     "C:\\Users\\root\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\8.0.4\\microsoft.aspnetcore.jsonpatch.8.0.4.nupkg.sha512",
