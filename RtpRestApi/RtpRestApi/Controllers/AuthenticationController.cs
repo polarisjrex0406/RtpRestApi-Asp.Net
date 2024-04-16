@@ -54,6 +54,17 @@ namespace RtpRestApi.Controllers
                 }
                 else
                 {
+                    if (!admin.enabled)
+                    {
+                        Response.StatusCode = StatusCodes.Status409Conflict;
+                        object? resObj = null;
+                        return new JsonResult(new
+                        {
+                            success = false,
+                            result = resObj,
+                            message = "Your account is disabled, contact your account adminstrator"
+                        });
+                    }
                     bool passwordValid = false;
 
                     AdminPassword? adminPassword = await _adminPasswordsService.GetByUserAsync(admin._id);

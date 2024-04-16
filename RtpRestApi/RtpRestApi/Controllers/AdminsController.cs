@@ -44,6 +44,18 @@ public class AdminsController : ControllerBase
     [Route("listAll")]
     public async Task<IActionResult> Get()
     {
+        if (CurrentRole() != "Owner")
+        {
+            object? fakeObj = null;
+            Response.StatusCode = StatusCodes.Status203NonAuthoritative;
+            return new JsonResult(new
+            {
+                success = false,
+                result = fakeObj,
+                message = "You cannot access users data",
+            });
+        }
+
         var resObj = await _adminsService.GetAsync();
         if (resObj == null)
         {
@@ -75,6 +87,24 @@ public class AdminsController : ControllerBase
     [Route("list")]
     public async Task<IActionResult> Get([FromQuery] int? page, [FromQuery] int? items, [FromQuery] string? q, [FromQuery] string? fields)
     {
+        if (CurrentRole() != "Owner")
+        {
+            object? fakeObj = null;
+            Response.StatusCode = StatusCodes.Status203NonAuthoritative;
+            return new JsonResult(new
+            {
+                success = false,
+                result = fakeObj,
+                pagination = new
+                {
+                    page = 1,
+                    pages = 1,
+                    count = 0
+                },
+                message = "You cannot access users data",
+            });
+        }
+
         var resObj = await _adminsService.GetAsync(q, fields);
 
         if (resObj == null)
@@ -119,6 +149,24 @@ public class AdminsController : ControllerBase
     [Route("search")]
     public async Task<IActionResult> Get([FromQuery] string? q, [FromQuery] string? fields)
     {
+        if (CurrentRole() != "Owner")
+        {
+            object? fakeObj = null;
+            Response.StatusCode = StatusCodes.Status203NonAuthoritative;
+            return new JsonResult(new
+            {
+                success = false,
+                result = fakeObj,
+                pagination = new
+                {
+                    page = 1,
+                    pages = 1,
+                    count = 0
+                },
+                message = "You cannot access users data",
+            });
+        }
+
         var resObj = await _adminsService.GetAsync(q, fields);
 
         if (resObj == null)
