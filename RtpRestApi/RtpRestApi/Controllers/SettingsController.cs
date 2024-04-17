@@ -1,6 +1,7 @@
 ﻿using RtpRestApi.Models;
 using RtpRestApi.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace RtpRestApi.Controllers;
 
@@ -45,6 +46,7 @@ public class SettingsController : ControllerBase
     }
 
     [HttpPost]
+    [Authorize]
     public async Task<IActionResult> Post(Setting newSetting)
     {
         await _settingsService.CreateAsync(newSetting);
@@ -53,6 +55,7 @@ public class SettingsController : ControllerBase
     }
 
     [HttpPut("{id:length(24)}")]
+    [Authorize]
     public async Task<IActionResult> Update(string id, Setting updatedSetting)
     {
         var Setting = await _settingsService.GetAsync(id);
@@ -70,6 +73,7 @@ public class SettingsController : ControllerBase
     }
 
     [HttpDelete("{id:length(24)}")]
+    [Authorize]
     public async Task<IActionResult> Delete(string id)
     {
         var Setting = await _settingsService.GetAsync(id);

@@ -5,6 +5,8 @@ using RtpRestApi.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Options;
 
 namespace RtpRestApi
 {
@@ -37,12 +39,10 @@ namespace RtpRestApi
             builder.Services.AddHttpClient();
 
             // configure dependency injection
-            builder.Services.AddScoped<IUserRepository, UserRepository>();
             builder.Services.AddScoped<Services.IAuthenticationService, Services.AuthenticationService>();
 
             // configure strongly typed settings object
             builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
-
 
             // configure Cookie Authentication
             builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
@@ -51,23 +51,19 @@ namespace RtpRestApi
                     OnValidatePrincipal = async (context) =>
                     {
                         // validates the cookie
-                        await CookieHelper.ValidateCookie(context, builder.Configuration["AppSettings:SecretKey"]);
+                        var secretKey = builder.Configuration["AppSettings:SecretKey"];
+                        await CookieHelper.ValidateCookie(context, secretKey != null ? secretKey : string.Empty);
                     }
             });
 
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
-            if (app.Environment.IsDevelopment())
-            {
-                app.UseSwagger();
-                app.UseSwaggerUI();
-            }
-            else
-            {
-                app.UseSwagger();
-                app.UseSwaggerUI();
-            }
+            /*            if (app.Environment.IsDevelopment())
+                        {*/
+            app.UseSwagger();
+            app.UseSwaggerUI();
+            /*            }*/
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();

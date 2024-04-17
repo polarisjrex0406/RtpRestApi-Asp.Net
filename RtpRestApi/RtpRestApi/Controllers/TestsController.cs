@@ -6,11 +6,13 @@ using System.Text.Json;
 using System.Text.Json.Serialization.Metadata;
 using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
+using Microsoft.AspNetCore.Authorization;
 
 namespace RtpRestApi.Controllers;
 
 [ApiController]
 [Route("api/test")]
+[Authorize]
 public class TestsController : ControllerBase
 {
     private readonly TestsService _testsService;

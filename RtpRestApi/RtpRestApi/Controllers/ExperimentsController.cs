@@ -4,11 +4,13 @@ using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using System.Text.Json;
 using System.Text.Json.Serialization.Metadata;
+using Microsoft.AspNetCore.Authorization;
 
 namespace RtpRestApi.Controllers;
 
 [ApiController]
 [Route("api/experiment")]
+[Authorize]
 public class ExperimentsController : ControllerBase
 {
     private readonly ExperimentsService _experimentsService;

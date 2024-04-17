@@ -2,11 +2,13 @@
 using RtpRestApi.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 namespace RtpRestApi.Controllers;
 
 [ApiController]
 [Route("api/topic")]
+[Authorize]
 public class TopicsController : ControllerBase
 {
     private readonly TopicsService _topicsService;

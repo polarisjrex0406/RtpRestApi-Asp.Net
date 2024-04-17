@@ -8,6 +8,7 @@ using RtpRestApi.Services;
 using Microsoft.Extensions.Options;
 using System.Xml.Linq;
 using RtpRestApi.Entities;
+using Microsoft.AspNetCore.Authorization;
 
 namespace RtpRestApi.Controllers
 {
@@ -159,6 +160,7 @@ namespace RtpRestApi.Controllers
         // Logging out the user
         [HttpPost]
         [Route("api/logout")]
+        [Authorize]
         public async Task<IActionResult> Logout()
         {
             // simply call the SightOutAsync method in the HttpContext object to sign out user.

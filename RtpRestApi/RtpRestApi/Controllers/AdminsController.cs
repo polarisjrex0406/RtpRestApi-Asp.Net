@@ -2,11 +2,13 @@
 using RtpRestApi.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 namespace RtpRestApi.Controllers;
 
 [ApiController]
 [Route("api/admin")]
+[Authorize]
 public class AdminsController : ControllerBase
 {
     private readonly AdminsService _adminsService;
@@ -44,7 +46,7 @@ public class AdminsController : ControllerBase
     [Route("listAll")]
     public async Task<IActionResult> Get()
     {
-        if (CurrentRole() != "Owner")
+        if (CurrentRole() != "owner")
         {
             object? fakeObj = null;
             Response.StatusCode = StatusCodes.Status203NonAuthoritative;
@@ -87,7 +89,7 @@ public class AdminsController : ControllerBase
     [Route("list")]
     public async Task<IActionResult> Get([FromQuery] int? page, [FromQuery] int? items, [FromQuery] string? q, [FromQuery] string? fields)
     {
-        if (CurrentRole() != "Owner")
+        if (CurrentRole() != "owner")
         {
             object? fakeObj = null;
             Response.StatusCode = StatusCodes.Status203NonAuthoritative;
@@ -149,7 +151,7 @@ public class AdminsController : ControllerBase
     [Route("search")]
     public async Task<IActionResult> Get([FromQuery] string? q, [FromQuery] string? fields)
     {
-        if (CurrentRole() != "Owner")
+        if (CurrentRole() != "owner")
         {
             object? fakeObj = null;
             Response.StatusCode = StatusCodes.Status203NonAuthoritative;

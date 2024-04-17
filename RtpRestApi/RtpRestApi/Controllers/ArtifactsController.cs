@@ -4,11 +4,13 @@ using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using System.Text.Json;
 using System.Text.Json.Serialization.Metadata;
+using Microsoft.AspNetCore.Authorization;
 
 namespace RtpRestApi.Controllers;
 
 [ApiController]
 [Route("api/template")]
+[Authorize]
 public class ArtifactsController : ControllerBase
 {
     private readonly ArtifactsService _artifactsService;
