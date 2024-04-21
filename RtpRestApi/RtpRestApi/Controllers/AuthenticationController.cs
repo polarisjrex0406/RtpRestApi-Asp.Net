@@ -111,7 +111,7 @@ namespace RtpRestApi.Controllers
                 // settings for the authentication properties
                 var authProperties = new AuthenticationProperties
                 {
-                    //AllowRefresh = <bool>,
+                    AllowRefresh = true,
                     // Refreshing the authentication session should be allowed.
 
                     ExpiresUtc = DateTimeOffset.UtcNow.AddMinutes(30),
