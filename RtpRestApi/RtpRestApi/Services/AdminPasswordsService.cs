@@ -64,7 +64,7 @@ namespace RtpRestApi.Services
             return adminObj;
         }
 
-        public async Task CreateAsync(string user, string password, string salt = "")
+        public async Task CreateAsync(string user, string password, string salt)
         {
             AdminPassword adminPassword = new AdminPassword();
             adminPassword.user = user;

@@ -282,7 +282,7 @@ public class AdminsController : ControllerBase
             // Save password for new account
             if (insertedId != null)
             {
-                await _adminPasswordsService.CreateAsync(insertedId, newAdminRequest.password);
+                await _adminPasswordsService.CreateAsync(insertedId, newAdminRequest.password, BCrypt.Net.BCrypt.GenerateSalt());
 
                 return Ok(new
                 {

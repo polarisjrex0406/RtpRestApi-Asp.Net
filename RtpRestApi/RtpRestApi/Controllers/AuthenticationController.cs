@@ -114,12 +114,12 @@ namespace RtpRestApi.Controllers
                     //AllowRefresh = <bool>,
                     // Refreshing the authentication session should be allowed.
 
-                    //ExpiresUtc = DateTimeOffset.UtcNow.AddMinutes(10),
+                    ExpiresUtc = DateTimeOffset.UtcNow.AddMinutes(30),
                     // The time at which the authentication ticket expires. A 
                     // value set here overrides the ExpireTimeSpan option of 
                     // CookieAuthenticationOptions set with AddCookie.
 
-                    //IsPersistent = true,
+                    IsPersistent = true,
                     // Whether the authentication session is persisted across 
                     // multiple requests. When used with cookies, controls
                     // whether the cookie's lifetime is absolute (matching the
@@ -201,7 +201,7 @@ namespace RtpRestApi.Controllers
                 // Save password for new account
                 if (insertedId != null)
                 {
-                    await _adminPasswordsService.CreateAsync(insertedId, newAdminToRegist.password);
+                    await _adminPasswordsService.CreateAsync(insertedId, newAdminToRegist.password, BCrypt.Net.BCrypt.GenerateSalt());
 
                     return Ok(new
                     {
