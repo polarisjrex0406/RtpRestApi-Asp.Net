@@ -21,11 +21,15 @@ namespace RtpRestApi.Models
         public ExperimentResponse? experimentObj { get; set; }
         public List<History>? chatHistory { get; set; }
     }
+    public class ExperimentInRequest
+    {
+        public string? experiment;
+    }
     public class TestRequest
     {
         public string? testCode { get; set; }
         public string? topic { get; set; }
-        public List<string>? experiments { get; set; }
+        public List<ExperimentInRequest>? experiments { get; set; }
     }
     public class TestResponse
     {

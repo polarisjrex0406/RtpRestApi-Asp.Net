@@ -61,6 +61,7 @@ public class TestsController : ControllerBase
             if (cacheObj._id == rawTest.topicId)
             {
                 flagCached = true;
+                populatedTest.topicObj = cacheObj;
                 break;
             }
         }
@@ -306,12 +307,12 @@ public class TestsController : ControllerBase
         {
             foreach (var expId in newTestRequest.experiments)
             {
-                var expObj = await _experimentsService.GetAsync(CurrentUserId(), expId);
+                var expObj = await _experimentsService.GetAsync(CurrentUserId(), expId.experiment);
                 if (expObj == null) continue;
                 if (expObj.templates == null || expObj.style == null) continue;
 
                 ExperimentInResponse expResponse = new ExperimentInResponse();
-                expResponse.experimentId = expId;
+                expResponse.experimentId = expId.experiment;
                 expResponse.chatHistory = new List<History>();
 
                 foreach (var template in expObj.templates)
