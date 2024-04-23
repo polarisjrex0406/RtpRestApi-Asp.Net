@@ -2,12 +2,12 @@
 using Microsoft.AspNetCore.Authentication;
 using RtpRestApi.Entities;
 using System.IdentityModel.Tokens.Jwt;
+using System.IO;
 
 namespace RtpRestApi.Helpers
 {
     public class CookieHelper
     {
-
         public static async Task ValidateCookie(CookieValidatePrincipalContext context, string SecretKey)
         {
             var claimsPrincipal = context.Principal;

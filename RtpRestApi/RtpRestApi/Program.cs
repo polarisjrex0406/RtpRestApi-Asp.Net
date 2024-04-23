@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
+using MongoDB.Driver;
+using Microsoft.AspNetCore.DataProtection;
 
 namespace RtpRestApi
 {
@@ -44,17 +46,35 @@ namespace RtpRestApi
             // configure strongly typed settings object
             builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
 
+            var keysDirectoryName = "Keys";
+            var keysDirectoryPath = Path.Combine(builder.Environment.ContentRootPath, keysDirectoryName);
+            if (!Directory.Exists(keysDirectoryPath))
+            {
+                Directory.CreateDirectory(keysDirectoryPath);
+            }
+            builder.Services.AddDataProtection()
+              .PersistKeysToFileSystem(new DirectoryInfo(keysDirectoryPath))
+              .SetApplicationName("CustomCookieAuthentication");
+
             // configure Cookie Authentication
             builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-                .AddCookie(option => option.Events = new CookieAuthenticationEvents
-                {
-                    OnValidatePrincipal = async (context) =>
+                .AddCookie(option => {
+                    option.Cookie.Domain = "ruletheprompt.com";
+                    option.ExpireTimeSpan = TimeSpan.FromMinutes(30);
+                    option.Cookie.MaxAge = TimeSpan.FromMinutes(30);
+                    option.SlidingExpiration = false;
+                    option.LoginPath = "/api/login";
+                    option.LogoutPath = "/api/logout";
+                    option.Events = new CookieAuthenticationEvents
                     {
-                        // validates the cookie
-                        var secretKey = builder.Configuration["AppSettings:SecretKey"];
-                        await CookieHelper.ValidateCookie(context, secretKey != null ? secretKey : string.Empty);
-                    }
-            });
+                        OnValidatePrincipal = async (context) =>
+                        {
+                            // validates the cookie
+                            var secretKey = builder.Configuration["AppSettings:SecretKey"];
+                            await CookieHelper.ValidateCookie(context, secretKey != null ? secretKey : string.Empty);
+                        }
+                    };
+                });
 
             var app = builder.Build();
 
@@ -71,11 +91,12 @@ namespace RtpRestApi
 
             app.UseCors(builder =>
                 builder.WithOrigins("https://ruletheprompt.com", "http://ruletheprompt.com",
+                    "https://rtpserver.ruletheprompt.com", "http://rtpserver.ruletheprompt.com",
                     "https://ai-poc-lake.vercel.app", "http://ai-poc-lake.vercel.app",
-                    "http://localhost:3000", "https://localhost:3000")
-                .AllowAnyMethod()
-                .AllowCredentials()
+                    "https://localhost:3000", "http://localhost:3000")
+                .WithMethods("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS", "HEAD")
                 .AllowAnyHeader()
+                .AllowCredentials()
             );
 
             app.UseAuthentication();

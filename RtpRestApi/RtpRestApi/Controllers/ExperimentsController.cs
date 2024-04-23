@@ -290,7 +290,7 @@ public class ExperimentsController : ControllerBase
         }
     }
 
-    [HttpDelete]
+    [HttpGet]
     [Route("delete/{id:length(24)}")]
     public async Task<IActionResult> Delete(string id)
     {

@@ -46,7 +46,6 @@ public class SettingsController : ControllerBase
     }
 
     [HttpPost]
-    [Authorize]
     public async Task<IActionResult> Post(Setting newSetting)
     {
         await _settingsService.CreateAsync(newSetting);
@@ -54,8 +53,8 @@ public class SettingsController : ControllerBase
         return CreatedAtAction(nameof(Get), new { id = newSetting._id }, newSetting);
     }
 
-    [HttpPut("{id:length(24)}")]
-    [Authorize]
+    [HttpPatch]
+    [Route("update/{id:length(24)}")]
     public async Task<IActionResult> Update(string id, Setting updatedSetting)
     {
         var Setting = await _settingsService.GetAsync(id);
@@ -72,8 +71,8 @@ public class SettingsController : ControllerBase
         return NoContent();
     }
 
-    [HttpDelete("{id:length(24)}")]
-    [Authorize]
+    [HttpGet]
+    [Route("delete/{id:length(24)}")]
     public async Task<IActionResult> Delete(string id)
     {
         var Setting = await _settingsService.GetAsync(id);

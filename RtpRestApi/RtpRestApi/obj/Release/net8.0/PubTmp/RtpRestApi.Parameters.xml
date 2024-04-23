@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="RTPServer.ruletheprompt.com" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^D:\\_ZzZ_\\_Project_\\ChatGPT\ Research\ Tool\\RtpRestApi-Asp\.Net\\RtpRestApi\\RtpRestApi\\obj\\Release\\net8\.0\\PubTmp\\Out\\$" />
+  </parameter>
+</parameters>

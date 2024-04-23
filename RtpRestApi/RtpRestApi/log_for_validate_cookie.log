@@ -1,0 +1,572 @@
+------------------------4/22/2024 10:01:13 PM-------------------
+claimsPrincipal: System.Security.Claims.ClaimsPrincipal
+claimToken: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MDQ2NDk2MTQ0ODczOTY3MjcyODcwOSIsIm5hbWUiOiJSb290IiwiZW1haWwiOiJhZG1pbkBkZW1vLmNvbSIsInVzZXJuYW1lIjoiQWRtaW4iLCJyb2xlIjoib3duZXIiLCJuYmYiOjE3MTM4MjMyMzYsImV4cCI6MTcxMzg2NjQzNiwiaWF0IjoxNzEzODIzMjM2fQ.kUOTQfh0WYTU9OvJn-gPzjN7tsmnH2zlOCg9tWyc2j0TEm12_6MXfjXhzJtmkEEV90vLpwC4xG70sFDi5kz1yw
+user: *** User ***
+Id: 660464961448739672728709
+Name: Root
+Email: admin@demo.com
+Favorite Color: 
+Username: Admin
+*** User ***
+SecretKey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+------------------------4/22/2024 10:01:14 PM-------------------
+claimsPrincipal: System.Security.Claims.ClaimsPrincipal
+claimToken: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MDQ2NDk2MTQ0ODczOTY3MjcyODcwOSIsIm5hbWUiOiJSb290IiwiZW1haWwiOiJhZG1pbkBkZW1vLmNvbSIsInVzZXJuYW1lIjoiQWRtaW4iLCJyb2xlIjoib3duZXIiLCJuYmYiOjE3MTM4MjMyMzYsImV4cCI6MTcxMzg2NjQzNiwiaWF0IjoxNzEzODIzMjM2fQ.kUOTQfh0WYTU9OvJn-gPzjN7tsmnH2zlOCg9tWyc2j0TEm12_6MXfjXhzJtmkEEV90vLpwC4xG70sFDi5kz1yw
+user: *** User ***
+Id: 660464961448739672728709
+Name: Root
+Email: admin@demo.com
+Favorite Color: 
+Username: Admin
+*** User ***
+SecretKey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+------------------------4/22/2024 10:07:26 PM-------------------
+claimsPrincipal: System.Security.Claims.ClaimsPrincipal
+claimToken: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MDQ2NDk2MTQ0ODczOTY3MjcyODcwOSIsIm5hbWUiOiJSb290IiwiZW1haWwiOiJhZG1pbkBkZW1vLmNvbSIsInVzZXJuYW1lIjoiQWRtaW4iLCJyb2xlIjoib3duZXIiLCJuYmYiOjE3MTM4MjM2NDYsImV4cCI6MTcxMzg2Njg0NiwiaWF0IjoxNzEzODIzNjQ2fQ.72dzyMVwF7nMIOHcjf3iv91OZ-GJyE-HMHf2m1j3koKP7tvWgM67F7RaPIgoZ4xr7T47krt7CHlv3Of3YRcoHA
+user: *** User ***
+Id: 660464961448739672728709
+Name: Root
+Email: admin@demo.com
+Favorite Color: 
+Username: Admin
+*** User ***
+SecretKey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+------------------------4/22/2024 10:07:26 PM-------------------
+claimsPrincipal: System.Security.Claims.ClaimsPrincipal
+claimToken: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MDQ2NDk2MTQ0ODczOTY3MjcyODcwOSIsIm5hbWUiOiJSb290IiwiZW1haWwiOiJhZG1pbkBkZW1vLmNvbSIsInVzZXJuYW1lIjoiQWRtaW4iLCJyb2xlIjoib3duZXIiLCJuYmYiOjE3MTM4MjM2NDYsImV4cCI6MTcxMzg2Njg0NiwiaWF0IjoxNzEzODIzNjQ2fQ.72dzyMVwF7nMIOHcjf3iv91OZ-GJyE-HMHf2m1j3koKP7tvWgM67F7RaPIgoZ4xr7T47krt7CHlv3Of3YRcoHA
+user: *** User ***
+Id: 660464961448739672728709
+Name: Root
+Email: admin@demo.com
+Favorite Color: 
+Username: Admin
+*** User ***
+SecretKey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+------------------------4/22/2024 10:07:27 PM-------------------
+claimsPrincipal: System.Security.Claims.ClaimsPrincipal
+claimToken: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MDQ2NDk2MTQ0ODczOTY3MjcyODcwOSIsIm5hbWUiOiJSb290IiwiZW1haWwiOiJhZG1pbkBkZW1vLmNvbSIsInVzZXJuYW1lIjoiQWRtaW4iLCJyb2xlIjoib3duZXIiLCJuYmYiOjE3MTM4MjM2NDYsImV4cCI6MTcxMzg2Njg0NiwiaWF0IjoxNzEzODIzNjQ2fQ.72dzyMVwF7nMIOHcjf3iv91OZ-GJyE-HMHf2m1j3koKP7tvWgM67F7RaPIgoZ4xr7T47krt7CHlv3Of3YRcoHA
+user: *** User ***
+Id: 660464961448739672728709
+Name: Root
+Email: admin@demo.com
+Favorite Color: 
+Username: Admin
+*** User ***
+SecretKey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+------------------------4/22/2024 10:07:35 PM-------------------
+claimsPrincipal: System.Security.Claims.ClaimsPrincipal
+claimToken: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MDQ2NDk2MTQ0ODczOTY3MjcyODcwOSIsIm5hbWUiOiJSb290IiwiZW1haWwiOiJhZG1pbkBkZW1vLmNvbSIsInVzZXJuYW1lIjoiQWRtaW4iLCJyb2xlIjoib3duZXIiLCJuYmYiOjE3MTM4MjM2NDYsImV4cCI6MTcxMzg2Njg0NiwiaWF0IjoxNzEzODIzNjQ2fQ.72dzyMVwF7nMIOHcjf3iv91OZ-GJyE-HMHf2m1j3koKP7tvWgM67F7RaPIgoZ4xr7T47krt7CHlv3Of3YRcoHA
+user: *** User ***
+Id: 660464961448739672728709
+Name: Root
+Email: admin@demo.com
+Favorite Color: 
+Username: Admin
+*** User ***
+SecretKey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+------------------------4/22/2024 10:07:36 PM-------------------
+claimsPrincipal: System.Security.Claims.ClaimsPrincipal
+claimToken: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MDQ2NDk2MTQ0ODczOTY3MjcyODcwOSIsIm5hbWUiOiJSb290IiwiZW1haWwiOiJhZG1pbkBkZW1vLmNvbSIsInVzZXJuYW1lIjoiQWRtaW4iLCJyb2xlIjoib3duZXIiLCJuYmYiOjE3MTM4MjM2NDYsImV4cCI6MTcxMzg2Njg0NiwiaWF0IjoxNzEzODIzNjQ2fQ.72dzyMVwF7nMIOHcjf3iv91OZ-GJyE-HMHf2m1j3koKP7tvWgM67F7RaPIgoZ4xr7T47krt7CHlv3Of3YRcoHA
+user: *** User ***
+Id: 660464961448739672728709
+Name: Root
+Email: admin@demo.com
+Favorite Color: 
+Username: Admin
+*** User ***
+SecretKey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+------------------------4/22/2024 10:07:39 PM-------------------
+claimsPrincipal: System.Security.Claims.ClaimsPrincipal
+claimToken: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MDQ2NDk2MTQ0ODczOTY3MjcyODcwOSIsIm5hbWUiOiJSb290IiwiZW1haWwiOiJhZG1pbkBkZW1vLmNvbSIsInVzZXJuYW1lIjoiQWRtaW4iLCJyb2xlIjoib3duZXIiLCJuYmYiOjE3MTM4MjM2NDYsImV4cCI6MTcxMzg2Njg0NiwiaWF0IjoxNzEzODIzNjQ2fQ.72dzyMVwF7nMIOHcjf3iv91OZ-GJyE-HMHf2m1j3koKP7tvWgM67F7RaPIgoZ4xr7T47krt7CHlv3Of3YRcoHA
+user: *** User ***
+Id: 660464961448739672728709
+Name: Root
+Email: admin@demo.com
+Favorite Color: 
+Username: Admin
+*** User ***
+SecretKey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+------------------------4/22/2024 10:07:43 PM-------------------
+claimsPrincipal: System.Security.Claims.ClaimsPrincipal
+claimToken: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MDQ2NDk2MTQ0ODczOTY3MjcyODcwOSIsIm5hbWUiOiJSb290IiwiZW1haWwiOiJhZG1pbkBkZW1vLmNvbSIsInVzZXJuYW1lIjoiQWRtaW4iLCJyb2xlIjoib3duZXIiLCJuYmYiOjE3MTM4MjM2NDYsImV4cCI6MTcxMzg2Njg0NiwiaWF0IjoxNzEzODIzNjQ2fQ.72dzyMVwF7nMIOHcjf3iv91OZ-GJyE-HMHf2m1j3koKP7tvWgM67F7RaPIgoZ4xr7T47krt7CHlv3Of3YRcoHA
+user: *** User ***
+Id: 660464961448739672728709
+Name: Root
+Email: admin@demo.com
+Favorite Color: 
+Username: Admin
+*** User ***
+SecretKey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+------------------------4/22/2024 10:51:22 PM-------------------
+claimsPrincipal: System.Security.Claims.ClaimsPrincipal
+claimToken: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MDQ2NDk2MTQ0ODczOTY3MjcyODcwOSIsIm5hbWUiOiJSb290IiwiZW1haWwiOiJhZG1pbkBkZW1vLmNvbSIsInVzZXJuYW1lIjoiQWRtaW4iLCJyb2xlIjoib3duZXIiLCJuYmYiOjE3MTM4MjYyODIsImV4cCI6MTcxMzg2OTQ4MiwiaWF0IjoxNzEzODI2MjgyfQ.glIHG4JgbZiSwS-AcwNEAGFZ9sQtMqteroKw_TukpOVTvvD8G5Y5mVe7CS8zYrpwVSa1p1PgCch5DXdLUlzokQ
+user: *** User ***
+Id: 660464961448739672728709
+Name: Root
+Email: admin@demo.com
+Favorite Color: 
+Username: Admin
+*** User ***
+SecretKey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+------------------------4/22/2024 10:51:23 PM-------------------
+claimsPrincipal: System.Security.Claims.ClaimsPrincipal
+claimToken: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MDQ2NDk2MTQ0ODczOTY3MjcyODcwOSIsIm5hbWUiOiJSb290IiwiZW1haWwiOiJhZG1pbkBkZW1vLmNvbSIsInVzZXJuYW1lIjoiQWRtaW4iLCJyb2xlIjoib3duZXIiLCJuYmYiOjE3MTM4MjYyODIsImV4cCI6MTcxMzg2OTQ4MiwiaWF0IjoxNzEzODI2MjgyfQ.glIHG4JgbZiSwS-AcwNEAGFZ9sQtMqteroKw_TukpOVTvvD8G5Y5mVe7CS8zYrpwVSa1p1PgCch5DXdLUlzokQ
+user: *** User ***
+Id: 660464961448739672728709
+Name: Root
+Email: admin@demo.com
+Favorite Color: 
+Username: Admin
+*** User ***
+SecretKey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+------------------------4/22/2024 10:51:23 PM-------------------
+claimsPrincipal: System.Security.Claims.ClaimsPrincipal
+claimToken: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MDQ2NDk2MTQ0ODczOTY3MjcyODcwOSIsIm5hbWUiOiJSb290IiwiZW1haWwiOiJhZG1pbkBkZW1vLmNvbSIsInVzZXJuYW1lIjoiQWRtaW4iLCJyb2xlIjoib3duZXIiLCJuYmYiOjE3MTM4MjYyODIsImV4cCI6MTcxMzg2OTQ4MiwiaWF0IjoxNzEzODI2MjgyfQ.glIHG4JgbZiSwS-AcwNEAGFZ9sQtMqteroKw_TukpOVTvvD8G5Y5mVe7CS8zYrpwVSa1p1PgCch5DXdLUlzokQ
+user: *** User ***
+Id: 660464961448739672728709
+Name: Root
+Email: admin@demo.com
+Favorite Color: 
+Username: Admin
+*** User ***
+SecretKey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+------------------------4/22/2024 10:51:28 PM-------------------
+claimsPrincipal: System.Security.Claims.ClaimsPrincipal
+claimToken: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MDQ2NDk2MTQ0ODczOTY3MjcyODcwOSIsIm5hbWUiOiJSb290IiwiZW1haWwiOiJhZG1pbkBkZW1vLmNvbSIsInVzZXJuYW1lIjoiQWRtaW4iLCJyb2xlIjoib3duZXIiLCJuYmYiOjE3MTM4MjYyODIsImV4cCI6MTcxMzg2OTQ4MiwiaWF0IjoxNzEzODI2MjgyfQ.glIHG4JgbZiSwS-AcwNEAGFZ9sQtMqteroKw_TukpOVTvvD8G5Y5mVe7CS8zYrpwVSa1p1PgCch5DXdLUlzokQ
+user: *** User ***
+Id: 660464961448739672728709
+Name: Root
+Email: admin@demo.com
+Favorite Color: 
+Username: Admin
+*** User ***
+SecretKey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+------------------------4/22/2024 10:51:28 PM-------------------
+claimsPrincipal: System.Security.Claims.ClaimsPrincipal
+claimToken: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MDQ2NDk2MTQ0ODczOTY3MjcyODcwOSIsIm5hbWUiOiJSb290IiwiZW1haWwiOiJhZG1pbkBkZW1vLmNvbSIsInVzZXJuYW1lIjoiQWRtaW4iLCJyb2xlIjoib3duZXIiLCJuYmYiOjE3MTM4MjYyODIsImV4cCI6MTcxMzg2OTQ4MiwiaWF0IjoxNzEzODI2MjgyfQ.glIHG4JgbZiSwS-AcwNEAGFZ9sQtMqteroKw_TukpOVTvvD8G5Y5mVe7CS8zYrpwVSa1p1PgCch5DXdLUlzokQ
+user: *** User ***
+Id: 660464961448739672728709
+Name: Root
+Email: admin@demo.com
+Favorite Color: 
+Username: Admin
+*** User ***
+SecretKey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+------------------------4/22/2024 10:57:53 PM-------------------
+claimsPrincipal: System.Security.Claims.ClaimsPrincipal
+claimToken: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MDQ2NDk2MTQ0ODczOTY3MjcyODcwOSIsIm5hbWUiOiJSb290IiwiZW1haWwiOiJhZG1pbkBkZW1vLmNvbSIsInVzZXJuYW1lIjoiQWRtaW4iLCJyb2xlIjoib3duZXIiLCJuYmYiOjE3MTM4MjYyODIsImV4cCI6MTcxMzg2OTQ4MiwiaWF0IjoxNzEzODI2MjgyfQ.glIHG4JgbZiSwS-AcwNEAGFZ9sQtMqteroKw_TukpOVTvvD8G5Y5mVe7CS8zYrpwVSa1p1PgCch5DXdLUlzokQ
+user: *** User ***
+Id: 660464961448739672728709
+Name: Root
+Email: admin@demo.com
+Favorite Color: 
+Username: Admin
+*** User ***
+SecretKey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+------------------------4/22/2024 10:57:53 PM-------------------
+claimsPrincipal: System.Security.Claims.ClaimsPrincipal
+claimToken: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MDQ2NDk2MTQ0ODczOTY3MjcyODcwOSIsIm5hbWUiOiJSb290IiwiZW1haWwiOiJhZG1pbkBkZW1vLmNvbSIsInVzZXJuYW1lIjoiQWRtaW4iLCJyb2xlIjoib3duZXIiLCJuYmYiOjE3MTM4MjYyODIsImV4cCI6MTcxMzg2OTQ4MiwiaWF0IjoxNzEzODI2MjgyfQ.glIHG4JgbZiSwS-AcwNEAGFZ9sQtMqteroKw_TukpOVTvvD8G5Y5mVe7CS8zYrpwVSa1p1PgCch5DXdLUlzokQ
+user: *** User ***
+Id: 660464961448739672728709
+Name: Root
+Email: admin@demo.com
+Favorite Color: 
+Username: Admin
+*** User ***
+SecretKey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+------------------------4/22/2024 10:57:55 PM-------------------
+claimsPrincipal: System.Security.Claims.ClaimsPrincipal
+claimToken: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MDQ2NDk2MTQ0ODczOTY3MjcyODcwOSIsIm5hbWUiOiJSb290IiwiZW1haWwiOiJhZG1pbkBkZW1vLmNvbSIsInVzZXJuYW1lIjoiQWRtaW4iLCJyb2xlIjoib3duZXIiLCJuYmYiOjE3MTM4MjYyODIsImV4cCI6MTcxMzg2OTQ4MiwiaWF0IjoxNzEzODI2MjgyfQ.glIHG4JgbZiSwS-AcwNEAGFZ9sQtMqteroKw_TukpOVTvvD8G5Y5mVe7CS8zYrpwVSa1p1PgCch5DXdLUlzokQ
+user: *** User ***
+Id: 660464961448739672728709
+Name: Root
+Email: admin@demo.com
+Favorite Color: 
+Username: Admin
+*** User ***
+SecretKey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+------------------------4/22/2024 10:57:57 PM-------------------
+claimsPrincipal: System.Security.Claims.ClaimsPrincipal
+claimToken: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MDQ2NDk2MTQ0ODczOTY3MjcyODcwOSIsIm5hbWUiOiJSb290IiwiZW1haWwiOiJhZG1pbkBkZW1vLmNvbSIsInVzZXJuYW1lIjoiQWRtaW4iLCJyb2xlIjoib3duZXIiLCJuYmYiOjE3MTM4MjYyODIsImV4cCI6MTcxMzg2OTQ4MiwiaWF0IjoxNzEzODI2MjgyfQ.glIHG4JgbZiSwS-AcwNEAGFZ9sQtMqteroKw_TukpOVTvvD8G5Y5mVe7CS8zYrpwVSa1p1PgCch5DXdLUlzokQ
+user: *** User ***
+Id: 660464961448739672728709
+Name: Root
+Email: admin@demo.com
+Favorite Color: 
+Username: Admin
+*** User ***
+SecretKey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+------------------------4/22/2024 10:57:57 PM-------------------
+claimsPrincipal: System.Security.Claims.ClaimsPrincipal
+claimToken: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MDQ2NDk2MTQ0ODczOTY3MjcyODcwOSIsIm5hbWUiOiJSb290IiwiZW1haWwiOiJhZG1pbkBkZW1vLmNvbSIsInVzZXJuYW1lIjoiQWRtaW4iLCJyb2xlIjoib3duZXIiLCJuYmYiOjE3MTM4MjYyODIsImV4cCI6MTcxMzg2OTQ4MiwiaWF0IjoxNzEzODI2MjgyfQ.glIHG4JgbZiSwS-AcwNEAGFZ9sQtMqteroKw_TukpOVTvvD8G5Y5mVe7CS8zYrpwVSa1p1PgCch5DXdLUlzokQ
+user: *** User ***
+Id: 660464961448739672728709
+Name: Root
+Email: admin@demo.com
+Favorite Color: 
+Username: Admin
+*** User ***
+SecretKey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+------------------------4/22/2024 10:59:02 PM-------------------
+claimsPrincipal: System.Security.Claims.ClaimsPrincipal
+claimToken: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MDQ2NDk2MTQ0ODczOTY3MjcyODcwOSIsIm5hbWUiOiJSb290IiwiZW1haWwiOiJhZG1pbkBkZW1vLmNvbSIsInVzZXJuYW1lIjoiQWRtaW4iLCJyb2xlIjoib3duZXIiLCJuYmYiOjE3MTM4MjYyODIsImV4cCI6MTcxMzg2OTQ4MiwiaWF0IjoxNzEzODI2MjgyfQ.glIHG4JgbZiSwS-AcwNEAGFZ9sQtMqteroKw_TukpOVTvvD8G5Y5mVe7CS8zYrpwVSa1p1PgCch5DXdLUlzokQ
+user: *** User ***
+Id: 660464961448739672728709
+Name: Root
+Email: admin@demo.com
+Favorite Color: 
+Username: Admin
+*** User ***
+SecretKey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+------------------------4/22/2024 10:59:04 PM-------------------
+claimsPrincipal: System.Security.Claims.ClaimsPrincipal
+claimToken: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MDQ2NDk2MTQ0ODczOTY3MjcyODcwOSIsIm5hbWUiOiJSb290IiwiZW1haWwiOiJhZG1pbkBkZW1vLmNvbSIsInVzZXJuYW1lIjoiQWRtaW4iLCJyb2xlIjoib3duZXIiLCJuYmYiOjE3MTM4MjYyODIsImV4cCI6MTcxMzg2OTQ4MiwiaWF0IjoxNzEzODI2MjgyfQ.glIHG4JgbZiSwS-AcwNEAGFZ9sQtMqteroKw_TukpOVTvvD8G5Y5mVe7CS8zYrpwVSa1p1PgCch5DXdLUlzokQ
+user: *** User ***
+Id: 660464961448739672728709
+Name: Root
+Email: admin@demo.com
+Favorite Color: 
+Username: Admin
+*** User ***
+SecretKey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+------------------------4/22/2024 10:59:04 PM-------------------
+claimsPrincipal: System.Security.Claims.ClaimsPrincipal
+claimToken: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MDQ2NDk2MTQ0ODczOTY3MjcyODcwOSIsIm5hbWUiOiJSb290IiwiZW1haWwiOiJhZG1pbkBkZW1vLmNvbSIsInVzZXJuYW1lIjoiQWRtaW4iLCJyb2xlIjoib3duZXIiLCJuYmYiOjE3MTM4MjYyODIsImV4cCI6MTcxMzg2OTQ4MiwiaWF0IjoxNzEzODI2MjgyfQ.glIHG4JgbZiSwS-AcwNEAGFZ9sQtMqteroKw_TukpOVTvvD8G5Y5mVe7CS8zYrpwVSa1p1PgCch5DXdLUlzokQ
+user: *** User ***
+Id: 660464961448739672728709
+Name: Root
+Email: admin@demo.com
+Favorite Color: 
+Username: Admin
+*** User ***
+SecretKey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+------------------------4/22/2024 10:59:08 PM-------------------
+claimsPrincipal: System.Security.Claims.ClaimsPrincipal
+claimToken: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MDQ2NDk2MTQ0ODczOTY3MjcyODcwOSIsIm5hbWUiOiJSb290IiwiZW1haWwiOiJhZG1pbkBkZW1vLmNvbSIsInVzZXJuYW1lIjoiQWRtaW4iLCJyb2xlIjoib3duZXIiLCJuYmYiOjE3MTM4MjYyODIsImV4cCI6MTcxMzg2OTQ4MiwiaWF0IjoxNzEzODI2MjgyfQ.glIHG4JgbZiSwS-AcwNEAGFZ9sQtMqteroKw_TukpOVTvvD8G5Y5mVe7CS8zYrpwVSa1p1PgCch5DXdLUlzokQ
+user: *** User ***
+Id: 660464961448739672728709
+Name: Root
+Email: admin@demo.com
+Favorite Color: 
+Username: Admin
+*** User ***
+SecretKey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+------------------------4/22/2024 10:59:08 PM-------------------
+claimsPrincipal: System.Security.Claims.ClaimsPrincipal
+claimToken: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MDQ2NDk2MTQ0ODczOTY3MjcyODcwOSIsIm5hbWUiOiJSb290IiwiZW1haWwiOiJhZG1pbkBkZW1vLmNvbSIsInVzZXJuYW1lIjoiQWRtaW4iLCJyb2xlIjoib3duZXIiLCJuYmYiOjE3MTM4MjYyODIsImV4cCI6MTcxMzg2OTQ4MiwiaWF0IjoxNzEzODI2MjgyfQ.glIHG4JgbZiSwS-AcwNEAGFZ9sQtMqteroKw_TukpOVTvvD8G5Y5mVe7CS8zYrpwVSa1p1PgCch5DXdLUlzokQ
+user: *** User ***
+Id: 660464961448739672728709
+Name: Root
+Email: admin@demo.com
+Favorite Color: 
+Username: Admin
+*** User ***
+SecretKey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+------------------------4/22/2024 11:03:43 PM-------------------
+claimsPrincipal: System.Security.Claims.ClaimsPrincipal
+claimToken: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MDQ2NDk2MTQ0ODczOTY3MjcyODcwOSIsIm5hbWUiOiJSb290IiwiZW1haWwiOiJhZG1pbkBkZW1vLmNvbSIsInVzZXJuYW1lIjoiQWRtaW4iLCJyb2xlIjoib3duZXIiLCJuYmYiOjE3MTM4MjYyODIsImV4cCI6MTcxMzg2OTQ4MiwiaWF0IjoxNzEzODI2MjgyfQ.glIHG4JgbZiSwS-AcwNEAGFZ9sQtMqteroKw_TukpOVTvvD8G5Y5mVe7CS8zYrpwVSa1p1PgCch5DXdLUlzokQ
+user: *** User ***
+Id: 660464961448739672728709
+Name: Root
+Email: admin@demo.com
+Favorite Color: 
+Username: Admin
+*** User ***
+SecretKey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+------------------------4/22/2024 11:03:49 PM-------------------
+claimsPrincipal: System.Security.Claims.ClaimsPrincipal
+claimToken: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MDQ2NDk2MTQ0ODczOTY3MjcyODcwOSIsIm5hbWUiOiJSb290IiwiZW1haWwiOiJhZG1pbkBkZW1vLmNvbSIsInVzZXJuYW1lIjoiQWRtaW4iLCJyb2xlIjoib3duZXIiLCJuYmYiOjE3MTM4MjYyODIsImV4cCI6MTcxMzg2OTQ4MiwiaWF0IjoxNzEzODI2MjgyfQ.glIHG4JgbZiSwS-AcwNEAGFZ9sQtMqteroKw_TukpOVTvvD8G5Y5mVe7CS8zYrpwVSa1p1PgCch5DXdLUlzokQ
+user: *** User ***
+Id: 660464961448739672728709
+Name: Root
+Email: admin@demo.com
+Favorite Color: 
+Username: Admin
+*** User ***
+SecretKey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+------------------------4/22/2024 11:03:50 PM-------------------
+claimsPrincipal: System.Security.Claims.ClaimsPrincipal
+claimToken: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MDQ2NDk2MTQ0ODczOTY3MjcyODcwOSIsIm5hbWUiOiJSb290IiwiZW1haWwiOiJhZG1pbkBkZW1vLmNvbSIsInVzZXJuYW1lIjoiQWRtaW4iLCJyb2xlIjoib3duZXIiLCJuYmYiOjE3MTM4MjYyODIsImV4cCI6MTcxMzg2OTQ4MiwiaWF0IjoxNzEzODI2MjgyfQ.glIHG4JgbZiSwS-AcwNEAGFZ9sQtMqteroKw_TukpOVTvvD8G5Y5mVe7CS8zYrpwVSa1p1PgCch5DXdLUlzokQ
+user: *** User ***
+Id: 660464961448739672728709
+Name: Root
+Email: admin@demo.com
+Favorite Color: 
+Username: Admin
+*** User ***
+SecretKey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+------------------------4/22/2024 11:03:50 PM-------------------
+claimsPrincipal: System.Security.Claims.ClaimsPrincipal
+claimToken: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MDQ2NDk2MTQ0ODczOTY3MjcyODcwOSIsIm5hbWUiOiJSb290IiwiZW1haWwiOiJhZG1pbkBkZW1vLmNvbSIsInVzZXJuYW1lIjoiQWRtaW4iLCJyb2xlIjoib3duZXIiLCJuYmYiOjE3MTM4MjYyODIsImV4cCI6MTcxMzg2OTQ4MiwiaWF0IjoxNzEzODI2MjgyfQ.glIHG4JgbZiSwS-AcwNEAGFZ9sQtMqteroKw_TukpOVTvvD8G5Y5mVe7CS8zYrpwVSa1p1PgCch5DXdLUlzokQ
+user: *** User ***
+Id: 660464961448739672728709
+Name: Root
+Email: admin@demo.com
+Favorite Color: 
+Username: Admin
+*** User ***
+SecretKey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+------------------------4/22/2024 11:04:02 PM-------------------
+claimsPrincipal: System.Security.Claims.ClaimsPrincipal
+claimToken: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MDQ2NDk2MTQ0ODczOTY3MjcyODcwOSIsIm5hbWUiOiJSb290IiwiZW1haWwiOiJhZG1pbkBkZW1vLmNvbSIsInVzZXJuYW1lIjoiQWRtaW4iLCJyb2xlIjoib3duZXIiLCJuYmYiOjE3MTM4MjYyODIsImV4cCI6MTcxMzg2OTQ4MiwiaWF0IjoxNzEzODI2MjgyfQ.glIHG4JgbZiSwS-AcwNEAGFZ9sQtMqteroKw_TukpOVTvvD8G5Y5mVe7CS8zYrpwVSa1p1PgCch5DXdLUlzokQ
+user: *** User ***
+Id: 660464961448739672728709
+Name: Root
+Email: admin@demo.com
+Favorite Color: 
+Username: Admin
+*** User ***
+SecretKey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+------------------------4/22/2024 11:04:02 PM-------------------
+claimsPrincipal: System.Security.Claims.ClaimsPrincipal
+claimToken: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MDQ2NDk2MTQ0ODczOTY3MjcyODcwOSIsIm5hbWUiOiJSb290IiwiZW1haWwiOiJhZG1pbkBkZW1vLmNvbSIsInVzZXJuYW1lIjoiQWRtaW4iLCJyb2xlIjoib3duZXIiLCJuYmYiOjE3MTM4MjYyODIsImV4cCI6MTcxMzg2OTQ4MiwiaWF0IjoxNzEzODI2MjgyfQ.glIHG4JgbZiSwS-AcwNEAGFZ9sQtMqteroKw_TukpOVTvvD8G5Y5mVe7CS8zYrpwVSa1p1PgCch5DXdLUlzokQ
+user: *** User ***
+Id: 660464961448739672728709
+Name: Root
+Email: admin@demo.com
+Favorite Color: 
+Username: Admin
+*** User ***
+SecretKey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+------------------------4/22/2024 11:04:04 PM-------------------
+claimsPrincipal: System.Security.Claims.ClaimsPrincipal
+claimToken: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MDQ2NDk2MTQ0ODczOTY3MjcyODcwOSIsIm5hbWUiOiJSb290IiwiZW1haWwiOiJhZG1pbkBkZW1vLmNvbSIsInVzZXJuYW1lIjoiQWRtaW4iLCJyb2xlIjoib3duZXIiLCJuYmYiOjE3MTM4MjYyODIsImV4cCI6MTcxMzg2OTQ4MiwiaWF0IjoxNzEzODI2MjgyfQ.glIHG4JgbZiSwS-AcwNEAGFZ9sQtMqteroKw_TukpOVTvvD8G5Y5mVe7CS8zYrpwVSa1p1PgCch5DXdLUlzokQ
+user: *** User ***
+Id: 660464961448739672728709
+Name: Root
+Email: admin@demo.com
+Favorite Color: 
+Username: Admin
+*** User ***
+SecretKey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+------------------------4/22/2024 11:04:04 PM-------------------
+claimsPrincipal: System.Security.Claims.ClaimsPrincipal
+claimToken: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MDQ2NDk2MTQ0ODczOTY3MjcyODcwOSIsIm5hbWUiOiJSb290IiwiZW1haWwiOiJhZG1pbkBkZW1vLmNvbSIsInVzZXJuYW1lIjoiQWRtaW4iLCJyb2xlIjoib3duZXIiLCJuYmYiOjE3MTM4MjYyODIsImV4cCI6MTcxMzg2OTQ4MiwiaWF0IjoxNzEzODI2MjgyfQ.glIHG4JgbZiSwS-AcwNEAGFZ9sQtMqteroKw_TukpOVTvvD8G5Y5mVe7CS8zYrpwVSa1p1PgCch5DXdLUlzokQ
+user: *** User ***
+Id: 660464961448739672728709
+Name: Root
+Email: admin@demo.com
+Favorite Color: 
+Username: Admin
+*** User ***
+SecretKey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+------------------------4/22/2024 11:04:05 PM-------------------
+claimsPrincipal: System.Security.Claims.ClaimsPrincipal
+claimToken: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MDQ2NDk2MTQ0ODczOTY3MjcyODcwOSIsIm5hbWUiOiJSb290IiwiZW1haWwiOiJhZG1pbkBkZW1vLmNvbSIsInVzZXJuYW1lIjoiQWRtaW4iLCJyb2xlIjoib3duZXIiLCJuYmYiOjE3MTM4MjYyODIsImV4cCI6MTcxMzg2OTQ4MiwiaWF0IjoxNzEzODI2MjgyfQ.glIHG4JgbZiSwS-AcwNEAGFZ9sQtMqteroKw_TukpOVTvvD8G5Y5mVe7CS8zYrpwVSa1p1PgCch5DXdLUlzokQ
+user: *** User ***
+Id: 660464961448739672728709
+Name: Root
+Email: admin@demo.com
+Favorite Color: 
+Username: Admin
+*** User ***
+SecretKey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+------------------------4/22/2024 11:04:05 PM-------------------
+claimsPrincipal: System.Security.Claims.ClaimsPrincipal
+claimToken: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MDQ2NDk2MTQ0ODczOTY3MjcyODcwOSIsIm5hbWUiOiJSb290IiwiZW1haWwiOiJhZG1pbkBkZW1vLmNvbSIsInVzZXJuYW1lIjoiQWRtaW4iLCJyb2xlIjoib3duZXIiLCJuYmYiOjE3MTM4MjYyODIsImV4cCI6MTcxMzg2OTQ4MiwiaWF0IjoxNzEzODI2MjgyfQ.glIHG4JgbZiSwS-AcwNEAGFZ9sQtMqteroKw_TukpOVTvvD8G5Y5mVe7CS8zYrpwVSa1p1PgCch5DXdLUlzokQ
+user: *** User ***
+Id: 660464961448739672728709
+Name: Root
+Email: admin@demo.com
+Favorite Color: 
+Username: Admin
+*** User ***
+SecretKey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+------------------------4/22/2024 11:04:08 PM-------------------
+claimsPrincipal: System.Security.Claims.ClaimsPrincipal
+claimToken: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MDQ2NDk2MTQ0ODczOTY3MjcyODcwOSIsIm5hbWUiOiJSb290IiwiZW1haWwiOiJhZG1pbkBkZW1vLmNvbSIsInVzZXJuYW1lIjoiQWRtaW4iLCJyb2xlIjoib3duZXIiLCJuYmYiOjE3MTM4MjYyODIsImV4cCI6MTcxMzg2OTQ4MiwiaWF0IjoxNzEzODI2MjgyfQ.glIHG4JgbZiSwS-AcwNEAGFZ9sQtMqteroKw_TukpOVTvvD8G5Y5mVe7CS8zYrpwVSa1p1PgCch5DXdLUlzokQ
+user: *** User ***
+Id: 660464961448739672728709
+Name: Root
+Email: admin@demo.com
+Favorite Color: 
+Username: Admin
+*** User ***
+SecretKey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+------------------------4/22/2024 11:04:08 PM-------------------
+claimsPrincipal: System.Security.Claims.ClaimsPrincipal
+claimToken: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MDQ2NDk2MTQ0ODczOTY3MjcyODcwOSIsIm5hbWUiOiJSb290IiwiZW1haWwiOiJhZG1pbkBkZW1vLmNvbSIsInVzZXJuYW1lIjoiQWRtaW4iLCJyb2xlIjoib3duZXIiLCJuYmYiOjE3MTM4MjYyODIsImV4cCI6MTcxMzg2OTQ4MiwiaWF0IjoxNzEzODI2MjgyfQ.glIHG4JgbZiSwS-AcwNEAGFZ9sQtMqteroKw_TukpOVTvvD8G5Y5mVe7CS8zYrpwVSa1p1PgCch5DXdLUlzokQ
+user: *** User ***
+Id: 660464961448739672728709
+Name: Root
+Email: admin@demo.com
+Favorite Color: 
+Username: Admin
+*** User ***
+SecretKey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+------------------------4/22/2024 11:04:10 PM-------------------
+claimsPrincipal: System.Security.Claims.ClaimsPrincipal
+claimToken: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MDQ2NDk2MTQ0ODczOTY3MjcyODcwOSIsIm5hbWUiOiJSb290IiwiZW1haWwiOiJhZG1pbkBkZW1vLmNvbSIsInVzZXJuYW1lIjoiQWRtaW4iLCJyb2xlIjoib3duZXIiLCJuYmYiOjE3MTM4MjYyODIsImV4cCI6MTcxMzg2OTQ4MiwiaWF0IjoxNzEzODI2MjgyfQ.glIHG4JgbZiSwS-AcwNEAGFZ9sQtMqteroKw_TukpOVTvvD8G5Y5mVe7CS8zYrpwVSa1p1PgCch5DXdLUlzokQ
+user: *** User ***
+Id: 660464961448739672728709
+Name: Root
+Email: admin@demo.com
+Favorite Color: 
+Username: Admin
+*** User ***
+SecretKey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+------------------------4/22/2024 11:04:10 PM-------------------
+claimsPrincipal: System.Security.Claims.ClaimsPrincipal
+claimToken: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MDQ2NDk2MTQ0ODczOTY3MjcyODcwOSIsIm5hbWUiOiJSb290IiwiZW1haWwiOiJhZG1pbkBkZW1vLmNvbSIsInVzZXJuYW1lIjoiQWRtaW4iLCJyb2xlIjoib3duZXIiLCJuYmYiOjE3MTM4MjYyODIsImV4cCI6MTcxMzg2OTQ4MiwiaWF0IjoxNzEzODI2MjgyfQ.glIHG4JgbZiSwS-AcwNEAGFZ9sQtMqteroKw_TukpOVTvvD8G5Y5mVe7CS8zYrpwVSa1p1PgCch5DXdLUlzokQ
+user: *** User ***
+Id: 660464961448739672728709
+Name: Root
+Email: admin@demo.com
+Favorite Color: 
+Username: Admin
+*** User ***
+SecretKey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+------------------------4/22/2024 11:04:13 PM-------------------
+claimsPrincipal: System.Security.Claims.ClaimsPrincipal
+claimToken: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MDQ2NDk2MTQ0ODczOTY3MjcyODcwOSIsIm5hbWUiOiJSb290IiwiZW1haWwiOiJhZG1pbkBkZW1vLmNvbSIsInVzZXJuYW1lIjoiQWRtaW4iLCJyb2xlIjoib3duZXIiLCJuYmYiOjE3MTM4MjYyODIsImV4cCI6MTcxMzg2OTQ4MiwiaWF0IjoxNzEzODI2MjgyfQ.glIHG4JgbZiSwS-AcwNEAGFZ9sQtMqteroKw_TukpOVTvvD8G5Y5mVe7CS8zYrpwVSa1p1PgCch5DXdLUlzokQ
+user: *** User ***
+Id: 660464961448739672728709
+Name: Root
+Email: admin@demo.com
+Favorite Color: 
+Username: Admin
+*** User ***
+SecretKey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+------------------------4/22/2024 11:04:13 PM-------------------
+claimsPrincipal: System.Security.Claims.ClaimsPrincipal
+claimToken: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MDQ2NDk2MTQ0ODczOTY3MjcyODcwOSIsIm5hbWUiOiJSb290IiwiZW1haWwiOiJhZG1pbkBkZW1vLmNvbSIsInVzZXJuYW1lIjoiQWRtaW4iLCJyb2xlIjoib3duZXIiLCJuYmYiOjE3MTM4MjYyODIsImV4cCI6MTcxMzg2OTQ4MiwiaWF0IjoxNzEzODI2MjgyfQ.glIHG4JgbZiSwS-AcwNEAGFZ9sQtMqteroKw_TukpOVTvvD8G5Y5mVe7CS8zYrpwVSa1p1PgCch5DXdLUlzokQ
+user: *** User ***
+Id: 660464961448739672728709
+Name: Root
+Email: admin@demo.com
+Favorite Color: 
+Username: Admin
+*** User ***
+SecretKey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+------------------------4/22/2024 11:04:16 PM-------------------
+claimsPrincipal: System.Security.Claims.ClaimsPrincipal
+claimToken: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MDQ2NDk2MTQ0ODczOTY3MjcyODcwOSIsIm5hbWUiOiJSb290IiwiZW1haWwiOiJhZG1pbkBkZW1vLmNvbSIsInVzZXJuYW1lIjoiQWRtaW4iLCJyb2xlIjoib3duZXIiLCJuYmYiOjE3MTM4MjYyODIsImV4cCI6MTcxMzg2OTQ4MiwiaWF0IjoxNzEzODI2MjgyfQ.glIHG4JgbZiSwS-AcwNEAGFZ9sQtMqteroKw_TukpOVTvvD8G5Y5mVe7CS8zYrpwVSa1p1PgCch5DXdLUlzokQ
+user: *** User ***
+Id: 660464961448739672728709
+Name: Root
+Email: admin@demo.com
+Favorite Color: 
+Username: Admin
+*** User ***
+SecretKey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+------------------------4/22/2024 11:04:18 PM-------------------
+claimsPrincipal: System.Security.Claims.ClaimsPrincipal
+claimToken: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MDQ2NDk2MTQ0ODczOTY3MjcyODcwOSIsIm5hbWUiOiJSb290IiwiZW1haWwiOiJhZG1pbkBkZW1vLmNvbSIsInVzZXJuYW1lIjoiQWRtaW4iLCJyb2xlIjoib3duZXIiLCJuYmYiOjE3MTM4MjYyODIsImV4cCI6MTcxMzg2OTQ4MiwiaWF0IjoxNzEzODI2MjgyfQ.glIHG4JgbZiSwS-AcwNEAGFZ9sQtMqteroKw_TukpOVTvvD8G5Y5mVe7CS8zYrpwVSa1p1PgCch5DXdLUlzokQ
+user: *** User ***
+Id: 660464961448739672728709
+Name: Root
+Email: admin@demo.com
+Favorite Color: 
+Username: Admin
+*** User ***
+SecretKey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+------------------------4/22/2024 11:04:22 PM-------------------
+claimsPrincipal: System.Security.Claims.ClaimsPrincipal
+claimToken: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MDQ2NDk2MTQ0ODczOTY3MjcyODcwOSIsIm5hbWUiOiJSb290IiwiZW1haWwiOiJhZG1pbkBkZW1vLmNvbSIsInVzZXJuYW1lIjoiQWRtaW4iLCJyb2xlIjoib3duZXIiLCJuYmYiOjE3MTM4MjYyODIsImV4cCI6MTcxMzg2OTQ4MiwiaWF0IjoxNzEzODI2MjgyfQ.glIHG4JgbZiSwS-AcwNEAGFZ9sQtMqteroKw_TukpOVTvvD8G5Y5mVe7CS8zYrpwVSa1p1PgCch5DXdLUlzokQ
+user: *** User ***
+Id: 660464961448739672728709
+Name: Root
+Email: admin@demo.com
+Favorite Color: 
+Username: Admin
+*** User ***
+SecretKey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+------------------------4/22/2024 11:04:24 PM-------------------
+claimsPrincipal: System.Security.Claims.ClaimsPrincipal
+claimToken: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MDQ2NDk2MTQ0ODczOTY3MjcyODcwOSIsIm5hbWUiOiJSb290IiwiZW1haWwiOiJhZG1pbkBkZW1vLmNvbSIsInVzZXJuYW1lIjoiQWRtaW4iLCJyb2xlIjoib3duZXIiLCJuYmYiOjE3MTM4MjYyODIsImV4cCI6MTcxMzg2OTQ4MiwiaWF0IjoxNzEzODI2MjgyfQ.glIHG4JgbZiSwS-AcwNEAGFZ9sQtMqteroKw_TukpOVTvvD8G5Y5mVe7CS8zYrpwVSa1p1PgCch5DXdLUlzokQ
+user: *** User ***
+Id: 660464961448739672728709
+Name: Root
+Email: admin@demo.com
+Favorite Color: 
+Username: Admin
+*** User ***
+SecretKey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+------------------------4/22/2024 11:04:34 PM-------------------
+claimsPrincipal: System.Security.Claims.ClaimsPrincipal
+claimToken: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MDQ2NDk2MTQ0ODczOTY3MjcyODcwOSIsIm5hbWUiOiJSb290IiwiZW1haWwiOiJhZG1pbkBkZW1vLmNvbSIsInVzZXJuYW1lIjoiQWRtaW4iLCJyb2xlIjoib3duZXIiLCJuYmYiOjE3MTM4MjYyODIsImV4cCI6MTcxMzg2OTQ4MiwiaWF0IjoxNzEzODI2MjgyfQ.glIHG4JgbZiSwS-AcwNEAGFZ9sQtMqteroKw_TukpOVTvvD8G5Y5mVe7CS8zYrpwVSa1p1PgCch5DXdLUlzokQ
+user: *** User ***
+Id: 660464961448739672728709
+Name: Root
+Email: admin@demo.com
+Favorite Color: 
+Username: Admin
+*** User ***
+SecretKey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+------------------------4/22/2024 11:04:37 PM-------------------
+claimsPrincipal: System.Security.Claims.ClaimsPrincipal
+claimToken: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MDQ2NDk2MTQ0ODczOTY3MjcyODcwOSIsIm5hbWUiOiJSb290IiwiZW1haWwiOiJhZG1pbkBkZW1vLmNvbSIsInVzZXJuYW1lIjoiQWRtaW4iLCJyb2xlIjoib3duZXIiLCJuYmYiOjE3MTM4MjYyODIsImV4cCI6MTcxMzg2OTQ4MiwiaWF0IjoxNzEzODI2MjgyfQ.glIHG4JgbZiSwS-AcwNEAGFZ9sQtMqteroKw_TukpOVTvvD8G5Y5mVe7CS8zYrpwVSa1p1PgCch5DXdLUlzokQ
+user: *** User ***
+Id: 660464961448739672728709
+Name: Root
+Email: admin@demo.com
+Favorite Color: 
+Username: Admin
+*** User ***
+SecretKey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+------------------------4/22/2024 11:04:37 PM-------------------
+claimsPrincipal: System.Security.Claims.ClaimsPrincipal
+claimToken: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MDQ2NDk2MTQ0ODczOTY3MjcyODcwOSIsIm5hbWUiOiJSb290IiwiZW1haWwiOiJhZG1pbkBkZW1vLmNvbSIsInVzZXJuYW1lIjoiQWRtaW4iLCJyb2xlIjoib3duZXIiLCJuYmYiOjE3MTM4MjYyODIsImV4cCI6MTcxMzg2OTQ4MiwiaWF0IjoxNzEzODI2MjgyfQ.glIHG4JgbZiSwS-AcwNEAGFZ9sQtMqteroKw_TukpOVTvvD8G5Y5mVe7CS8zYrpwVSa1p1PgCch5DXdLUlzokQ
+user: *** User ***
+Id: 660464961448739672728709
+Name: Root
+Email: admin@demo.com
+Favorite Color: 
+Username: Admin
+*** User ***
+SecretKey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+------------------------4/22/2024 11:04:37 PM-------------------
+claimsPrincipal: System.Security.Claims.ClaimsPrincipal
+claimToken: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MDQ2NDk2MTQ0ODczOTY3MjcyODcwOSIsIm5hbWUiOiJSb290IiwiZW1haWwiOiJhZG1pbkBkZW1vLmNvbSIsInVzZXJuYW1lIjoiQWRtaW4iLCJyb2xlIjoib3duZXIiLCJuYmYiOjE3MTM4MjYyODIsImV4cCI6MTcxMzg2OTQ4MiwiaWF0IjoxNzEzODI2MjgyfQ.glIHG4JgbZiSwS-AcwNEAGFZ9sQtMqteroKw_TukpOVTvvD8G5Y5mVe7CS8zYrpwVSa1p1PgCch5DXdLUlzokQ
+user: *** User ***
+Id: 660464961448739672728709
+Name: Root
+Email: admin@demo.com
+Favorite Color: 
+Username: Admin
+*** User ***
+SecretKey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+------------------------4/22/2024 11:04:37 PM-------------------
+claimsPrincipal: System.Security.Claims.ClaimsPrincipal
+claimToken: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MDQ2NDk2MTQ0ODczOTY3MjcyODcwOSIsIm5hbWUiOiJSb290IiwiZW1haWwiOiJhZG1pbkBkZW1vLmNvbSIsInVzZXJuYW1lIjoiQWRtaW4iLCJyb2xlIjoib3duZXIiLCJuYmYiOjE3MTM4MjYyODIsImV4cCI6MTcxMzg2OTQ4MiwiaWF0IjoxNzEzODI2MjgyfQ.glIHG4JgbZiSwS-AcwNEAGFZ9sQtMqteroKw_TukpOVTvvD8G5Y5mVe7CS8zYrpwVSa1p1PgCch5DXdLUlzokQ
+user: *** User ***
+Id: 660464961448739672728709
+Name: Root
+Email: admin@demo.com
+Favorite Color: 
+Username: Admin
+*** User ***
+SecretKey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+------------------------4/22/2024 11:04:41 PM-------------------
+claimsPrincipal: System.Security.Claims.ClaimsPrincipal
+claimToken: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MDQ2NDk2MTQ0ODczOTY3MjcyODcwOSIsIm5hbWUiOiJSb290IiwiZW1haWwiOiJhZG1pbkBkZW1vLmNvbSIsInVzZXJuYW1lIjoiQWRtaW4iLCJyb2xlIjoib3duZXIiLCJuYmYiOjE3MTM4MjYyODIsImV4cCI6MTcxMzg2OTQ4MiwiaWF0IjoxNzEzODI2MjgyfQ.glIHG4JgbZiSwS-AcwNEAGFZ9sQtMqteroKw_TukpOVTvvD8G5Y5mVe7CS8zYrpwVSa1p1PgCch5DXdLUlzokQ
+user: *** User ***
+Id: 660464961448739672728709
+Name: Root
+Email: admin@demo.com
+Favorite Color: 
+Username: Admin
+*** User ***
+SecretKey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+------------------------4/22/2024 11:04:45 PM-------------------
+claimsPrincipal: System.Security.Claims.ClaimsPrincipal
+claimToken: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MDQ2NDk2MTQ0ODczOTY3MjcyODcwOSIsIm5hbWUiOiJSb290IiwiZW1haWwiOiJhZG1pbkBkZW1vLmNvbSIsInVzZXJuYW1lIjoiQWRtaW4iLCJyb2xlIjoib3duZXIiLCJuYmYiOjE3MTM4MjYyODIsImV4cCI6MTcxMzg2OTQ4MiwiaWF0IjoxNzEzODI2MjgyfQ.glIHG4JgbZiSwS-AcwNEAGFZ9sQtMqteroKw_TukpOVTvvD8G5Y5mVe7CS8zYrpwVSa1p1PgCch5DXdLUlzokQ
+user: *** User ***
+Id: 660464961448739672728709
+Name: Root
+Email: admin@demo.com
+Favorite Color: 
+Username: Admin
+*** User ***
+SecretKey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+------------------------4/22/2024 11:04:45 PM-------------------
+claimsPrincipal: System.Security.Claims.ClaimsPrincipal
+claimToken: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MDQ2NDk2MTQ0ODczOTY3MjcyODcwOSIsIm5hbWUiOiJSb290IiwiZW1haWwiOiJhZG1pbkBkZW1vLmNvbSIsInVzZXJuYW1lIjoiQWRtaW4iLCJyb2xlIjoib3duZXIiLCJuYmYiOjE3MTM4MjYyODIsImV4cCI6MTcxMzg2OTQ4MiwiaWF0IjoxNzEzODI2MjgyfQ.glIHG4JgbZiSwS-AcwNEAGFZ9sQtMqteroKw_TukpOVTvvD8G5Y5mVe7CS8zYrpwVSa1p1PgCch5DXdLUlzokQ
+user: *** User ***
+Id: 660464961448739672728709
+Name: Root
+Email: admin@demo.com
+Favorite Color: 
+Username: Admin
+*** User ***
+SecretKey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c

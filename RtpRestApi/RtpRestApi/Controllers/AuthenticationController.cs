@@ -111,7 +111,7 @@ namespace RtpRestApi.Controllers
                 // settings for the authentication properties
                 var authProperties = new AuthenticationProperties
                 {
-                    AllowRefresh = true,
+                    // AllowRefresh = true,
                     // Refreshing the authentication session should be allowed.
 
                     ExpiresUtc = DateTimeOffset.UtcNow.AddMinutes(30),
@@ -128,7 +128,7 @@ namespace RtpRestApi.Controllers
                     //IssuedUtc = <DateTimeOffset>,
                     // The time at which the authentication ticket was issued.
 
-                    //RedirectUri = <string>
+                    //RedirectUri = "https://ruletheprompt.com/logout"
                     // The full path or absolute URI to be used as an http 
                     // redirect response value.
                 };
@@ -136,7 +136,6 @@ namespace RtpRestApi.Controllers
                 // now that we have all the necessary objects for our user's identity
                 // we can now sign in the user
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal, authProperties);
-
             }
             catch (Exception ex)
             {
@@ -155,7 +154,6 @@ namespace RtpRestApi.Controllers
                 message = "Successfully login user",
             });
         }
-
 
         // Logging out the user
         [HttpPost]
