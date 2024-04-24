@@ -58,7 +58,7 @@ namespace RtpRestApi.Helpers
                     ValidateAudience = false,
 
                     // set clockskew to zero so token expire exactly at token expiration time (instead of 5 minutes later)
-                    ClockSkew = TimeSpan.FromMinutes(5)
+                    ClockSkew = TimeSpan.Zero
                 }, out SecurityToken validatedToken);
 
                 var jwtToken = (JwtSecurityToken)validatedToken;

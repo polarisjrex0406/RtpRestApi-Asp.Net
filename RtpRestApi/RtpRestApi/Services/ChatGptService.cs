@@ -38,8 +38,15 @@ namespace RtpRestApi.Services
                     });
 
             var completionResponse = JsonSerializer.Deserialize<ChatCompletionResponse>(content);
-
-            return completionResponse?.Choices?[0]?.Message?.Content;
+            if (completionResponse != null && completionResponse?.Choices != null)
+            {
+                return completionResponse?.Choices?[0]?.Message?.Content;
+            }
+            else
+            {
+                var errorMsg = JsonSerializer.Deserialize<ErrorResponse>(content);
+                return errorMsg?.GptError?.ErrMessage ?? string.Empty;
+            }
         }
     }
 }

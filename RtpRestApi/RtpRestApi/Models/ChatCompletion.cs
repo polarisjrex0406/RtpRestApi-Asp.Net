@@ -62,4 +62,21 @@ namespace RtpRestApi.Models
         [JsonPropertyName("total_tokens")]
         public int TotalTokens { get; set; }
     }
+
+    public class GptError
+    {
+        [JsonPropertyName("message")]
+        public string? ErrMessage { get; set; }
+        [JsonPropertyName("type")]
+        public string? ErrType { get; set; }
+        [JsonPropertyName("param")]
+        public string? ErrParam { get; set; }
+        [JsonPropertyName("code")]
+        public string? ErrCode { get; set; }
+    }
+    public class ErrorResponse
+    {
+        [JsonPropertyName("error")]
+        public GptError? GptError { get; set; }
+    }
 }

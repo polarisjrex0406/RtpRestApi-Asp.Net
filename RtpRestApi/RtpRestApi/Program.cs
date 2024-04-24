@@ -62,6 +62,7 @@ namespace RtpRestApi
                     option.Cookie.Domain = "ruletheprompt.com";
                     option.ExpireTimeSpan = TimeSpan.FromMinutes(30);
                     option.Cookie.MaxAge = TimeSpan.FromMinutes(30);
+                    option.Cookie.HttpOnly = true;
                     option.SlidingExpiration = false;
                     option.LoginPath = "/api/login";
                     option.LogoutPath = "/api/logout";

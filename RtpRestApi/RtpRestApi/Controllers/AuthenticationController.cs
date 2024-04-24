@@ -128,7 +128,7 @@ namespace RtpRestApi.Controllers
                     //IssuedUtc = <DateTimeOffset>,
                     // The time at which the authentication ticket was issued.
 
-                    //RedirectUri = "https://ruletheprompt.com/logout"
+                    RedirectUri = "http://localhost:3000/login"
                     // The full path or absolute URI to be used as an http 
                     // redirect response value.
                 };
