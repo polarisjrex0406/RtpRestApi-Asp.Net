@@ -31,7 +31,7 @@ namespace RtpRestApi.Helpers
                 }),
 
                 // Set the token expiry to a day - This value is only to show
-                Expires = DateTime.UtcNow.AddMinutes(30),
+                Expires = DateTime.UtcNow.AddDays(1),
                 NotBefore = date,
 
                 // setting the signing credentials

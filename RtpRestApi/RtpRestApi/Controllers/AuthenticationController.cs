@@ -114,7 +114,7 @@ namespace RtpRestApi.Controllers
                     // AllowRefresh = true,
                     // Refreshing the authentication session should be allowed.
 
-                    ExpiresUtc = DateTimeOffset.UtcNow.AddMinutes(30),
+                    ExpiresUtc = DateTimeOffset.UtcNow.AddDays(1),
                     // The time at which the authentication ticket expires. A 
                     // value set here overrides the ExpireTimeSpan option of 
                     // CookieAuthenticationOptions set with AddCookie.
@@ -128,7 +128,7 @@ namespace RtpRestApi.Controllers
                     //IssuedUtc = <DateTimeOffset>,
                     // The time at which the authentication ticket was issued.
 
-                    RedirectUri = "http://localhost:3000/login"
+                    //RedirectUri = "http://localhost:3000/login"
                     // The full path or absolute URI to be used as an http 
                     // redirect response value.
                 };

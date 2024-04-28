@@ -60,8 +60,8 @@ namespace RtpRestApi
             builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(option => {
                     option.Cookie.Domain = "ruletheprompt.com";
-                    option.ExpireTimeSpan = TimeSpan.FromMinutes(30);
-                    option.Cookie.MaxAge = TimeSpan.FromMinutes(30);
+                    option.ExpireTimeSpan = TimeSpan.FromDays(1);
+                    option.Cookie.MaxAge = TimeSpan.FromDays(1);
                     option.Cookie.HttpOnly = true;
                     option.SlidingExpiration = false;
                     option.LoginPath = "/api/login";

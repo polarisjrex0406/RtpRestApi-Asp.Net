@@ -44,20 +44,9 @@ public class AdminsController : ControllerBase
 
     [HttpGet]
     [Route("listAll")]
+    [Authorize(Roles = "admin")]
     public async Task<IActionResult> Get()
     {
-        if (CurrentRole() != "owner")
-        {
-            object? fakeObj = null;
-            Response.StatusCode = StatusCodes.Status203NonAuthoritative;
-            return new JsonResult(new
-            {
-                success = false,
-                result = fakeObj,
-                message = "You cannot access users data",
-            });
-        }
-
         var resObj = await _adminsService.GetAsync();
         if (resObj == null)
         {
@@ -87,26 +76,9 @@ public class AdminsController : ControllerBase
 
     [HttpGet]
     [Route("list")]
+    [Authorize(Roles = "admin")]
     public async Task<IActionResult> Get([FromQuery] int? page, [FromQuery] int? items, [FromQuery] string? q, [FromQuery] string? fields)
     {
-        if (CurrentRole() != "owner")
-        {
-            object? fakeObj = null;
-            Response.StatusCode = StatusCodes.Status203NonAuthoritative;
-            return new JsonResult(new
-            {
-                success = false,
-                result = fakeObj,
-                pagination = new
-                {
-                    page = 1,
-                    pages = 1,
-                    count = 0
-                },
-                message = "You cannot access users data",
-            });
-        }
-
         var resObj = await _adminsService.GetAsync(q, fields);
 
         if (resObj == null)
@@ -149,26 +121,9 @@ public class AdminsController : ControllerBase
 
     [HttpGet]
     [Route("search")]
+    [Authorize(Roles = "admin")]
     public async Task<IActionResult> Get([FromQuery] string? q, [FromQuery] string? fields)
     {
-        if (CurrentRole() != "owner")
-        {
-            object? fakeObj = null;
-            Response.StatusCode = StatusCodes.Status203NonAuthoritative;
-            return new JsonResult(new
-            {
-                success = false,
-                result = fakeObj,
-                pagination = new
-                {
-                    page = 1,
-                    pages = 1,
-                    count = 0
-                },
-                message = "You cannot access users data",
-            });
-        }
-
         var resObj = await _adminsService.GetAsync(q, fields);
 
         if (resObj == null)
@@ -238,6 +193,7 @@ public class AdminsController : ControllerBase
 
     [HttpPost]
     [Route("create")]
+    [Authorize(Roles = "admin")]
     public async Task<IActionResult> Post([FromBody] AdminRequest newAdminRequest)
     {
         if (newAdminRequest.email == null || newAdminRequest.password == null)
@@ -249,18 +205,6 @@ public class AdminsController : ControllerBase
                 success = false,
                 result = resObj,
                 message = "Email or password fields they don't have been entered."
-            });
-        }
-
-        if (CurrentRole() == "owner")
-        {
-            object? resObj = null;
-            Response.StatusCode = StatusCodes.Status403Forbidden;
-            return new JsonResult(new
-            {
-                success = false,
-                result = resObj,
-                message = "you can't create user with role owner"
             });
         }
 
@@ -327,6 +271,7 @@ public class AdminsController : ControllerBase
     
     [HttpPatch]
     [Route("update/{id:length(24)}")]
+    [Authorize(Roles = "admin")]
     public async Task<IActionResult> Update(string id, [FromBody] AdminRequest updatedRequest)
     {
         // Check if same email and name already exists
@@ -375,6 +320,7 @@ public class AdminsController : ControllerBase
 
     [HttpGet]
     [Route("delete/{id:length(24)}")]
+    [Authorize(Roles = "admin")]
     public async Task<IActionResult> Delete(string id)
     {
         var resObj = await _adminsService.GetByIdAsync(id);
