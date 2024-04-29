@@ -23,7 +23,7 @@ namespace RtpRestApi.Models
     }
     public class ExperimentInRequest
     {
-        public string? experiment;
+        public string? experiment { get; set; }
     }
     public class TestRequest
     {

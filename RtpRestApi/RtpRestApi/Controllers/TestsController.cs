@@ -301,7 +301,7 @@ public class TestsController : ControllerBase
         testResponse.testCode = newTestRequest.testCode;
         testResponse.createdBy = CurrentUserId();
         testResponse.experiments = new List<ExperimentInResponse>();
-        List<Chat> prevChats = new List<Chat>();
+        List<History> prevChats = new List<History>();
         if (newTestRequest.experiments != null)
         {
             foreach (var expId in newTestRequest.experiments)
@@ -386,6 +386,7 @@ public class TestsController : ControllerBase
                     }
                     histResponse.input = messages;
                     histResponse.output = chatResponse;
+                    prevChats.Add(histResponse);
                     expResponse.chatHistory.Add(histResponse);
                 }
                 testResponse.experiments.Add(expResponse);

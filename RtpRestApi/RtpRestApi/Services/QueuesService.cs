@@ -92,7 +92,7 @@ namespace RtpRestApi.Services
             }
             return notSkip;
         }
-        public bool SkipArtifactOrGoChat(string style, string? initPrompt, ref List<Chat> messages, ref List<Chat> prevChats)
+        public bool SkipArtifactOrGoChat(string style, string? initPrompt, ref List<Chat> messages, ref List<History> prevChats)
         {
             bool skipTemplate = false;
             if (style == "Stand-alone")
@@ -106,9 +106,13 @@ namespace RtpRestApi.Services
             else
             {
                 // conversational style
-                if (prevChats != null && prevChats.Count > 0)
+                if (prevChats != null && prevChats.Count() > 0 && prevChats[0] != null && prevChats[0].input != null && prevChats[0].output != null)
                 {
-                    messages.Add(prevChats[0]);
+                    foreach (Chat input in prevChats[0].input)
+                    {
+                        messages.Add(input);
+                    }
+                    messages.Add(prevChats[0].output);
                 }
                 else skipTemplate = true;
             }
