@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("RtpRestApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7ca4462ec002a84df74fb3e080cb708a99583c4b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d66adf66ccbc3ccb782195095ca940e78f53434f")]
 [assembly: System.Reflection.AssemblyProductAttribute("RtpRestApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("RtpRestApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

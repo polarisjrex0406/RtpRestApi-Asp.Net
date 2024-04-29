@@ -11,7 +11,7 @@ namespace RtpRestApi.Models
         public string name { get; set; } = string.Empty;
         public string group { get; set; } = string.Empty;
         public string goal { get; set; } = string.Empty;
-        public string topicPrompt { get; set; } = string.Empty;
+        public List<string>? topicPrompt { get; set; }
     }
     public class TopicResponse
     {
@@ -19,7 +19,7 @@ namespace RtpRestApi.Models
         public string? name { get; set; }
         public string? group { get; set; }
         public string? goal { get; set; }
-        public string? topicPrompt { get; set; }
+        public List<string>? topicPrompt { get; set; }
         public DateTime created { get; set; } = DateTime.Now;
         public DateTime updated { get; set; } = DateTime.Now;
         public bool isPublic { get; set; } = true;
