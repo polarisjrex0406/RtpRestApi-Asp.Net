@@ -51,69 +51,6 @@ public class TestsController : ControllerBase
         return userId;
     }
 
-    private async Task<TestResponse?> AutoPopulate(TestResponse rawTest)
-    {
-        TestResponse populatedTest = rawTest;
-        /// CACHING MECHANISM?
-        bool flagCached = false;
-        foreach (var cacheObj in _cacheTopicList)
-        {
-            if (cacheObj._id == rawTest.topicId)
-            {
-                flagCached = true;
-                populatedTest.topicObj = cacheObj;
-                break;
-            }
-        }
-        if (!flagCached)
-        {
-            populatedTest.topicObj = await _topicsService.GetAsync(CurrentUserId(), populatedTest.topicId);
-            if (populatedTest.topicObj != null)
-            {
-                _cacheTopicList.Add(populatedTest.topicObj);
-            }
-        }
-
-        if (populatedTest.experiments != null)
-        {
-            foreach (var expObj in populatedTest.experiments)
-            {
-                expObj.experimentObj = await _experimentsService.GetAsync(CurrentUserId(), expObj.experimentId);
-                if (expObj.experimentObj != null)
-                {
-                    expObj.experimentObj.topicObj = await _topicsService.GetAsync(CurrentUserId(), expObj.experimentObj.topicId);
-                    flagCached = false;
-                    foreach (var cacheObj in _cacheTopicList)
-                    {
-                        if (cacheObj._id == expObj.experimentObj.topicId)
-                        {
-                            flagCached = true;
-                            break;
-                        }
-                    }
-                    if (!flagCached)
-                    {
-                        expObj.experimentObj.topicObj = await _topicsService.GetAsync(CurrentUserId(), expObj.experimentObj.topicId);
-                        if (expObj.experimentObj.topicObj != null)
-                        {
-                            _cacheTopicList.Add(expObj.experimentObj.topicObj);
-                        }
-                    }
-
-                    if (expObj.experimentObj.templates != null)
-                    {
-                        foreach (var artiObj in expObj.experimentObj.templates)
-                        {
-                            artiObj.templateObj = await _artifactsService.GetAsync(CurrentUserId(), artiObj.templateId);
-                        }
-                    }
-                }
-            }
-        }
-
-        return populatedTest;
-    }
-
     [HttpGet]
     [Route("listAll")]
     public async Task<IActionResult> Get()
@@ -136,15 +73,6 @@ public class TestsController : ControllerBase
         }
         else
         {
-            for (int i = 0; i < testsList.Count; i ++)
-            {
-                var testObj = testsList[i];
-                if (testObj == null) { continue; }
-                var popObj = await AutoPopulate(testObj);
-                if (popObj == null) { continue; }
-                testsList[i] = popObj;
-            }
-
             return Ok(new
             {
                 success = true,
@@ -183,15 +111,6 @@ public class TestsController : ControllerBase
         }
         else
         {
-            for (int i = 0; i < testsList.Count; i++)
-            {
-                var testObj = testsList[i];
-                if (testObj == null) { continue; }
-                var popObj = await AutoPopulate(testObj);
-                if (popObj == null) { continue; }
-                testsList[i] = popObj;
-            }
-
             return Ok(new
             {
                 success = true,
@@ -236,14 +155,6 @@ public class TestsController : ControllerBase
         }
         else
         {
-            for (int i = 0; i < testsList.Count; i++)
-            {
-                var testObj = testsList[i];
-                if (testObj == null) { continue; }
-                var popObj = await AutoPopulate(testObj);
-                if (popObj == null) { continue; }
-                testsList[i] = popObj;
-            }
             return Ok(new
             {
                 success = true,
@@ -277,10 +188,6 @@ public class TestsController : ControllerBase
         }
         else
         {
-            var popObj = await AutoPopulate(testObj);
-            if (popObj != null) {
-                testObj = popObj;
-            }
             return Ok(new
             {
                 success = true,
@@ -297,11 +204,12 @@ public class TestsController : ControllerBase
         // Populate from new TestRequest
         // Anaylze, Queue and Run Test
         TestResponse testResponse = new TestResponse();
-        testResponse.topicId = newTestRequest.topic;
         testResponse.testCode = newTestRequest.testCode;
         testResponse.createdBy = CurrentUserId();
         testResponse.experiments = new List<ExperimentInResponse>();
-        List<History> prevChats = new List<History>();
+        var topicObj = await _topicsService.GetAsync(CurrentUserId(), newTestRequest.topic);
+        testResponse.topicName = topicObj?.name;
+        testResponse.topicPrompt = topicObj?.topicPrompt;
         if (newTestRequest.experiments != null)
         {
             foreach (var expId in newTestRequest.experiments)
@@ -309,85 +217,113 @@ public class TestsController : ControllerBase
                 var expObj = await _experimentsService.GetAsync(CurrentUserId(), expId.experiment);
                 if (expObj == null) continue;
                 if (expObj.templates == null || expObj.style == null) continue;
-
-                ExperimentInResponse expResponse = new ExperimentInResponse();
-                expResponse.experimentId = expId.experiment;
-                expResponse.chatHistory = new List<History>();
-
-                foreach (var template in expObj.templates)
+                if (expObj.initPrompt == null || expObj.initPrompt.Count() == 0)
                 {
-                    History histResponse = new History();
-                    Chat chatResponse = new Chat();
-                    chatResponse.role = "assistant";
-
-                    var templateObj = await _artifactsService.GetAsync(CurrentUserId(), template.templateId);
-                    if (templateObj == null) continue;
-                    // Check criteria and determine if Skip current prompt.
-                    bool skipPrompt = !_queuesService.CheckCriterias(expObj.ruleLogic, expObj.rules, expObj.initPrompt, templateObj.promptEnhancers);
-                    // Depend on style, Skip or Refine init prompt from previous chats or its own.
-                    List<Chat> messages = new List<Chat>();
-                    Chat msg = new Chat();
-                    if (_queuesService.SkipArtifactOrGoChat(expObj.style, expObj.initPrompt, ref messages, ref prevChats)) break;
-                    // Enhance prompt with variables of current artifact.
-                    string enhancedPrompt = "";
-                    if (!skipPrompt) {
-                        enhancedPrompt = _queuesService.ApplyPromptEnhancers(templateObj.promptEnhancers, templateObj.promptOutput, ref messages);
-                    }
-                    // Configure Chat GPT settings as to use for OpenAI API.
-                    JObject gptSettings = _queuesService.ConfigGptSettings(templateObj.chatgptSettings);
-
-                    if (!skipPrompt)
+                    if (topicObj?.topicPrompt != null && topicObj?.topicPrompt.Count > 0)
                     {
-                        CachePromptResponse? cachedPrompt = null;
-                        if (expObj.style == "Stand-alone")
-                        {
-                            cachedPrompt = await _cachePromptsService.ReadOneByArtifactAsync(template.templateId, CurrentUserId());
-                        }
-
-                        if (cachedPrompt == null)
-                        {
-                            JObject payload = gptSettings;
-                            JArray msgAry = new JArray();
-                            foreach (var message in messages)
-                            {
-                                msgAry.Add(new JObject
-                                {
-                                    ["role"] = message.role,
-                                    ["content"] = message.content
-                                });
-                            }
-                            payload["messages"] = msgAry;
-                            string? generatedText = await _chatGptService.GetChatCompletionAsync(payload.ToString());
-
-                            if (expObj.style == "Stand-alone" && templateObj.useCache && generatedText != null)
-                            {
-                                var cacheRequest = new CachePromptRequest();
-                                cacheRequest.template = template.templateId;
-                                cacheRequest.cacheTimeoutValue = templateObj.cacheTimeoutValue;
-                                cacheRequest.cacheConditions = templateObj.cacheConditions;
-                                cacheRequest.cacheTimeoutUnit = templateObj.cacheTimeoutUnit;
-                                cacheRequest.initPrompt = expObj.initPrompt;
-                                cacheRequest.input = enhancedPrompt;
-                                cacheRequest.output = generatedText;
-                                await _cachePromptsService.CreateOneAsync(cacheRequest, CurrentUserId());
-                            }
-
-                            // Input
-                            chatResponse.content = generatedText;
-                        }
-                        else
-                        {
-                            chatResponse.content = cachedPrompt.output;
-                        }
+                        expObj.initPrompt = topicObj?.topicPrompt;
                     }
                     else
                     {
-                        chatResponse.content = "";
+                        expObj.initPrompt = [""];
                     }
-                    histResponse.input = messages;
-                    histResponse.output = chatResponse;
-                    prevChats.Add(histResponse);
-                    expResponse.chatHistory.Add(histResponse);
+                }
+
+                ExperimentInResponse expResponse = new ExperimentInResponse();
+                expResponse.style = expObj.style;
+                expResponse.experimentCode = expObj.experimentCode;
+                expResponse.responses = new List<PerPromptResponse>();
+
+                foreach (var init_prompt in expObj.initPrompt)
+                {
+                    List<History> prevChats = new List<History>();
+                    PerPromptResponse perPromptResponse = new PerPromptResponse();
+                    perPromptResponse.chatHistory = new List<History>();
+                    perPromptResponse.initPrompt = init_prompt;
+                    foreach (var template in expObj.templates)
+                    {
+                        History histResponse = new History();
+                        Chat chatResponse = new Chat();
+                        chatResponse.role = "assistant";
+
+                        var templateObj = await _artifactsService.GetAsync(CurrentUserId(), template.templateId);
+                        if (templateObj == null) continue;
+                        histResponse.artifactName = templateObj.name;
+
+                        // Check criteria and determine if Skip current prompt.
+                        bool skipPrompt = !_queuesService.CheckCriterias(expObj?.ruleLogic, expObj?.rules, init_prompt, templateObj.promptEnhancers);
+                        // Depend on style, Skip or Refine init prompt from previous chats or its own.
+                        List<Chat> messages = new List<Chat>();
+                        Chat msg = new Chat();
+                        if (_queuesService.SkipArtifactOrGoChat(expObj?.style, ref messages, ref prevChats)) break;
+                        // Enhance prompt with variables of current artifact.
+                        string enhancedPrompt = "";
+                        if (!skipPrompt)
+                        {
+                            enhancedPrompt = _queuesService.ApplyPromptEnhancers(templateObj.promptEnhancers, templateObj.promptOutput, init_prompt, ref messages);
+                        }
+                        // Configure Chat GPT settings as to use for OpenAI API.
+                        JObject gptSettings = _queuesService.ConfigGptSettings(templateObj.chatgptSettings);
+
+                        if (!skipPrompt)
+                        {
+                            CachePromptResponse? cachedPrompt = null;
+                            if (expObj?.style == "Stand-alone")
+                            {
+                                cachedPrompt = await _cachePromptsService.ReadOneByArtifactAsync(template.templateId, CurrentUserId());
+                            }
+
+                            if (cachedPrompt == null)
+                            {
+                                JObject payload = gptSettings;
+                                JArray msgAry = new JArray();
+                                foreach (var message in messages)
+                                {
+                                    msgAry.Add(new JObject
+                                    {
+                                        ["role"] = message.role,
+                                        ["content"] = message.content
+                                    });
+                                }
+                                payload["messages"] = msgAry;
+                                string? generatedText = await _chatGptService.GetChatCompletionAsync(payload.ToString());
+
+                                if (expObj?.style == "Stand-alone" && templateObj.useCache && generatedText != null)
+                                {
+                                    var cacheRequest = new CachePromptRequest();
+                                    cacheRequest.template = template.templateId;
+                                    cacheRequest.cacheTimeoutValue = templateObj.cacheTimeoutValue;
+                                    cacheRequest.cacheConditions = templateObj.cacheConditions;
+                                    cacheRequest.cacheTimeoutUnit = templateObj.cacheTimeoutUnit;
+                                    cacheRequest.initPrompt = init_prompt;
+                                    cacheRequest.input = enhancedPrompt;
+                                    cacheRequest.output = generatedText;
+                                    await _cachePromptsService.CreateOneAsync(cacheRequest, CurrentUserId());
+                                }
+                                // Input
+                                chatResponse.content = generatedText;
+                            }
+                            else
+                            {
+                                chatResponse.content = cachedPrompt.output;
+                            }
+                        }
+                        else
+                        {
+                            chatResponse.content = "";
+                        }
+                        histResponse.input = messages;
+                        histResponse.output = chatResponse;
+                        prevChats.Add(histResponse);
+                        perPromptResponse.chatHistory.Add(histResponse);
+                        // Has no {{TopicPrompt}} in Prompt Output
+                        if (!templateObj.promptOutput.Contains("{{TopicPrompt}}")) {
+                            perPromptResponse.initPrompt = "";
+                        }
+                    }
+                    expResponse.responses.Add(perPromptResponse);
+                    // Has no {{TopicPrompt}} in Prompt Output
+                    if (perPromptResponse.initPrompt == "") break;
                 }
                 testResponse.experiments.Add(expResponse);
             }
@@ -401,43 +337,6 @@ public class TestsController : ControllerBase
             success = true,
             message = "Test created successfully",
         });
-    }
-    
-    [HttpPatch]
-    [Route("update/{id:length(24)}")]
-    public async Task<IActionResult> Update(string id, [FromBody] TestRequest updatedTest)
-    {
-        var res = await _testsService.UpdateAsync(id, updatedTest);
-
-        if (res is null)
-        {
-            Response.StatusCode = StatusCodes.Status404NotFound;
-            return new JsonResult(new
-            {
-                success = false,
-                result = res,
-                message = "No document found"
-            });
-        }
-        else
-        {
-            var testObj = await _testsService.GetAsync(CurrentUserId(), id);
-            if (testObj != null)
-            {
-                var popObj = await AutoPopulate(testObj);
-                if (popObj != null)
-                {
-                    testObj = popObj;
-                }
-            }
-
-            return Ok(new
-            {
-                success = true,
-                result = testObj,
-                message = "we update this document",
-            });
-        }
     }
 
     [HttpGet]
@@ -458,12 +357,6 @@ public class TestsController : ControllerBase
         }
         else
         {
-            var popObj = await AutoPopulate(testObj);
-            if (popObj != null)
-            {
-                testObj = popObj;
-            }
-
             await _testsService.RemoveAsync(id);
             return Ok(new
             {

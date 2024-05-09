@@ -181,10 +181,7 @@ namespace RtpRestApi.Services
             {
                 ["$oid"] = adminId
             };
-            documentObj["topic"] = new JObject
-            {
-                ["$oid"] = newArtifactRequest.topic
-            };
+            documentObj["topic"] = newArtifactRequest.topic;
 
             string res = await _atlasService.InsertOneAsync(_collection, documentObj);
             try

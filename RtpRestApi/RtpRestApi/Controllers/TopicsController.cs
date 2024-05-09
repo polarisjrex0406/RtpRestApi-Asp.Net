@@ -12,10 +12,14 @@ namespace RtpRestApi.Controllers;
 public class TopicsController : ControllerBase
 {
     private readonly TopicsService _topicsService;
+    private readonly ArtifactsService _artifactsService;
+    private readonly ExperimentsService _experimentService;
 
-    public TopicsController(TopicsService topicsService)
+    public TopicsController(TopicsService topicsService, ArtifactsService artifactsService, ExperimentsService experimentService)
     {
         _topicsService = topicsService;
+        _artifactsService = artifactsService;
+        _experimentService = experimentService;
     }
 
     private string? CurrentUserId()
@@ -236,6 +240,27 @@ public class TopicsController : ControllerBase
         else
         {
             await _topicsService.RemoveAsync(id);
+
+            var artiList = await _artifactsService.GetAsync(CurrentUserId(), id, "topic");
+            if (artiList != null)
+            {
+                foreach (var arti in artiList)
+                {
+                    if (arti?._id == null) continue;
+                    await _artifactsService.RemoveAsync(arti?._id);
+                }
+            }
+
+            var expList = await _experimentService.GetAsync(CurrentUserId(), id, "topic");
+            if (expList != null)
+            {
+                foreach (var exp in expList)
+                {
+                    if (exp?._id == null) continue;
+                    await _experimentService.RemoveAsync(exp?._id);
+                }
+            }
+
             return Ok(new
             {
                 success = true,

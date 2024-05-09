@@ -185,13 +185,6 @@ namespace RtpRestApi.Services
             documentObj.Remove("_id");
             documentObj.Remove("description");
 
-            documentObj.Remove("topic");
-            documentObj.Remove("topicId");
-            documentObj["topic"] = new JObject
-            {
-                ["$oid"] = testResponse.topicId
-            };
-
             documentObj.Remove("createdBy");
             documentObj["createdBy"] = new JObject
             {

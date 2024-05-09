@@ -187,10 +187,7 @@ namespace RtpRestApi.Services
             {
                 ["$oid"] = adminId
             };
-            documentObj["topic"] = new JObject
-            {
-                ["$oid"] = newExperimentRequest.topic
-            };
+            documentObj["topic"] = newExperimentRequest.topic;
             if (newExperimentRequest.templates != null && newExperimentRequest.templates.Count > 0)
             {
                 JArray jArray = new JArray();

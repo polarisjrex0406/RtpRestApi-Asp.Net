@@ -9,17 +9,21 @@ namespace RtpRestApi.Models
     }
     public class History
     {
+        public string? artifactName { get; set; }
         public List<Chat>? input { get; set;}
         public Chat? output { get; set; }
     }
+
+    public class PerPromptResponse
+    {
+        public string? initPrompt { get; set; }
+        public List<History>? chatHistory { get; set; }
+    }
     public class ExperimentInResponse
     {
-        public int order { get; set; }
-        [JsonPropertyName("experimentNo")]
-        public string? experimentId { get; set; }
-        [JsonPropertyName("experiment")]
-        public ExperimentResponse? experimentObj { get; set; }
-        public List<History>? chatHistory { get; set; }
+        public string? experimentCode { get; set; }
+        public string style { get; set; } = "Stand-alone";
+        public List<PerPromptResponse>? responses { get; set; }
     }
     public class ExperimentInRequest
     {
@@ -38,11 +42,9 @@ namespace RtpRestApi.Models
         public bool enabled { get; set; } = true;
         public string? testCode { get; set; }
         public string? description { get; set; }
-        [JsonPropertyName("topicId")]
-        public string? topicId { get; set; }
-        [JsonPropertyName("topic")]
-        public TopicResponse? topicObj { get; set; }
+        public string? topicName { get; set; }
         public List<ExperimentInResponse>? experiments { get; set; }
+        public List<string>? topicPrompt { get; set; }
         public DateTime created { get; set; } = DateTime.Now;
         public DateTime updated { get; set; } = DateTime.Now;
         public bool isPublic { get; set; } = true;

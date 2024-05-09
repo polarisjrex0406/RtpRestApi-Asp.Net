@@ -34,7 +34,7 @@ namespace RtpRestApi.Models
         public string? experimentCode { get; set; }
         public string? description { get; set; }
         public string? style { get; set; }
-        public string? initPrompt { get; set; }
+        public List<string>? initPrompt { get; set; }
         public string? topic { get; set; }
         public List<TemplateInRequest>? templates { get; set; }
         public string? ruleLogic { get; set; }
@@ -49,7 +49,7 @@ namespace RtpRestApi.Models
         public string? experimentCode { get; set; }
         public string? description { get; set; }
         public string? style { get; set; }
-        public string? initPrompt {  get; set; }
+        public List<string>? initPrompt {  get; set; }
         [JsonPropertyName("topicId")]
         public string? topicId { get; set; }
         [JsonPropertyName("topic")]

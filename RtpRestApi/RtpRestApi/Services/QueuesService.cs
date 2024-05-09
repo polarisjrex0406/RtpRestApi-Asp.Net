@@ -43,7 +43,7 @@ namespace RtpRestApi.Services
             }
             return criteriaPassed;
         }
-        public bool CheckCriterias(string? ruleLogic, List<Rule>? rules, string? initPrompt, List<PromptEnhancer>? promptEnhancers)
+        public bool CheckCriterias(string? ruleLogic, List<Rule>? rules, string initPrompt, List<PromptEnhancer>? promptEnhancers)
         {
             bool notSkip = (ruleLogic == null || ruleLogic == "All" || rules == null);
             if (rules != null)
@@ -92,33 +92,28 @@ namespace RtpRestApi.Services
             }
             return notSkip;
         }
-        public bool SkipArtifactOrGoChat(string style, string? initPrompt, ref List<Chat> messages, ref List<History> prevChats)
+        public bool SkipArtifactOrGoChat(string? style, ref List<Chat> messages, ref List<History> prevChats)
         {
             bool skipTemplate = false;
-            if (style == "Stand-alone")
-            {
-                // initial prompt as a system message
-                Chat msg = new Chat();
-                msg.role = "system";
-                msg.content = initPrompt;
-                messages.Add(msg);
-            }
-            else
+            if (style == "Conversation")
             {
                 // conversational style
-                if (prevChats != null && prevChats.Count() > 0 && prevChats[0] != null && prevChats[0].input != null && prevChats[0].output != null)
+                if (prevChats != null && prevChats.Count() > 0)
                 {
-                    foreach (Chat input in prevChats[0].input)
+                    History hist = prevChats.Last();
+                    if (hist != null && hist.input != null && hist.output != null)
                     {
-                        messages.Add(input);
+                        foreach (Chat input in hist.input)
+                        {
+                            messages.Add(input);
+                        }
+                        messages.Add(hist.output);
                     }
-                    messages.Add(prevChats[0].output);
                 }
-                else skipTemplate = true;
             }
             return skipTemplate;
         }
-        public string ApplyPromptEnhancers(List<PromptEnhancer>? promptEnhancers, string? promptOutput, ref List<Chat> messages)
+        public string ApplyPromptEnhancers(List<PromptEnhancer>? promptEnhancers, string? promptOutput, string init_prompt, ref List<Chat> messages)
         {
             string enhancedPrompt = (promptOutput == null) ? "" : promptOutput;
             if (promptEnhancers != null)
@@ -129,6 +124,7 @@ namespace RtpRestApi.Services
                     enhancedPrompt = enhancedPrompt.Replace(pattern, enhancer.value);
                 }
             }
+            enhancedPrompt = enhancedPrompt.Replace("{{TopicPrompt}}", init_prompt);
 
             Chat msg = new Chat();
             msg.role = "user";
@@ -137,7 +133,6 @@ namespace RtpRestApi.Services
 
             return enhancedPrompt;
         }
-
         public JObject ConfigGptSettings(List<ChatGPTSetting>? settingsFromDb)
         {
             JObject gptSettings = new JObject();
