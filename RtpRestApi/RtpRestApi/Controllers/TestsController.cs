@@ -234,19 +234,38 @@ public class TestsController : ControllerBase
                 expResponse.experimentCode = expObj.experimentCode;
                 expResponse.responses = new List<PerPromptResponse>();
 
-                foreach (var init_prompt in expObj.initPrompt)
+                var templateList = new List<ArtifactResponse>();
+                bool hasInitPrompt = false;
+                foreach (var templateInRequest in expObj.templates)
+                {
+                    var templateObj = await _artifactsService.GetAsync(CurrentUserId(), templateInRequest.templateId);
+                    if (templateObj == null) continue;
+                    templateList.Add(templateObj);
+                    hasInitPrompt |= templateObj.promptOutput.Contains("{{TopicPrompt}}");
+                }
+
+                var initPrompts = new List<string>();
+                if (!hasInitPrompt)
+                {
+                    initPrompts = [""];
+                }
+                else
+                {
+                    initPrompts = expObj.initPrompt;
+                }
+                
+                foreach (var init_prompt in initPrompts)
                 {
                     List<History> prevChats = new List<History>();
                     PerPromptResponse perPromptResponse = new PerPromptResponse();
                     perPromptResponse.chatHistory = new List<History>();
                     perPromptResponse.initPrompt = init_prompt;
-                    foreach (var template in expObj.templates)
+                    foreach (var templateObj in templateList)
                     {
                         History histResponse = new History();
                         Chat chatResponse = new Chat();
                         chatResponse.role = "assistant";
 
-                        var templateObj = await _artifactsService.GetAsync(CurrentUserId(), template.templateId);
                         if (templateObj == null) continue;
                         histResponse.artifactName = templateObj.name;
 
@@ -270,7 +289,7 @@ public class TestsController : ControllerBase
                             CachePromptResponse? cachedPrompt = null;
                             if (expObj?.style == "Stand-alone")
                             {
-                                cachedPrompt = await _cachePromptsService.ReadOneByArtifactAsync(template.templateId, CurrentUserId());
+                                cachedPrompt = await _cachePromptsService.ReadOneByArtifactAsync(templateObj._id, CurrentUserId());
                             }
 
                             if (cachedPrompt == null)
@@ -291,7 +310,7 @@ public class TestsController : ControllerBase
                                 if (expObj?.style == "Stand-alone" && templateObj.useCache && generatedText != null)
                                 {
                                     var cacheRequest = new CachePromptRequest();
-                                    cacheRequest.template = template.templateId;
+                                    cacheRequest.template = templateObj._id;
                                     cacheRequest.cacheTimeoutValue = templateObj.cacheTimeoutValue;
                                     cacheRequest.cacheConditions = templateObj.cacheConditions;
                                     cacheRequest.cacheTimeoutUnit = templateObj.cacheTimeoutUnit;
@@ -315,15 +334,9 @@ public class TestsController : ControllerBase
                         histResponse.input = messages;
                         histResponse.output = chatResponse;
                         prevChats.Add(histResponse);
-                        perPromptResponse.chatHistory.Add(histResponse);
-                        // Has no {{TopicPrompt}} in Prompt Output
-                        if (!templateObj.promptOutput.Contains("{{TopicPrompt}}")) {
-                            perPromptResponse.initPrompt = "";
-                        }
+                        perPromptResponse.chatHistory.Add(histResponse);                        
                     }
                     expResponse.responses.Add(perPromptResponse);
-                    // Has no {{TopicPrompt}} in Prompt Output
-                    if (perPromptResponse.initPrompt == "") break;
                 }
                 testResponse.experiments.Add(expResponse);
             }
