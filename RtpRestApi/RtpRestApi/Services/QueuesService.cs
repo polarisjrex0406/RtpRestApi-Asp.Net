@@ -1,4 +1,4 @@
-﻿using Microsoft.Extensions.FileSystemGlobbing.Internal;
+﻿using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json.Linq;
 using RtpRestApi.Models;
 
@@ -6,70 +6,92 @@ namespace RtpRestApi.Services
 {
     public class QueuesService
     {
-        private bool CheckOneCriteria(string compareItem, string conditionOperator, string conditionValue)
+        private bool CheckOneCondition(string compareItem, string conditionOperator, string conditionValue)
         {
-            bool criteriaPassed = false;
-            if (conditionOperator == "EQ" && compareItem == conditionValue)
+            bool conditionPassed = false, doublePassed = false;            
+            double tempCompareItem = 0.0, tempConditionValue = 0.0;
+            // Try pass to numbers (currently, double)
+            if (!compareItem.IsNullOrEmpty() && double.TryParse(compareItem, out tempCompareItem) &&
+                !conditionValue.IsNullOrEmpty() && double.TryParse(conditionValue, out tempConditionValue))
             {
-                criteriaPassed = true;
+                doublePassed = true;
             }
-            if (conditionOperator == "NEQ" && compareItem != conditionValue)
+
+            if (conditionOperator == "EQ")
             {
-                criteriaPassed = true;
+                if (doublePassed) conditionPassed = (tempCompareItem == tempConditionValue);
+                else conditionPassed = (compareItem == conditionValue);
             }
-            if (conditionOperator == "LT" && string.Compare(compareItem, conditionValue) < 0)
+            if (conditionOperator == "NEQ")
             {
-                criteriaPassed = true;
+                if (doublePassed) conditionPassed = (tempCompareItem != tempConditionValue);
+                else conditionPassed = (compareItem != conditionValue);
             }
-            if (conditionOperator == "LTE" && string.Compare(compareItem, conditionValue) <= 0)
+            if (conditionOperator == "LT")
             {
-                criteriaPassed = true;
+                if (doublePassed) conditionPassed = (tempCompareItem < tempConditionValue);
+                else conditionPassed = (string.Compare(compareItem, conditionValue) < 0);
             }
-            if (conditionOperator == "GT" && string.Compare(compareItem, conditionValue) > 0)
+            if (conditionOperator == "LTE")
             {
-                criteriaPassed = true;
+                if (doublePassed) conditionPassed = (tempCompareItem <= tempConditionValue);
+                else conditionPassed = (string.Compare(compareItem, conditionValue) <= 0);
+            }
+            if (conditionOperator == "GT")
+            {
+                if (doublePassed) conditionPassed = (tempCompareItem > tempConditionValue);
+                else conditionPassed = (string.Compare(compareItem, conditionValue) > 0);
             }
             if (conditionOperator == "GTE" && string.Compare(compareItem, conditionValue) >= 0)
             {
-                criteriaPassed = true;
+                if (doublePassed) conditionPassed = (tempCompareItem >= tempConditionValue);
+                else conditionPassed = (string.Compare(compareItem, conditionValue) >= 0);
             }
             if (conditionOperator == "IN" && compareItem.IndexOf(conditionValue) > -1)
             {
-                criteriaPassed = true;
+                conditionPassed = true;
             }
             if (conditionOperator == "NOTIN" && compareItem.IndexOf(conditionValue) == -1)
             {
-                criteriaPassed = true;
+                conditionPassed = true;
             }
-            return criteriaPassed;
+            return conditionPassed;
         }
-        public bool CheckCriterias(string? ruleLogic, List<Rule>? rules, string initPrompt, List<PromptEnhancer>? promptEnhancers)
+        private bool CheckOneRule(Rule rule, string initPrompt, List<PromptEnhancer>? promptEnhancers, List<History> prevChats)
         {
-            bool notSkip = (ruleLogic == null || ruleLogic == "All" || rules == null);
-            if (rules != null)
+            bool rulePassed = (rule == null || rule.conditionsLogic == null || rule.conditionsLogic == "All" || rule.conditions == null);
+            if (rule != null && rule.conditions != null)
             {
-                foreach (var rule in rules)
+                foreach (var condition in rule.conditions)
                 {
-                    bool criteriaPassed;
+                    bool conditionPassed = false;
                     string? compareItem, conditionOperator, conditionValue;
                     compareItem = null;
-                    conditionOperator = rule.conditionOperator;
-                    conditionValue = rule.conditionValue;
+                    conditionOperator = condition.conditionOperator;
+                    conditionValue = condition.conditionValue;
                     if (rule == null) continue;
 
-                    if (rule.conditionType == "initPrompt" || rule.conditionType == "initial_prompt" || rule.conditionType == "init_prompt")
+                    if (condition?.conditionType?.ToLower() == "topicprompt")
                     {
                         compareItem = initPrompt;
                     }
-                    else if (rule.conditionType == "key" || rule.conditionType == "Key")
+                    else if (condition?.conditionType?.ToLower() == "lastresponse")
+                    {
+                        if (prevChats != null && prevChats.Count() > 0)
+                        {
+                            History hist = prevChats.Last();
+                            compareItem = hist?.output?.content;
+                        }
+                    }
+                    else if (condition?.conditionType?.ToLower() == "key")
                     {
                         if (promptEnhancers == null) continue;
                         foreach (var enhancer in promptEnhancers)
                         {
                             if (enhancer == null) continue;
                             if (enhancer.key == null) continue;
-                            if (rule.conditionItem == null) continue;
-                            if (enhancer.key.ToLower() == rule.conditionItem.ToLower())
+                            if (condition.conditionItem == null) continue;
+                            if (enhancer.key.ToLower() == condition.conditionItem.ToLower())
                             {
                                 if (enhancer.value == null) continue;
                                 compareItem = enhancer.value;
@@ -79,13 +101,29 @@ namespace RtpRestApi.Services
 
                     if (compareItem != null && conditionOperator != null && conditionValue != null)
                     {
-                        criteriaPassed = CheckOneCriteria(compareItem, conditionOperator, conditionValue);
+                        conditionPassed = CheckOneCondition(compareItem, conditionOperator, conditionValue);
                     }
                     else
                     {
-                        criteriaPassed = true;
+                        conditionPassed = true;
                     }
-                    notSkip = (ruleLogic == "All") ? notSkip && criteriaPassed : notSkip || criteriaPassed;
+
+                    rulePassed = (rule.conditionsLogic == "All") ? rulePassed && conditionPassed : rulePassed || conditionPassed;
+                }
+            }
+            return rulePassed;
+        }
+        public bool CheckCriterias(string? ruleLogic, List<Rule>? rules, string initPrompt, List<PromptEnhancer>? promptEnhancers, List<History> prevChats)
+        {
+            bool notSkip = (ruleLogic == null || ruleLogic == "All" || rules == null);
+            if (rules != null)
+            {
+                foreach (var rule in rules)
+                {
+                    bool rulePassed;
+                    if (rule == null) continue;
+                    rulePassed = CheckOneRule(rule, initPrompt, promptEnhancers, prevChats);
+                    notSkip = (ruleLogic == "All") ? notSkip && rulePassed : notSkip || rulePassed;
                 }
 
                 if (rules.Count == 0) notSkip = true;

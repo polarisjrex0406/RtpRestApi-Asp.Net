@@ -1,33 +1,24 @@
 import { useState, useEffect } from 'react';
-import { Divider } from 'antd';
+import { useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 
-import { Button, Row, Col, Descriptions, Statistic, Tag } from 'antd';
+import { Button, Row, Col, Descriptions, Card, Divider } from 'antd';
 import { PageHeader } from '@ant-design/pro-layout';
 import {
   EditOutlined,
-  FilePdfOutlined,
   CloseCircleOutlined,
-  RetweetOutlined,
-  MailOutlined,
 } from '@ant-design/icons';
 
-import { useSelector, useDispatch } from 'react-redux';
 import useLanguage from '@/locale/useLanguage';
 import { erp } from '@/redux/erp/actions';
-
 import { generate as uniqueId } from 'shortid';
-
 import { selectCurrentItem } from '@/redux/erp/selectors';
 
-import { DOWNLOAD_BASE_URL } from '@/config/serverApiConfig';
-import useMail from '@/hooks/useMail';
-import { useNavigate } from 'react-router-dom';
-import { tagColor } from '@/utils/statusTagColor';
-import { settingsAction } from '@/redux/settings/actions';
 
 const PromptEnhancerItem = ({ item, currentErp }) => {
   return (
     <Row gutter={[12, 0]} key={item._id}>
+      <Divider dashed style={{ marginTop: 0, marginBottom: 15 }} />
       <Col className="gutter-row" span={3}>
         <p
           style={{
@@ -73,8 +64,6 @@ const PromptEnhancerItem = ({ item, currentErp }) => {
           {item.promptModifier}
         </p>
       </Col>
-
-      <Divider dashed style={{ marginTop: 0, marginBottom: 15 }} />
     </Row>
   );
 };
@@ -82,6 +71,7 @@ const PromptEnhancerItem = ({ item, currentErp }) => {
 const ChatGptSettingItem = ({ item, currentErp }) => {
   return (
     <Row gutter={[12, 0]} key={item._id}>
+      <Divider dashed style={{ marginTop: 0, marginBottom: 15 }} />
       <Col className="gutter-row" span={3}>
         <p
           style={{
@@ -136,9 +126,140 @@ const ChatGptSettingItem = ({ item, currentErp }) => {
           {item.description}
         </p>
       </Col>
-
-      <Divider dashed style={{ marginTop: 0, marginBottom: 15 }} />
     </Row>
+  );
+};
+
+const CriteriaConditionItem = ({ item, currentErp }) => {
+  return (
+    <Row gutter={[12, 0]} key={item._id}>
+      <Divider dashed style={{ marginTop: 0, marginBottom: 15 }} />
+      <Col className="gutter-row" span={4}>
+        <p
+          style={{
+            textAlign: 'left',
+          }}
+        >
+          {item.conditionName}
+        </p>
+      </Col>
+      <Col className="gutter-row" span={5}>
+        <p
+          style={{
+            textAlign: 'left',
+          }}
+        >
+          {item.conditionType}
+        </p>
+      </Col>
+      <Col className="gutter-row" span={5}>
+        <p
+          style={{
+            textAlign: 'left',
+          }}
+        >
+          {item.conditionItem}
+        </p>
+      </Col>
+      <Col className="gutter-row" span={3}>
+        <p
+          style={{
+            textAlign: 'left',
+          }}
+        >
+          {item.conditionOperator}
+        </p>
+      </Col>
+      <Col className="gutter-row" span={7}>
+        <p
+          style={{
+            textAlign: 'left',
+          }}
+        >
+          {item.conditionValue}
+        </p>
+      </Col>
+    </Row>
+  );
+}
+
+const CriteriaRuleItem = ({ order, item, currentErp }) => {
+  return (
+    <>
+      <Divider dashed style={{ marginTop: 0, marginBottom: 15 }} />
+      <Card>
+        <Row gutter={[12, 0]} key={item._id}>
+          <Col className="gutter-row" span={16}>
+            <p
+              style={{
+                textAlign: 'left',
+              }}
+            >
+              {item.ruleName}
+            </p>
+          </Col>
+          <Col className="gutter-row" span={8}>
+            <p
+              style={{
+                textAlign: 'left',
+              }}
+            >
+              {item.conditionsLogic}
+            </p>
+          </Col>
+          <Col className="gutter-row" span={4}>
+            <p
+              style={{
+                textAlign: 'left',
+              }}
+            >
+              <strong>Condition Name</strong>
+            </p>
+          </Col>
+          <Col className="gutter-row" span={5}>
+            <p
+              style={{
+                textAlign: 'left',
+              }}
+            >
+              <strong>Condition Type</strong>
+            </p>
+          </Col>
+          <Col className="gutter-row" span={5}>
+            <p
+              style={{
+                textAlign: 'left',
+              }}
+            >
+              <strong>Condition Item</strong>
+            </p>
+          </Col>
+          <Col className="gutter-row" span={3}>
+            <p
+              style={{
+                textAlign: 'left',
+              }}
+            >
+              <strong>Condition Operator</strong>
+            </p>
+          </Col>
+          <Col className="gutter-row" span={7}>
+            <p
+              style={{
+                textAlign: 'left',
+              }}
+            >
+              <strong>Condition Value</strong>
+            </p>
+          </Col>
+        </Row>
+        {
+          item?.conditions?.map((condition, index) => (
+            <CriteriaConditionItem key={'condition' + index} order={index + 1} item={condition} currentErp={currentErp} />
+          ))
+        }
+      </Card>
+    </>
   );
 };
 
@@ -222,7 +343,6 @@ export default function ReadItem({ config, selectedItem }) {
     <>
       <PageHeader
         onBack={() => {
-          // window.history.back();
           if (currentErp?.topicId) navigate(`/template/${currentErp?.topicId}`);
         }}
         title={`Artifact`}
@@ -230,7 +350,6 @@ export default function ReadItem({ config, selectedItem }) {
           <Button
             key={`${uniqueId()}`}
             onClick={() => {
-              // window.history.back();
               if (currentErp?.topicId) navigate(`/template/${currentErp?.topicId}`);
             }}
             icon={<CloseCircleOutlined />}
@@ -264,141 +383,170 @@ export default function ReadItem({ config, selectedItem }) {
         <Descriptions.Item label={translate('Goal')}>{currentErp.goal}</Descriptions.Item>
         <Descriptions.Item label={translate('Prompt Output')}>{currentErp.promptOutput}</Descriptions.Item>
       </Descriptions>
-      <Divider />
-      <Descriptions title='Prompt Enhancers' />
-      <Row gutter={[12, 0]}>
-        {/* Key, Value Type, Value, Description, Prompt Modifier */}
-        <Col className="gutter-row" span={3}>
-          <p
-            style={{
-              textAlign: 'left',
-            }}
-          >
-            <strong>{translate('Key')}</strong>
-          </p>
-        </Col>
-        <Col className="gutter-row" span={3}>
-          <p
-            style={{
-              textAlign: 'left',
-            }}
-          >
-            <strong>{translate('Value Type')}</strong>
-          </p>
-        </Col>
-        <Col className="gutter-row" span={3}>
-          <p
-            style={{
-              textAlign: 'left',
-            }}
-          >
-            <strong>{translate('Value')}</strong>
-          </p>
-        </Col>
-        <Col className="gutter-row" span={6}>
-          <p
-            style={{
-              textAlign: 'left',
-            }}
-          >
-            <strong>{translate('Description')}</strong>
-          </p>
-        </Col>
-        <Col className="gutter-row" span={9}>
-          <p
-            style={{
-              textAlign: 'left',
-            }}
-          >
-            <strong>{translate('Prompt Modifier')}</strong>
-          </p>
-        </Col>
-        <Divider />
-      </Row>
-      {currentErp?.promptEnhancers?.map((item, index) => (
-        <PromptEnhancerItem key={'enhanceItem' + index} item={item} currentErp={currentErp} />
-      ))}
+      <Divider orientation="right">Prompt Enhancers</Divider>
+      <Card>
+        <Row gutter={[12, 0]}>
+          {/* Key, Value Type, Value, Description, Prompt Modifier */}
+          <Col className="gutter-row" span={3}>
+            <p
+              style={{
+                textAlign: 'left',
+              }}
+            >
+              <strong>{translate('Key')}</strong>
+            </p>
+          </Col>
+          <Col className="gutter-row" span={3}>
+            <p
+              style={{
+                textAlign: 'left',
+              }}
+            >
+              <strong>{translate('Value Type')}</strong>
+            </p>
+          </Col>
+          <Col className="gutter-row" span={3}>
+            <p
+              style={{
+                textAlign: 'left',
+              }}
+            >
+              <strong>{translate('Value')}</strong>
+            </p>
+          </Col>
+          <Col className="gutter-row" span={6}>
+            <p
+              style={{
+                textAlign: 'left',
+              }}
+            >
+              <strong>{translate('Description')}</strong>
+            </p>
+          </Col>
+          <Col className="gutter-row" span={9}>
+            <p
+              style={{
+                textAlign: 'left',
+              }}
+            >
+              <strong>{translate('Prompt Modifier')}</strong>
+            </p>
+          </Col>
+        </Row>
+        {currentErp?.promptEnhancers?.map((item, index) => (
+          <PromptEnhancerItem key={'enhanceItem' + index} item={item} currentErp={currentErp} />
+        ))}
+      </Card>
 
-      <Descriptions title='ChatGPT Settings' />
-      <Row gutter={[12, 0]}>
-        {/* Key, Value Type, Value, Description, Prompt Modifier */}
-        <Col className="gutter-row" span={3}>
-          <p
-            style={{
-              textAlign: 'left',
-            }}
-          >
-            <strong>{translate('Setting')}</strong>
-          </p>
-        </Col>
-        <Col className="gutter-row" span={3}>
-          <p
-            style={{
-              textAlign: 'left',
-            }}
-          >
-            <strong>{translate('Value Type')}</strong>
-          </p>
-        </Col>
-        <Col className="gutter-row" span={3}>
-          <p
-            style={{
-              textAlign: 'left',
-            }}
-          >
-            <strong>{translate('Value')}</strong>
-          </p>
-        </Col>
-        <Col className="gutter-row" span={3}>
-          <p
-            style={{
-              textAlign: 'left',
-            }}
-          >
-            <strong>{translate('Min')}</strong>
-          </p>
-        </Col>
-        <Col className="gutter-row" span={3}>
-          <p
-            style={{
-              textAlign: 'left',
-            }}
-          >
-            <strong>{translate('Max')}</strong>
-          </p>
-        </Col>
-        <Col className="gutter-row" span={9}>
-          <p
-            style={{
-              textAlign: 'left',
-            }}
-          >
-            <strong>{translate('Description')}</strong>
-          </p>
-        </Col>
-        <Divider />
-      </Row>
-      {currentErp?.chatgptSettings?.map((item, index) => (
-        <ChatGptSettingItem key={'gptSetting' + index} item={item} currentErp={currentErp} />
-      ))}
+      <Divider orientation="right">ChatGPT Settings</Divider>
+      <Card>
+        <Descriptions title='ChatGPT Settings' />
+        <Row gutter={[12, 0]}>
+          {/* Key, Value Type, Value, Description, Prompt Modifier */}
+          <Col className="gutter-row" span={3}>
+            <p
+              style={{
+                textAlign: 'left',
+              }}
+            >
+              <strong>{translate('Setting')}</strong>
+            </p>
+          </Col>
+          <Col className="gutter-row" span={3}>
+            <p
+              style={{
+                textAlign: 'left',
+              }}
+            >
+              <strong>{translate('Value Type')}</strong>
+            </p>
+          </Col>
+          <Col className="gutter-row" span={3}>
+            <p
+              style={{
+                textAlign: 'left',
+              }}
+            >
+              <strong>{translate('Value')}</strong>
+            </p>
+          </Col>
+          <Col className="gutter-row" span={3}>
+            <p
+              style={{
+                textAlign: 'left',
+              }}
+            >
+              <strong>{translate('Min')}</strong>
+            </p>
+          </Col>
+          <Col className="gutter-row" span={3}>
+            <p
+              style={{
+                textAlign: 'left',
+              }}
+            >
+              <strong>{translate('Max')}</strong>
+            </p>
+          </Col>
+          <Col className="gutter-row" span={9}>
+            <p
+              style={{
+                textAlign: 'left',
+              }}
+            >
+              <strong>{translate('Description')}</strong>
+            </p>
+          </Col>
+        </Row>
+        {currentErp?.chatgptSettings?.map((item, index) => (
+          <ChatGptSettingItem key={'gptSetting' + index} item={item} currentErp={currentErp} />
+        ))}
+      </Card>
 
-      <Descriptions title='Retention Settings'>
-        <Descriptions.Item label={translate('Use Cache')}>
-          {currentErp?.useCache ? currentErp?.useCache?.toString() : ''}
-        </Descriptions.Item>
-        <Descriptions.Item label={translate('Cache Timeout Unit')}>
-          {currentErp?.cacheTimeoutUnit}
-        </Descriptions.Item>
-        <Descriptions.Item label={translate('Cache Timeout Value')}>
-          {currentErp?.cacheTimeoutValue}
-        </Descriptions.Item>
-        <Descriptions.Item label={translate('Cache Description')}>
-          {currentErp?.description}
-        </Descriptions.Item>
-      </Descriptions>
-      {currentErp?.useCache && currentErp?.cacheConditions?.map((item, index) => (
-        <CacheConditionItem key={'cacheCond' + index} item={item} currentErp={currentErp} />
-      ))}
+      <Divider orientation="right">Criteria</Divider>
+      <Card>
+        <Row gutter={[12, 0]}>
+          <Col className="gutter-row" span={20}>
+            <p
+              style={{
+                textAlign: 'right',
+              }}
+            >
+              {translate('Rule Logic:')}
+            </p>
+          </Col>
+          <Col className="gutter-row" span={4}>
+            <p
+              style={{
+                textAlign: 'left',
+              }}
+            >
+              {currentErp?.ruleLogic}
+            </p>
+          </Col>
+        </Row>
+        {currentErp?.rules?.map((item, index) => (
+          <CriteriaRuleItem key={'criteria' + index} order={index + 1} item={item} currentErp={currentErp} />
+        ))}
+      </Card>
+
+      <Divider orientation="right">Retention Settings</Divider>
+      <Card>
+        <Descriptions title=''>
+          <Descriptions.Item label={translate('Use Cache')}>
+            {currentErp?.useCache ? currentErp?.useCache?.toString() : ''}
+          </Descriptions.Item>
+          <Descriptions.Item label={translate('Cache Timeout Unit')}>
+            {currentErp?.cacheTimeoutUnit}
+          </Descriptions.Item>
+          <Descriptions.Item label={translate('Cache Timeout Value')}>
+            {currentErp?.cacheTimeoutValue}
+          </Descriptions.Item>
+        </Descriptions>
+        {currentErp?.useCache && currentErp?.cacheConditions?.map((item, index) => (
+          <CacheConditionItem key={'cacheCond' + index} item={item} currentErp={currentErp} />
+        ))}
+      </Card>
     </>
   );
 }

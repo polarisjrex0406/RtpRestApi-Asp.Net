@@ -11,6 +11,30 @@ import {
   EllipsisOutlined,
 } from '@ant-design/icons';
 
+import { generate as uniqueId } from 'shortid';
+import Topic from '@/pages/Topic';
+
+const TopicPromptItem = ({ prompts, currentErp }) => {
+  const colorTags = ['magenta', 'green', 'red', 'cyan', 'volcano', 'blue', 'orange', 'greekblue', 'gold', 'purple', 'lime']
+  return (
+    <Row gutter={[12, 0]} key={`${uniqueId()}`}>
+      <Col className="gutter-row" span={24} key={`${uniqueId()}`}>
+        {(() => {
+          const promptTags = [];
+          for (const i in prompts) {
+            const colorIndex = parseInt(i) % 11;
+            promptTags.push(<Tag key={`${uniqueId()}`} color={colorTags[colorIndex]}>
+              {prompts[i]}
+            </Tag>);
+          }
+          return promptTags;
+        })()}
+      </Col>
+      <Divider dashed style={{ marginTop: 0, marginBottom: 15 }} />
+    </Row>
+  );
+};
+
 export default function Card({ data, isLoading = false, onClickViewTemplates, onClickRead, onClickEdit, onClickDelete }) {
   const translate = useLanguage();
   const [maxWidth, setMaxWidth] = useState(0);
@@ -139,7 +163,7 @@ export default function Card({ data, isLoading = false, onClickViewTemplates, on
           <Row gutter={[0, 0]} justify="space-between" wrap={false}>
             <Col className="gutter-row" flex="85px" style={{ textAlign: 'left' }}>
               <div className="left" style={{ maxWidth: `${maxWidth}px`, whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'hidden' }} ref={divRef}>
-                Topic Prompt: {!isLoading ? data?.topicPrompt : ''}
+                Topic Prompt: {!isLoading ? <TopicPromptItem prompts={data?.topicPrompt} /> : ''}
               </div>
             </Col>
           </Row>

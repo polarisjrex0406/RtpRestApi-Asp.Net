@@ -64,7 +64,6 @@ function FormElement({ field, feedback, setFeedback }) {
     >
       <Select
         showSearch={field.showSearch}
-        defaultValue={field.defaultValue}
         style={{
           width: '100%',
         }}
@@ -92,7 +91,6 @@ function FormElement({ field, feedback, setFeedback }) {
       ]}
     >
       <Select
-        defaultValue={field.defaultValue}
         style={{
           width: '100%',
         }}
@@ -148,7 +146,6 @@ function FormElement({ field, feedback, setFeedback }) {
     >
       <Select
         showSearch
-        defaultValue={field.defaultValue}
         filterOption={(input, option) =>
           (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
         }
@@ -183,7 +180,6 @@ function FormElement({ field, feedback, setFeedback }) {
       ]}
     >
       <Select
-        defaultValue={field.defaultValue}
         style={{
           width: '100%',
         }}
@@ -211,7 +207,6 @@ function FormElement({ field, feedback, setFeedback }) {
     >
       <Select
         mode={'multiple'}
-        defaultValue={field.defaultValue}
         style={{
           width: '100%',
         }}
@@ -237,7 +232,6 @@ function FormElement({ field, feedback, setFeedback }) {
     >
       <Select
         showSearch
-        defaultValue={field.defaultValue}
         optionFilterProp="children"
         filterOption={(input, option) =>
           (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
@@ -354,7 +348,6 @@ function FormElement({ field, feedback, setFeedback }) {
       <Switch
         checkedChildren={<CheckOutlined />}
         unCheckedChildren={<CloseOutlined />}
-        defaultValue={true}
       />
     ),
     date: (

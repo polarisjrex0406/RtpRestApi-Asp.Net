@@ -10,11 +10,6 @@ namespace RtpRestApi.Models
         public string? description { get; set; }
         public string? promptModifier { get; set; }
     }
-    public class Example
-    {
-        public string? parserOutputExample { get; set; }
-        public string? SampleResponse { get; set; }
-    }
     public class ChatGPTSetting {
         public string? setting { get; set; }
         public string? valueType { get; set; }
@@ -22,6 +17,20 @@ namespace RtpRestApi.Models
         public string? minValue { get; set; }
         public string? maxValue { get; set; }
         public string? description { get; set; }
+    }
+    public class Condition
+    {
+        public string? conditionName { get; set; }
+        public string? conditionType { get; set; }
+        public string? conditionItem { get; set; }
+        public string? conditionOperator { get; set; }
+        public string? conditionValue { get; set; }
+    }
+    public class Rule
+    {
+        public string? ruleName { get; set; }
+        public string? conditionsLogic { get; set; }
+        public List<Condition>? conditions { get; set; }
     }
     public class CacheCondition
     {
@@ -37,13 +46,13 @@ namespace RtpRestApi.Models
         public string? topic { get; set; }
         public List<PromptEnhancer>? promptEnhancers { get; set; } = null;
         public string? promptOutput { get; set; } = null;
-        public Example? examples { get; set; } = null;
         public List<ChatGPTSetting>? chatgptSettings { get; set; } = null;
+        public string? ruleLogic { get; set; }
+        public List<Rule>? rules { get; set; }
         public bool useCache { get; set; } = false;
         public string? cacheTimeoutUnit { get; set; } = null;
         public int cacheTimeoutValue { get; set; }
         public List<CacheCondition>? cacheConditions { get; set; }
-        public string? cacheDescription { get; set; }
     }
 
     public class ArtifactResponse
@@ -58,13 +67,13 @@ namespace RtpRestApi.Models
         public TopicResponse? topicObj { get; set; }
         public List<PromptEnhancer>? promptEnhancers { get; set; }
         public string? promptOutput { get; set; }
-        public Example? examples { get; set; }
         public List<ChatGPTSetting>? chatgptSettings { get; set; }
+        public string? ruleLogic { get; set; }
+        public List<Rule>? rules { get; set; }
         public bool useCache { get; set; } = false;
         public string? cacheTimeoutUnit { get; set; } = null;
         public int? cacheTimeoutValue { get; set; }
         public List<CacheCondition>? cacheConditions { get; set; }
-        public string? cacheDescription { get; set; }
         public DateTime created { get; set; } = DateTime.Now;
         public DateTime updated { get; set; } = DateTime.Now;
         public bool isPublic { get; set; } = true;

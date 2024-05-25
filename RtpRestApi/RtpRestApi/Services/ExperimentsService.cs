@@ -175,8 +175,6 @@ namespace RtpRestApi.Services
             experimentResponse.style = newExperimentRequest.style;
             experimentResponse.initPrompt = newExperimentRequest.initPrompt;
             experimentResponse.topicId = newExperimentRequest.topic;
-            experimentResponse.ruleLogic = newExperimentRequest.ruleLogic;
-            experimentResponse.rules = newExperimentRequest.rules;
             experimentResponse.createdBy = adminId;
             string tmp = JsonSerializer.Serialize(experimentResponse, SerializeOptions());
             JObject documentObj = JObject.Parse(tmp);

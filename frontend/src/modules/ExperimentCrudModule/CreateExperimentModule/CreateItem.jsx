@@ -1,24 +1,20 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { generate as uniqueId } from 'shortid';
 
 import { Button, Tag, Form, Divider } from 'antd';
 import { PageHeader } from '@ant-design/pro-layout';
-
-import { useSelector, useDispatch } from 'react-redux';
-
-import useLanguage from '@/locale/useLanguage';
+import { ArrowLeftOutlined, ArrowRightOutlined, CloseCircleOutlined, PlusOutlined } from '@ant-design/icons';
 
 import { settingsAction } from '@/redux/settings/actions';
 import { erp } from '@/redux/erp/actions';
 import { selectCreatedItem } from '@/redux/erp/selectors';
-
-import calculate from '@/utils/calculate';
-import { generate as uniqueId } from 'shortid';
-
-import Loading from '@/components/Loading';
-import { ArrowLeftOutlined, ArrowRightOutlined, CloseCircleOutlined, PlusOutlined } from '@ant-design/icons';
-
-import { useNavigate } from 'react-router-dom';
 import { selectLangDirection } from '@/redux/translate/selectors';
+
+import useLanguage from '@/locale/useLanguage';
+import Loading from '@/components/Loading';
+
 
 function SaveForm({ form }) {
   const translate = useLanguage();
@@ -45,31 +41,6 @@ export default function CreateItem({ config, CreateForm }) {
 
   const { isLoading, isSuccess, result } = useSelector(selectCreatedItem);
   const [form] = Form.useForm();
-  const [subTotal, setSubTotal] = useState(0);
-  const [offerSubTotal, setOfferSubTotal] = useState(0);
-  const handelValuesChange = (changedValues, values) => {
-    const items = values['items'];
-    let subTotal = 0;
-    let subOfferTotal = 0;
-
-    if (items) {
-      items.map((item) => {
-        if (item) {
-          if (item.offerPrice && item.quantity) {
-            let offerTotal = calculate.multiply(item['quantity'], item['offerPrice']);
-            subOfferTotal = calculate.add(subOfferTotal, offerTotal);
-          }
-          if (item.quantity && item.price) {
-            let total = calculate.multiply(item['quantity'], item['price']);
-            //sub total
-            subTotal = calculate.add(subTotal, total);
-          }
-        }
-      });
-      setSubTotal(subTotal);
-      setOfferSubTotal(subOfferTotal);
-    }
-  };
 
   const [curTopicId, setCurTopicId] = useState('');
   const handleTopicChange = (e) => {
@@ -82,8 +53,6 @@ export default function CreateItem({ config, CreateForm }) {
     if (isSuccess) {
       form.resetFields();
       dispatch(erp.resetAction({ actionType: 'create' }));
-      setSubTotal(0);
-      setOfferSubTotal(0);
       navigate(`/${entity.toLowerCase()}/read/${result._id}`);
     }
     return () => { };
@@ -94,9 +63,6 @@ export default function CreateItem({ config, CreateForm }) {
     if (fieldsValue) {
       if (fieldsValue.items) {
         let newList = [...fieldsValue.items];
-        newList.map((item) => {
-          item.total = calculate.multiply(item.quantity, item.price);
-        });
         fieldsValue = {
           ...fieldsValue,
           items: newList,
@@ -109,16 +75,10 @@ export default function CreateItem({ config, CreateForm }) {
   return (
     <>
       <PageHeader
-        // onBack={() => {
-        //   // navigate(`/${entity.toLowerCase()}`);
-        //   window.history.back();
-        // }}
         backIcon={langDirection === "rtl" ? <ArrowRightOutlined /> : <ArrowLeftOutlined />}
-
         title={translate('New Experiment')}
         ghost={false}
         tags={<Tag>{translate('Draft')}</Tag>}
-        // subTitle="This is create page"
         extra={[
           <Button
             key={`${uniqueId()}`}
@@ -135,8 +95,8 @@ export default function CreateItem({ config, CreateForm }) {
       ></PageHeader>
       <Divider dashed />
       <Loading isLoading={isLoading}>
-        <Form form={form} layout="vertical" onFinish={onSubmit} onValuesChange={handelValuesChange}>
-          <CreateForm subTotal={subTotal} offerTotal={offerSubTotal} handleTopicChange={handleTopicChange} curTopicId={curTopicId} />
+        <Form form={form} layout="vertical" onFinish={onSubmit}>
+          <CreateForm handleTopicChange={handleTopicChange} curTopicId={curTopicId} />
         </Form>
       </Loading>
     </>

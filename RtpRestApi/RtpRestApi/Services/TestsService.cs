@@ -4,6 +4,7 @@ using Newtonsoft.Json.Linq;
 using RtpRestApi.Helpers;
 using RtpRestApi.Models;
 using System.Text.Json.Serialization.Metadata;
+using Quartz.Spi;
 
 namespace RtpRestApi.Services
 {
@@ -95,10 +96,7 @@ namespace RtpRestApi.Services
             {
                 JObject createdBy = new JObject
                 {
-                    ["createdBy"] = new JObject
-                    {
-                        ["$oid"] = adminId
-                    }
+                    ["createdBy"] = adminId
                 };
                 andArray.Add(createdBy);
             }
@@ -149,11 +147,7 @@ namespace RtpRestApi.Services
             filterObj["removed"] = false;
             if (adminId != null)
             {
-                JObject createdBy = new JObject
-                {
-                    ["$oid"] = adminId
-                };
-                filterObj["createdBy"] = createdBy;
+                filterObj["createdBy"] = adminId;
             }
             if (id != null)
             {
@@ -186,17 +180,14 @@ namespace RtpRestApi.Services
             documentObj.Remove("description");
 
             documentObj.Remove("createdBy");
-            documentObj["createdBy"] = new JObject
-            {
-                ["$oid"] = testResponse.createdBy
-            };
+            documentObj["createdBy"] = testResponse.createdBy;
 
             await _atlasService.InsertOneAsync(_collection, documentObj);
 
             return testResponse;
         }
 
-        public async Task<TestResponse?> UpdateAsync(string id, TestRequest updatedTest)
+        public async Task<TestResponse?> UpdateAsync(string id, TestResponse updatedTest)
         {
             JObject filterObj = new JObject
             {
@@ -207,6 +198,7 @@ namespace RtpRestApi.Services
             };
             string tmp = JsonSerializer.Serialize(updatedTest);
             JObject setObj = JObject.Parse(tmp);
+            setObj.Remove("_id");
 
             string res = await _atlasService.UpdateOneAsync(_collection, filterObj, setObj);
             int matchedCount = 0;

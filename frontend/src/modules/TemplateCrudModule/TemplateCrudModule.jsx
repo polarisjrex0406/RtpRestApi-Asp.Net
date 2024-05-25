@@ -1,22 +1,21 @@
 import { useLayoutEffect, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
 import { Row, Col, Button } from 'antd';
 import { PlusOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons';
 
+import { selectCurrentItem } from '@/redux/crud/selectors';
+import { crud } from '@/redux/crud/actions';
+import { useCrudContext } from '@/context/crud';
+import useLanguage from '@/locale/useLanguage';
+
+import TemplateCrudLayout from '@/layout/TemplateCrudLayout/index'
 import CreateForm from '@/components/CreateForm';
 import UpdateForm from '@/components/UpdateForm';
 import DeleteModal from '@/components/DeleteModal';
 import ReadItem from '@/components/ReadItem';
 import SearchItem from '@/components/SearchItem';
 import CardBox from '@/components/TemplateCardBox/CardBox';
-
-import { useDispatch, useSelector } from 'react-redux';
-
-import { selectCurrentItem } from '@/redux/crud/selectors';
-import useLanguage from '@/locale/useLanguage';
-import { crud } from '@/redux/crud/actions';
-import { useCrudContext } from '@/context/crud';
-
-import TemplateCrudLayout from '@/layout/TemplateCrudLayout/index'
 
 function SidePanelTopContent({ config, formElements, withUpload }) {
   const translate = useLanguage();

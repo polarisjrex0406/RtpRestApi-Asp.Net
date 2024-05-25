@@ -1,11 +1,7 @@
-import { useEffect } from 'react';
 import { Form, Input, Row, Col } from 'antd';
-
 import { DeleteOutlined } from '@ant-design/icons';
-import useLanguage from '@/locale/useLanguage';
 
 export default function RetentionSettingItemRow({ field, remove, current = null }) {
-  const translate = useLanguage();
   return (
     <Row gutter={[12, 12]} style={{ position: 'relative' }}>
       <Col className="gutter-row" span={8}>

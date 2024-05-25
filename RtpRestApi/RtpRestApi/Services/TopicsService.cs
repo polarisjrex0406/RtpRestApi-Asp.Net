@@ -30,10 +30,7 @@ namespace RtpRestApi.Services
             {
                 JObject createdBy = new JObject
                 {
-                    ["createdBy"] = new JObject
-                    {
-                        ["$oid"] = adminId
-                    }
+                    ["createdBy"] = adminId
                 };
                 andArray.Add(createdBy);
             }
@@ -84,11 +81,7 @@ namespace RtpRestApi.Services
             filterObj["removed"] = false;
             if (adminId != null)
             {
-                JObject createdBy = new JObject
-                {
-                    ["$oid"] = adminId
-                };
-                filterObj["createdBy"] = createdBy;
+                filterObj["createdBy"] = adminId;
             }
             if (id != null)
             {
@@ -124,11 +117,6 @@ namespace RtpRestApi.Services
             string tmp = JsonSerializer.Serialize(topicResponse);
             JObject documentObj = JObject.Parse(tmp);
             documentObj.Remove("_id");
-            documentObj.Remove("createdBy");
-            documentObj["createdBy"] = new JObject
-            {
-                ["$oid"] = adminId
-            };
             
             string res = await _atlasService.InsertOneAsync(_collection, documentObj);
             try

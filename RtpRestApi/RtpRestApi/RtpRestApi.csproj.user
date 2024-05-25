@@ -4,7 +4,7 @@
     <ActiveDebugProfile>http</ActiveDebugProfile>
     <Controller_SelectedScaffolderID>ApiControllerEmptyScaffolder</Controller_SelectedScaffolderID>
     <Controller_SelectedScaffolderCategoryPath>root/Common/Api</Controller_SelectedScaffolderCategoryPath>
-    <NameOfLastUsedPublishProfile>D:\_ZzZ_\_Project_\ChatGPT Research Tool\RtpRestApi-Asp.Net\RtpRestApi\RtpRestApi\Properties\PublishProfiles\RTPServer.ruletheprompt.pubxml</NameOfLastUsedPublishProfile>
+    <NameOfLastUsedPublishProfile>D:\_ZzZ_\_Project_\ChatGPT Research Tool\RTPServices\RtpRestApi\RtpRestApi\Properties\PublishProfiles\RTPServer.ruletheprompt.pubxml</NameOfLastUsedPublishProfile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DebuggerFlavor>ProjectDebugger</DebuggerFlavor>

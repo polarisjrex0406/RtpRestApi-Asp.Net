@@ -1,4 +1,4 @@
-﻿using static System.Runtime.InteropServices.JavaScript.JSType;
+﻿using Newtonsoft.Json.Linq;
 
 namespace RtpRestApi.Models
 {
@@ -8,7 +8,7 @@ namespace RtpRestApi.Models
         public string? cacheTimeoutUnit { get; set; } = null;
         public int? cacheTimeoutValue { get; set; }
         public List<CacheCondition>? cacheConditions { get; set; }
-        public string? initPrompt { get; set; }
+        public List<ChatGPTSetting>? chatgptSettings { get; set; } = null;
         public string? input { get; set; }
         public string? output { get; set; }
     }
@@ -19,7 +19,7 @@ namespace RtpRestApi.Models
         public bool enabled { get; set; } = true;
         public string? template { get; set;}
         public List<CacheCondition>? cacheConditions { get; set;}
-        public string? initPrompt { get; set;}
+        public List<ChatGPTSetting>? chatgptSettings { get; set; }
         public string? input {  get; set; }
         public string? output { get; set; }
         public DateTime created { get; set; } = DateTime.Now;

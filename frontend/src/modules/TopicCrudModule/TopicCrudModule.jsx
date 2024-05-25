@@ -1,6 +1,6 @@
 import { useLayoutEffect, useEffect, useState } from 'react';
 import { Row, Col, Button } from 'antd';
-import { PlusOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons';
+import { PlusOutlined, DeleteOutlined } from '@ant-design/icons';
 
 import CreateForm from '@/components/CreateForm';
 import UpdateForm from '@/components/UpdateForm';
@@ -50,10 +50,9 @@ function SidePanelTopContent({ config, formElements, withUpload }) {
   return (
     <>
       <Row style={show} gutter={(24, 24)}>
-        <Col span={10}>
-          <p style={{ marginBottom: '10px' }}>{labels}</p>
+        <Col span={17}>
         </Col>
-        <Col span={14}>
+        <Col span={7}>
           <Button
             onClick={removeItem}
             type="text"
@@ -62,15 +61,6 @@ function SidePanelTopContent({ config, formElements, withUpload }) {
             style={{ float: 'right', marginLeft: '5px', marginTop: '10px' }}
           >
             {translate('remove')}
-          </Button>
-          <Button
-            onClick={editItem}
-            type="text"
-            icon={<EditOutlined />}
-            size="small"
-            style={{ float: 'right', marginLeft: '0px', marginTop: '10px' }}
-          >
-            {translate('edit')}
           </Button>
         </Col>
 
@@ -85,27 +75,6 @@ function SidePanelTopContent({ config, formElements, withUpload }) {
   );
 }
 
-function FixHeaderPanel({ config }) {
-  const { crudContextAction } = useCrudContext();
-
-  const { collapsedBox } = crudContextAction;
-
-  const addNewItem = () => {
-    collapsedBox.close();
-  };
-
-  return (
-    <Row gutter={8}>
-      <Col className="gutter-row" span={21}>
-        <SearchItem config={config} />
-      </Col>
-      <Col className="gutter-row" span={3}>
-        <Button onClick={addNewItem} block={true} icon={<PlusOutlined />}></Button>
-      </Col>
-    </Row>
-  );
-}
-
 function TopicCrudModule({ config, createForm, updateForm, withUpload = false }) {
   const dispatch = useDispatch();
 
@@ -116,7 +85,6 @@ function TopicCrudModule({ config, createForm, updateForm, withUpload = false })
   return (
     <TopicCrudLayout
       config={config}
-      fixHeaderPanel={<FixHeaderPanel config={config} />}
       sidePanelBottomContent={
         <CreateForm config={config} formElements={createForm} withUpload={withUpload} />
       }

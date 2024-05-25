@@ -1,24 +1,11 @@
-import { useState, useEffect, useRef } from 'react';
-import dayjs from 'dayjs';
-import { Form, Input, InputNumber, Button, Select, Divider, Row, Col } from 'antd';
+import { useRef } from 'react';
 
+import { Form, Input, Button, Divider, Row, Col } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 
-import { DatePicker } from 'antd';
-
-import AutoCompleteAsync from '@/components/AutoCompleteAsync';
-
-import TestItemRow from '@/modules/TestModule/ItemsRow/TestItemRow'
-
-import { selectFinanceSettings } from '@/redux/settings/selectors';
-import { useDate } from '@/settings';
 import useLanguage from '@/locale/useLanguage';
-
-import calculate from '@/utils/calculate';
-import { useSelector } from 'react-redux';
-import SelectAsync from '@/components/SelectAsync';
-import TextArea from 'antd/es/input/TextArea';
-
+import AutoCompleteAsync from '@/components/AutoCompleteAsync';
+import TestItemRow from '@/modules/TestModule/ItemsRow/TestItemRow'
 
 export default function TestForm({ subTotal = 0, current = null, handleTopicChange, curTopicId }) {
   return <LoadTestForm subTotal={subTotal} current={current} handleTopicChange={handleTopicChange} curTopicId={curTopicId} />;
@@ -26,12 +13,7 @@ export default function TestForm({ subTotal = 0, current = null, handleTopicChan
 
 function LoadTestForm({ subTotal = 0, current = null, handleTopicChange, curTopicId }) {
   const translate = useLanguage();
-
   const addField = useRef(false);
-
-  useEffect(() => {
-    // addField.current.click();
-  }, []);
 
   return (
     <>

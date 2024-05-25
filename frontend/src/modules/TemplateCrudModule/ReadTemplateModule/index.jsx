@@ -1,14 +1,14 @@
-import NotFound from '@/components/NotFound';
-import { ErpLayout } from '@/layout';
-import ReadItem from './ReadItem';
-
-import PageLoader from '@/components/PageLoader';
-import { erp } from '@/redux/erp/actions';
-
-import { selectReadItem } from '@/redux/erp/selectors';
 import { useLayoutEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+
+import { erp } from '@/redux/erp/actions';
+import { selectReadItem } from '@/redux/erp/selectors';
+import NotFound from '@/components/NotFound';
+import PageLoader from '@/components/PageLoader';
+import { ErpLayout } from '@/layout';
+
+import ReadItem from './ReadItem';
 
 export default function ReadTemplateModule({ config }) {
   const dispatch = useDispatch();
@@ -19,7 +19,7 @@ export default function ReadTemplateModule({ config }) {
   }, [id]);
 
   const { result: currentResult, isSuccess, isLoading = true } = useSelector(selectReadItem);
-  
+
   if (isLoading) {
     return (
       <ErpLayout>

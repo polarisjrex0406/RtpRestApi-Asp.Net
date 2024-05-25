@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\_ZzZ_\\_Project_\\ChatGPT Research Tool\\RtpRestApi-Asp.Net\\RtpRestApi\\RtpRestApi\\RtpRestApi.csproj": {}
+    "D:\\_ZzZ_\\_Project_\\ChatGPT Research Tool\\RTPServices\\RtpRestApi\\RtpRestApi\\RtpRestApi.csproj": {}
   },
   "projects": {
-    "D:\\_ZzZ_\\_Project_\\ChatGPT Research Tool\\RtpRestApi-Asp.Net\\RtpRestApi\\RtpRestApi\\RtpRestApi.csproj": {
+    "D:\\_ZzZ_\\_Project_\\ChatGPT Research Tool\\RTPServices\\RtpRestApi\\RtpRestApi\\RtpRestApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\_ZzZ_\\_Project_\\ChatGPT Research Tool\\RtpRestApi-Asp.Net\\RtpRestApi\\RtpRestApi\\RtpRestApi.csproj",
+        "projectUniqueName": "D:\\_ZzZ_\\_Project_\\ChatGPT Research Tool\\RTPServices\\RtpRestApi\\RtpRestApi\\RtpRestApi.csproj",
         "projectName": "RtpRestApi",
-        "projectPath": "D:\\_ZzZ_\\_Project_\\ChatGPT Research Tool\\RtpRestApi-Asp.Net\\RtpRestApi\\RtpRestApi\\RtpRestApi.csproj",
+        "projectPath": "D:\\_ZzZ_\\_Project_\\ChatGPT Research Tool\\RTPServices\\RtpRestApi\\RtpRestApi\\RtpRestApi.csproj",
         "packagesPath": "C:\\Users\\root\\.nuget\\packages\\",
-        "outputPath": "D:\\_ZzZ_\\_Project_\\ChatGPT Research Tool\\RtpRestApi-Asp.Net\\RtpRestApi\\RtpRestApi\\obj\\",
+        "outputPath": "D:\\_ZzZ_\\_Project_\\ChatGPT Research Tool\\RTPServices\\RtpRestApi\\RtpRestApi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\root\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -60,6 +60,22 @@
             "MongoDB.Driver": {
               "target": "Package",
               "version": "[2.24.0, )"
+            },
+            "Quartz": {
+              "target": "Package",
+              "version": "[3.9.0, )"
+            },
+            "Quartz.AspNetCore": {
+              "target": "Package",
+              "version": "[3.9.0, )"
+            },
+            "Quartz.Extensions.DependencyInjection": {
+              "target": "Package",
+              "version": "[3.9.0, )"
+            },
+            "Quartz.Extensions.Hosting": {
+              "target": "Package",
+              "version": "[3.9.0, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",

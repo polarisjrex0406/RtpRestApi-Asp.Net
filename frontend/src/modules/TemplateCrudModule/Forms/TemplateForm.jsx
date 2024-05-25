@@ -1,20 +1,17 @@
 import { useEffect, useRef, useState } from 'react';
 
 import { Form, Input, Button, Select, Divider, Row, Col } from 'antd';
-
+import TextArea from 'antd/es/input/TextArea';
 import { PlusOutlined } from '@ant-design/icons';
 
+import { request } from '@/request';
 import AutoCompleteAsync from '@/components/AutoCompleteAsync';
+import useLanguage from '@/locale/useLanguage';
 
 import PromptEnhancerItemRow from '@/modules/TemplateCrudModule/ItemsRow/PromptEnhancerItemRow';
 import ChatGptSettingItemRow from '@/modules/TemplateCrudModule/ItemsRow/ChatGptSettingItemRow';
+import CriteriaRuleItemRow from '@/modules/TemplateCrudModule/ItemsRow/CriteriaRuleItemRow';
 import RetentionSettingItemRow from '@/modules/TemplateCrudModule/ItemsRow/RetentionSettingItemRow';
-
-import useLanguage from '@/locale/useLanguage';
-
-import TextArea from 'antd/es/input/TextArea';
-
-import { request } from '@/request';
 
 export default function TemplateForm({ subTotal = 0, current = null }) {
   return <LoadTemplateForm subTotal={subTotal} current={current} />;
@@ -41,10 +38,7 @@ const validateUnique = (originName, currentName, oldNames, curTopicId) => {
 function LoadTemplateForm({ subTotal = 0, current = null }) {
   const translate = useLanguage();
   const addField = useRef(false);
-
-  useEffect(() => {
-    // addField.current.click();
-  }, []);
+  const addRuleField = useRef(false);
 
   const [searching, setSearching] = useState(false);
   const [keyword, setKeyWord] = useState('');
@@ -139,8 +133,8 @@ function LoadTemplateForm({ subTotal = 0, current = null }) {
                 else {
                 }
               }}
-              disabled={true}
               fixedInitValue={methodFromUrl === 'create' ? chatIdFromUrl : ''}
+              disabled={true}
             />
           </Form.Item>
         </Col>
@@ -220,6 +214,51 @@ function LoadTemplateForm({ subTotal = 0, current = null }) {
         )}
       </Form.List>
 
+      {/* Criteria */}
+      <Divider dashed />
+      <Row gutter={[12, 12]} style={{ position: 'relative' }}>
+        <Col className="gutter-row" span={24}>
+          <p>{translate('Criteria')}</p>
+        </Col>
+        <Col className="gutter-row" span={24}>
+          {curTopicId && (
+            <Form.Item
+              label={translate('Rule Logic')}
+              name="ruleLogic"
+            >
+              <Select
+                options={[
+                  { value: 'Any', label: 'Any' },
+                  { value: 'All', label: 'All' },
+                ]}
+              ></Select>
+            </Form.Item>
+          )}
+        </Col>
+      </Row>
+      <Form.List name="rules">
+        {(fields, { add, remove }) => (
+          <>
+            {fields.map((field) => (
+              <CriteriaRuleItemRow key={field.key} remove={remove} field={field} current={current} />
+            ))}
+            {curTopicId && (
+              <Form.Item>
+                <Button
+                  type="dashed"
+                  onClick={() => add()}
+                  block
+                  icon={<PlusOutlined />}
+                  ref={addRuleField}
+                >
+                  {translate('Add Criteria rules field')}
+                </Button>
+              </Form.Item>
+            )}
+          </>
+        )}
+      </Form.List>
+
       {/* Retention Settings */}
       <Divider dashed />
       <Row gutter={[12, 12]} style={{ position: 'relative' }}>
@@ -267,17 +306,8 @@ function LoadTemplateForm({ subTotal = 0, current = null }) {
             <Input placeholder="Cache Timeout Value" />
           </Form.Item>
         </Col>
-        {/* Description */}
-        <Col className="gutter-row" span={24}>
-          <Form.Item
-            label={translate('cacheDescription')}
-            name="cacheDescription"
-          >
-            <TextArea placeholder="Description" />
-          </Form.Item>
-        </Col>
       </Row>
-      {/* Setting Conditions */}
+      {/* Retention Conditions */}
       <Form.List name="cacheConditions">
         {(fields, { add, remove }) => (
           <>

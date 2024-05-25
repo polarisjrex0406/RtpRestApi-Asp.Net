@@ -53,7 +53,7 @@ namespace RtpRestApi.Services
             CachePromptResponse cacheResponse = new CachePromptResponse();
             cacheResponse.template = newCacheRequest.template;
             cacheResponse.cacheConditions = newCacheRequest.cacheConditions;
-            cacheResponse.initPrompt = newCacheRequest.initPrompt;
+            cacheResponse.chatgptSettings = newCacheRequest.chatgptSettings;
             cacheResponse.input = newCacheRequest.input;
             cacheResponse.output = newCacheRequest.output;
             cacheResponse.expired = CalculateExpired(newCacheRequest.cacheTimeoutUnit, newCacheRequest.cacheTimeoutValue);
@@ -62,15 +62,6 @@ namespace RtpRestApi.Services
             string tmp = JsonSerializer.Serialize(cacheResponse);
             JObject documentObj = JObject.Parse(tmp);
             documentObj.Remove("_id");
-            documentObj.Remove("createdBy");
-            documentObj["createdBy"] = new JObject
-            {
-                ["$oid"] = adminId
-            };
-            documentObj["template"] = new JObject
-            {
-                ["$oid"] = newCacheRequest.template
-            };
 
             string res = await _atlasService.InsertOneAsync(_collection, documentObj);
             try
@@ -86,27 +77,24 @@ namespace RtpRestApi.Services
 
             return cacheResponse;
         }
-        public async Task<CachePromptResponse?> ReadOneByArtifactAsync(string? templateId, string? adminId)
+        public async Task<CachePromptResponse?> ReadOneByArtifactAsync(string? templateId, string? adminId, List<ChatGPTSetting> gptSettings, string enhancedPrompt)
         {
             DateTime? dateTimeNow = DateTime.Now;
             JObject filterObj = new JObject();
             filterObj["removed"] = false;
-            if (adminId != null)
+            filterObj["createdBy"] = adminId;
+            filterObj["template"] = templateId;
+            if (gptSettings != null)
             {
-                JObject createdBy = new JObject
-                {
-                    ["$oid"] = adminId
-                };
-                filterObj["createdBy"] = createdBy;
+                string tmp = JsonSerializer.Serialize(gptSettings);
+                JArray gptObject = JArray.Parse(tmp);
+                filterObj["chatgptSettings"] = gptObject;
             }
-            if (templateId != null)
+            else
             {
-                JObject template = new JObject
-                {
-                    ["$oid"] = templateId
-                };
-                filterObj["template"] = templateId;
+                filterObj["chatgptSettings"] = null;
             }
+            filterObj["input"] = enhancedPrompt;
             // Check not expired.
             filterObj["expired"] = new JObject
             {

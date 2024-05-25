@@ -13,7 +13,6 @@ const ContentBox = ({ children }) => {
   const { state: stateCrud, crudContextAction } = useCrudContext();
   const { state: stateApp } = useAppContext();
   const { isPanelClose } = stateCrud;
-  // const { isNavMenuClose } = stateApp;
   const { panel } = crudContextAction;
 
   const [isSidePanelClose, setSidePanel] = useState(isPanelClose);
@@ -31,14 +30,8 @@ const ContentBox = ({ children }) => {
     return () => clearTimeout(timer);
   }, [isPanelClose]);
 
-  // useEffect(() => {
-  //   if (!isNavMenuClose) {
-  //     panel.close();
-  //   }
-  // }, [isNavMenuClose]);
   return (
     <Content
-      // className="whiteBox shadow layoutPadding"
       style={{
         margin: '30px auto',
         width: '100%',
@@ -67,7 +60,6 @@ export default function TopicCrudLayout({
           bottomContent={sidePanelBottomContent}
           fixHeaderPanel={fixHeaderPanel}
         ></SidePanel>
-
         <ContentBox> {children}</ContentBox>
       </DefaultLayout>
     </>

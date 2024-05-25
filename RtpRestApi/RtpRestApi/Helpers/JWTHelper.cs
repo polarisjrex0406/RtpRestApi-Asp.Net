@@ -18,7 +18,7 @@ namespace RtpRestApi.Helpers
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(settings.SecretKey);
-            var date = DateTime.UtcNow;
+            var date = DateTime.Now;
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 // makes the properties of the user to be the claim identity, parding user into the token
@@ -31,7 +31,7 @@ namespace RtpRestApi.Helpers
                 }),
 
                 // Set the token expiry to a day - This value is only to show
-                Expires = DateTime.UtcNow.AddDays(1),
+                Expires = DateTime.Now.AddDays(1),
                 NotBefore = date,
 
                 // setting the signing credentials

@@ -19,8 +19,8 @@ export default function AutoCompleteAsync({
   value, /// this is for update
   onChange, /// this is for update
   curTopicId = null, /// this is for filter results by topic
-  disabled,
-  fixedInitValue
+  fixedInitValue,
+  disabled
 }) {
   const translate = useLanguage();
 
@@ -144,8 +144,8 @@ export default function AutoCompleteAsync({
       }}
       onChange={handleSelectChange}
       style={{ minWidth: '220px' }}
+      // onSelect={handleOnSelect}
       disabled={disabled}
-    // onSelect={handleOnSelect}
     >
       {selectOptions.map((optionField) => (
         <Select.Option

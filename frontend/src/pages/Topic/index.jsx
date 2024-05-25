@@ -1,8 +1,6 @@
-// import CrudModule from '@/modules/CrudModule/CrudModule';
 import TopicCrudModule from '@/modules/TopicCrudModule/TopicCrudModule';
 import DynamicForm from '@/forms/DynamicForm';
 import { fields } from './config';
-
 import useLanguage from '@/locale/useLanguage';
 
 export default function Topic() {

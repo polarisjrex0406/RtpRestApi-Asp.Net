@@ -9,6 +9,9 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 using Microsoft.AspNetCore.DataProtection;
+using Quartz;
+using RtpRestApi.QuartzServices;
+using Quartz.AspNetCore;
 
 namespace RtpRestApi
 {
@@ -21,17 +24,42 @@ namespace RtpRestApi
             // Add services to the container.
             builder.Services.Configure<RtpServerSettings>(builder.Configuration.GetSection("RtpDatabase"));
 
-            builder.Services.AddSingleton<IAtlasService, AtlasService>();
+            builder.Services.AddTransient<IAtlasService, AtlasService>();
             builder.Services.AddSingleton<AdminsService>();
-            builder.Services.AddSingleton<SettingsService>();
-            builder.Services.AddSingleton<TopicsService>();
-            builder.Services.AddSingleton<ArtifactsService>();
-            builder.Services.AddSingleton<ExperimentsService>();
-            builder.Services.AddSingleton<TestsService>();
-            builder.Services.AddSingleton<QueuesService>();
-            builder.Services.AddSingleton<CachePromptsService>();
-            builder.Services.AddSingleton<ChatGptService>();
+            builder.Services.AddTransient<SettingsService>();
+            builder.Services.AddTransient<TopicsService>();
+            builder.Services.AddTransient<ArtifactsService>();
+            builder.Services.AddTransient<ExperimentsService>();
+            builder.Services.AddTransient<TestsService>();
+            builder.Services.AddTransient<QueuesService>();
+            builder.Services.AddTransient<CachePromptsService>();
+            builder.Services.AddTransient<ChatGptService>();
             builder.Services.AddSingleton<AdminPasswordsService>();
+
+            // Register the job and its dependencies with the DI container
+            builder.Services.AddScoped<IJob, TestRunJob>();
+
+            // Configure Quartz to use the job
+            builder.Services.AddQuartz(q =>
+            {
+                q.AddJob<TestRunJob>(j => j
+                    .WithIdentity("myJob")
+                    .DisallowConcurrentExecution()
+                    .StoreDurably());
+
+                q.AddTrigger(t => t
+                    .ForJob("myJob")
+                    .StartNow()
+                    .WithSimpleSchedule(s => s
+                        .WithIntervalInMinutes(1)
+                        .WithMisfireHandlingInstructionFireNow()
+                        .RepeatForever()));
+            });
+
+            builder.Services.AddQuartzServer(options =>
+            {
+                options.WaitForJobsToComplete = true;
+            });
 
             builder.Services.AddControllers();
 
@@ -59,7 +87,7 @@ namespace RtpRestApi
             // configure Cookie Authentication
             builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(option => {
-                    option.Cookie.Domain = "ruletheprompt.com";
+                    option.Cookie.Domain = builder.Environment.IsDevelopment() ? "localhost" : "ruletheprompt.com";
                     option.ExpireTimeSpan = TimeSpan.FromDays(1);
                     option.Cookie.MaxAge = TimeSpan.FromDays(1);
                     option.Cookie.HttpOnly = true;
@@ -79,12 +107,8 @@ namespace RtpRestApi
 
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
-            /*            if (app.Environment.IsDevelopment())
-                        {*/
             app.UseSwagger();
             app.UseSwaggerUI();
-            /*            }*/
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();

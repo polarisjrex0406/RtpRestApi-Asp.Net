@@ -1,23 +1,21 @@
-import NotFound from '@/components/NotFound';
-
-import { ErpLayout } from '@/layout';
-import UpdateItem from './UpdateItem';
-import TemplateForm from '@/modules/TemplateCrudModule/Forms/TemplateForm';
-
-import PageLoader from '@/components/PageLoader';
-
-import { erp } from '@/redux/erp/actions';
-import useLanguage from '@/locale/useLanguage';
-import { selectReadItem } from '@/redux/erp/selectors';
 import { useLayoutEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+
+import { erp } from '@/redux/erp/actions';
+import { selectReadItem } from '@/redux/erp/selectors';
+
+import { ErpLayout } from '@/layout';
+import PageLoader from '@/components/PageLoader';
+import NotFound from '@/components/NotFound';
+
+import TemplateForm from '@/modules/TemplateCrudModule/Forms/TemplateForm';
+import UpdateItem from './UpdateItem';
 
 export default function UpdateTemplateModule({ config }) {
   const dispatch = useDispatch();
 
   const { id } = useParams();
-  const navigate = useNavigate();
 
   useLayoutEffect(() => {
     dispatch(erp.read({ entity: config.entity, id }));

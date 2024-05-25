@@ -1,5 +1,4 @@
 import { lazy } from 'react';
-
 import { Navigate } from 'react-router-dom';
 
 const Logout = lazy(() => import('@/pages/Logout.jsx'));
@@ -15,10 +14,8 @@ const Experiment = lazy(() => import('@/pages/Experiment/index'));
 const ExperimentCreate = lazy(() => import('@/pages/Experiment/ExperimentCreate'));
 const ExperimentRead = lazy(() => import('@/pages/Experiment/ExperimentRead'));
 const ExperimentUpdate = lazy(() => import('@/pages/Experiment/ExperimentUpdate'));
-const Test = lazy(() => import('@/pages/Test/index'));
 const TestCreate = lazy(() => import('@/pages/Test/TestCreate'));
 const TestResult = lazy(() => import('@/pages/Test/TestResult'));
-const TestRead = lazy(() => import('@/pages/Test/TestRead'));
 
 const Admin = lazy(() => import('@/pages/Admin'));
 
@@ -133,16 +130,8 @@ let routes = {
     {
       path: '/test/create',
       element: <TestCreate />,
-    },
-    {
-      path: '/test/result',
-      element: <TestResult />,
-    },
-    {
-      path: '/test/read/:id',
-      element: <TestRead />,
-    },
-  ],
+    }
+  ]
 };
 
 export default routes;

@@ -79,22 +79,5 @@ export default function SidePanel({ config, topContent, bottomContent, fixHeader
         ></CollapseBox>
       </div>
     </Drawer>
-    // <Sider
-    //   width={screens.md ? '400px' : '95%'}
-    //   collapsed={isSidePanelClose}
-    //   collapsedWidth={'0px'}
-    //   onCollapse={collapsePanel}
-    //   className="sidePanel"
-    //   zeroWidthTriggerStyle={{
-    //     right: '-50px',
-    //     top: '15px',
-    //   }}
-    //   style={{
-    //     left: leftSider,
-    //     zIndex: '100',
-    //   }}
-    // >
-
-    // </Sider>
   );
 }

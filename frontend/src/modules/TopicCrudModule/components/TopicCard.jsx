@@ -1,22 +1,13 @@
-import { Tag, Divider, Row, Col, Spin, Tooltip } from 'antd';
-import { selectMoneyFormat } from '@/redux/settings/selectors';
-import { useSelector } from 'react-redux';
+import { Divider, Row, Col, Spin } from 'antd';
 import useLanguage from '@/locale/useLanguage';
-import { selectLangDirection } from '@/redux/translate/selectors';
 
 import {
   EyeOutlined,
   EditOutlined,
   DeleteOutlined,
-  EllipsisOutlined,
-  RedoOutlined,
-  ArrowRightOutlined,
-  ArrowLeftOutlined,
 } from '@ant-design/icons';
 
 export default function TopicCard({ title, data, prefix, isLoading = false, onClickRead, onClickEdit, onClickDelete, topicCode }) {
-  const translate = useLanguage();
-
   const ord = topicCode;
 
   return (
@@ -73,32 +64,32 @@ export default function TopicCard({ title, data, prefix, isLoading = false, onCl
                 <Spin />
               ) : (
                 <>
-                  <a onClick={()=>onClickRead({ord})}>
-                    <EyeOutlined/>
+                  <a onClick={() => onClickRead({ ord })}>
+                    <EyeOutlined />
                   </a>
-            <Divider
-              style={{
-                height: '100%',
-                padding: '10px 0',
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}
-              type="vertical"
-            ></Divider>
+                  <Divider
+                    style={{
+                      height: '100%',
+                      padding: '10px 0',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                    }}
+                    type="vertical"
+                  ></Divider>
                   <a>
-                    <EditOutlined/>
+                    <EditOutlined />
                   </a>
-            <Divider
-              style={{
-                height: '100%',
-                padding: '10px 0',
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}
-              type="vertical"
-            ></Divider>
+                  <Divider
+                    style={{
+                      height: '100%',
+                      padding: '10px 0',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                    }}
+                    type="vertical"
+                  ></Divider>
                   <a>
-                    <DeleteOutlined/>
+                    <DeleteOutlined />
                   </a>
                 </>
               )}

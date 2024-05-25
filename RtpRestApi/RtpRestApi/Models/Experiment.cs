@@ -18,17 +18,6 @@ namespace RtpRestApi.Models
         public ArtifactResponse? templateObj { get; set; }
     }
 
-    public class Rule
-    {
-        public string? ruleName { get; set; }
-        public string? conditionsLogic { get; set; }
-        public string? conditionName { get; set; }
-        public string? conditionType { get; set; }
-        public string? conditionItem { get; set; }
-        public string? conditionOperator { get; set; }
-        public string? conditionValue { get; set; }
-    }
-
     public class ExperimentRequest
     {
         public string? experimentCode { get; set; }
@@ -37,8 +26,6 @@ namespace RtpRestApi.Models
         public List<string>? initPrompt { get; set; }
         public string? topic { get; set; }
         public List<TemplateInRequest>? templates { get; set; }
-        public string? ruleLogic { get; set; }
-        public List<Rule>? rules { get; set; }
     }
 
     public class ExperimentResponse

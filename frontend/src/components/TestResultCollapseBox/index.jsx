@@ -1,47 +1,39 @@
 import { useCallback, useEffect, useContext, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { generate as uniqueId } from 'shortid';
 
+import { Button, Input, Divider, Spin, Collapse, Alert, FloatButton, Tag, Row, Col, Descriptions, Select } from 'antd';
+import { PageHeader } from '@ant-design/pro-layout';
 import {
     EyeOutlined,
     EditOutlined,
     DeleteOutlined,
-    EllipsisOutlined,
     RedoOutlined,
     ArrowRightOutlined,
     ArrowLeftOutlined,
     ExperimentOutlined,
-    DashboardOutlined
+    DashboardOutlined,
+    CheckCircleOutlined,
+    CloseCircleOutlined,
+    PlusCircleOutlined,
+    SyncOutlined,
 } from '@ant-design/icons';
-import { Dropdown, Table, Button, Input, Divider, Spin, Collapse, Tabs, Alert, FloatButton } from 'antd';
-import { PageHeader } from '@ant-design/pro-layout';
 
-import { useSelector, useDispatch } from 'react-redux';
 import { crud } from '@/redux/crud/actions';
 import { selectListItems } from '@/redux/crud/selectors';
-import useLanguage from '@/locale/useLanguage';
-import { dataForTable } from '@/utils/dataStructure';
-import { useDate } from '@/settings';
-
-import { generate as uniqueId } from 'shortid';
-
-import { useCrudContext } from '@/context/crud';
 import { selectLangDirection } from '@/redux/translate/selectors';
-
-import Card from '@/components/TestResultCardBox/Card';
-import { Tag, Row, Col, Descriptions, Select } from 'antd';
-import { useNavigate } from 'react-router-dom';
-import { erp } from '@/redux/erp/actions';
-import { current } from '@reduxjs/toolkit';
-import create from '@ant-design/icons/lib/components/IconFont';
+import useLanguage from '@/locale/useLanguage';
+import { useDate } from '@/settings';
+import { useCrudContext } from '@/context/crud';
 
 function AddNewItem({ config }) {
     const { crudContextAction } = useCrudContext();
     const { collapsedBox, panel } = crudContextAction;
     const { ADD_NEW_ENTITY } = config;
-
     const navigate = useNavigate();
-
     const handelClick = () => {
-        navigate(`/test/create`);
+        navigate(`/${config.entity.toLowerCase()}/create`);
     };
 
     return (
@@ -51,7 +43,7 @@ function AddNewItem({ config }) {
     );
 }
 
-const SystemMessage = ({ role, content, order }) => {
+const SystemMessage = ({ content, order }) => {
     return (
         <>
             <Col key={'3Col' + order} className="gutter-row" span={3} />
@@ -69,7 +61,7 @@ const SystemMessage = ({ role, content, order }) => {
     );
 }
 
-const UserMessage = ({ role, content, order }) => {
+const UserMessage = ({ content, order }) => {
     return (
         <>
             <Col key={'Col6' + order} className="gutter-row" span={6} />
@@ -87,7 +79,7 @@ const UserMessage = ({ role, content, order }) => {
     );
 }
 
-const AssistMessage = ({ role, content, order }) => {
+const AssistMessage = ({ content, order }) => {
     return (
         <>
             <Col key={'Col1' + order} className="gutter-row" span={1} />
@@ -202,11 +194,6 @@ const TestItemPaneBody = ({ responses, showMode }) => {
     );
 }
 
-const TestItemPaneFooter = ({ currentErp, showMode }) => {
-    return <>
-    </>;
-}
-
 const TestItemPane = ({ currentErp, showMode, handlePrevExp, handleNextExp, handlePrevArti, handleNextArti, handlePrevPrompt, handleNextPrompt }) => {
     return <>
         <TestItemPaneHeader
@@ -220,16 +207,15 @@ const TestItemPane = ({ currentErp, showMode, handlePrevExp, handleNextExp, hand
             showMode={showMode}
         />
         <TestItemPaneBody responses={currentErp?.responses} />
-        <TestItemPaneFooter />
     </>;
 }
 
 const prevExp = (fullSource, topicName, curIndex) => {
     let prevIndex = -1;
-    for (let i = curIndex + 1; i < fullSource?.length; i++) {
+    for (let i = parseInt(curIndex) + 1; i < fullSource?.length; i++) {
         let currentErp = fullSource[i];
         if (currentErp != null) {
-            if (currentErp?.topicName === topicName) {
+            if (currentErp?.topicName === topicName && currentErp?.status === 'Done') {
                 prevIndex = i;
                 break;
             }
@@ -240,10 +226,10 @@ const prevExp = (fullSource, topicName, curIndex) => {
 
 const nextExp = (fullSource, topicName, curIndex) => {
     let nextIndex = curIndex;
-    for (let i = curIndex - 1; i >= 0; i--) {
+    for (let i = parseInt(curIndex) - 1; i >= 0; i--) {
         let currentErp = fullSource[i];
         if (currentErp != null) {
-            if (currentErp?.topicName === topicName) {
+            if (currentErp?.topicName === topicName && currentErp?.status === 'Done') {
                 nextIndex = i;
                 break;
             }
@@ -299,7 +285,6 @@ const getResponses = (experiment, artiIndex, topicPrompt) => {
     }
     return responses;
 };
-
 
 const getValuesForPane = (fullSource, expIndex, artiIndex, topicPrompt) => {
     let experiment = fullSource[expIndex]?.experiments[0];
@@ -607,14 +592,6 @@ const FilterTest = ({ handleTopicChange, handleTopicPromptChange, topics, topicP
                     md={{ span: 24 }}
                     lg={{ span: 24 }}
                 >
-                    {/* <Button
-                        type="default"
-                        icon={<ArrowLeftOutlined />}
-                        style={{
-                            width: '5%',
-                        }}
-                        disabled={showMode === 2}
-                    /> */}
                     <Select
                         value={currentTopicValue}
                         style={{
@@ -627,14 +604,6 @@ const FilterTest = ({ handleTopicChange, handleTopicPromptChange, topics, topicP
                         onChange={handleTopicChange}
                         disabled={showMode === 2}
                     />
-                    {/* <Button
-                        type="default"
-                        icon={<ArrowRightOutlined />}
-                        style={{
-                            width: '5%',
-                        }}
-                        disabled={showMode === 2}
-                    /> */}
                 </Col>
                 <Col
                     className="gutter-row"
@@ -643,14 +612,6 @@ const FilterTest = ({ handleTopicChange, handleTopicPromptChange, topics, topicP
                     md={{ span: 24 }}
                     lg={{ span: 24 }}
                 >
-                    {/* <Button
-                        type="default"
-                        icon={<ArrowLeftOutlined />}
-                        style={{
-                            width: '5%',
-                        }}
-                        disabled={showMode === 2}
-                    /> */}
                     <Select
                         value={currentTopicPromptValue}
                         style={{
@@ -663,20 +624,11 @@ const FilterTest = ({ handleTopicChange, handleTopicPromptChange, topics, topicP
                         onChange={handleTopicPromptChange}
                         disabled={showMode === 2}
                     />
-                    {/* <Button
-                        type="default"
-                        icon={<ArrowRightOutlined />}
-                        style={{
-                            width: '5%',
-                        }}
-                        disabled={showMode === 2}
-                    /> */}
                 </Col>
             </Row>
         </>
     );
 };
-
 
 export default function TestResultCollapseBox({ config, extra = [] }) {
     const filterText = useContext('FilterTextContext');
@@ -750,16 +702,18 @@ export default function TestResultCollapseBox({ config, extra = [] }) {
     const [topicPrompts, setTopicPrompts] = useState([]);
     const [topics, setTopics] = useState([]);
     const [initPrompt, setInitPrompt] = useState('');
-    const [showMode, setShowMode] = useState(1);
+    const [showMode, setShowMode] = useState(2);
 
     const handleTopicChange = (e) => {
         setTopicName(e);
         const selectedTopic = topics.find(item => item.name === e);
         setTopicPrompts([...selectedTopic.prompts, '']);
     };
+
     const handleTopicPromptChange = (e) => {
         setInitPrompt(e);
     }
+
     const handleTestChange = (e) => {
         const sortedDataSource = [...dataSource].sort((a, b) => new Date(b.created) - new Date(a.created));
         if (e != null && e.length > 0) {
@@ -774,6 +728,7 @@ export default function TestResultCollapseBox({ config, extra = [] }) {
             setInitPrompt('');
         }
     }
+
     const handleShowModeChange = (e) => {
         if (e === 1 && dataSource?.length > 0) {
             const sortedDataSource = [...dataSource].sort((a, b) => new Date(b.created) - new Date(a.created));
@@ -788,10 +743,23 @@ export default function TestResultCollapseBox({ config, extra = [] }) {
                 }
             }
             setTopics(tmp);
-            setTopicName(sortedDataSource[0]?.topicName);
-            const selectedTopic = tmp.find(item => item.name === sortedDataSource[0]?.topicName);
-            setTopicPrompts([...selectedTopic?.prompts, '']);
-            setInitPrompt(sortedDataSource[0]?.experiments[0]?.responses[0]?.initPrompt);
+
+            let initIndex = 0;
+            if (e === 1) {
+                initIndex = -1;
+                for (const i in sortedDataSource) {
+                    if (sortedDataSource[i].status === 'Done') {
+                        initIndex = i;
+                        break;
+                    }
+                }
+            }
+            if (initIndex >= 0) {
+                setTopicName(sortedDataSource[initIndex].topicName);
+                const selectedTopic = tmp.find(item => item.name === sortedDataSource[initIndex].topicName);
+                setTopicPrompts([...selectedTopic.prompts, '']);
+                setInitPrompt(sortedDataSource[initIndex]?.experiments[0]?.responses[0]?.initPrompt);
+            }
         }
         else {
             setTopicName('');
@@ -816,18 +784,22 @@ export default function TestResultCollapseBox({ config, extra = [] }) {
             setTopics(tmp);
 
             if (showMode === 1) {
-                setTopicName(sortedDataSource[0].topicName);
-                const selectedTopic = tmp.find(item => item.name === sortedDataSource[0].topicName);
-                setTopicPrompts([...selectedTopic.prompts, '']);
-                setInitPrompt(sortedDataSource[0]?.experiments[0]?.responses[0]?.initPrompt);
+                let initIndex = -1;
+                for (const i in sortedDataSource) {
+                    if (sortedDataSource[i].status === 'Done') {
+                        initIndex = i;
+                        break;
+                    }
+                }
+                if (initIndex >= 0) {
+                    setTopicName(sortedDataSource[initIndex].topicName);
+                    const selectedTopic = tmp.find(item => item.name === sortedDataSource[initIndex].topicName);
+                    setTopicPrompts([...selectedTopic.prompts, '']);
+                    setInitPrompt(sortedDataSource[initIndex]?.experiments[0]?.responses[0]?.initPrompt);
+                }
             }
         }
     }, [dataSource]);
-
-    const [activeKey, setActiveKey] = useState(1);
-    useEffect(() => {
-        setActiveKey(1);
-    }, [showMode]);
 
     return (
         <>
@@ -877,21 +849,9 @@ export default function TestResultCollapseBox({ config, extra = [] }) {
                         >
                             <FloatButton
                                 shape="circle"
-                                type={showMode === 1 ? 'primary' : 'default'}
-                                style={{
-                                    right: 74,
-                                }}
-                                icon={<ExperimentOutlined />}
-                                onClick={() => {
-                                    setShowMode(1);
-                                    handleShowModeChange(1);
-                                }}
-                            />
-                            <FloatButton
-                                shape="circle"
                                 type={showMode === 2 ? 'primary' : 'default'}
                                 style={{
-                                    right: 24,
+                                    right: 74,
                                 }}
                                 icon={<DashboardOutlined />}
                                 onClick={() => {
@@ -899,10 +859,25 @@ export default function TestResultCollapseBox({ config, extra = [] }) {
                                     handleShowModeChange(2);
                                 }}
                             />
+
+                            <FloatButton
+                                shape="circle"
+                                type={showMode === 1 ? 'primary' : 'default'}
+                                style={{
+                                    right: 24,
+                                }}
+                                icon={<ExperimentOutlined />}
+                                onClick={() => {
+                                    setShowMode(1);
+                                    handleShowModeChange(1);
+                                }}
+                            />
+
                             {
                                 (() => {
                                     const sortedDataSource = [...dataSource].sort((a, b) => new Date(b.created) - new Date(a.created));
                                     if (sortedDataSource.length > 0 && dataSource[0].experiments) {
+                                        let initIndex = -1;
                                         if (showMode === 2) {
                                             for (const i in sortedDataSource) {
                                                 let j = parseInt(i) + 1;
@@ -923,17 +898,58 @@ export default function TestResultCollapseBox({ config, extra = [] }) {
                                                     formattedDateTime = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
                                                 }
 
+                                                let tagColor, tagIcon;
+                                                if (sortedDataSource[i]?.status === 'Done') {
+                                                    tagColor = 'success';
+                                                    tagIcon = <CheckCircleOutlined />;
+                                                }
+                                                else if (sortedDataSource[i]?.status === 'Pending') {
+                                                    tagColor = 'processing';
+                                                    tagIcon = <SyncOutlined spin />;
+                                                }
+                                                else if (sortedDataSource[i]?.status === 'Failed') {
+                                                    tagColor = 'error';
+                                                    tagIcon = <CloseCircleOutlined />;
+                                                }
+                                                else {
+                                                    tagColor = 'default';
+                                                    tagIcon = <PlusCircleOutlined />;
+                                                }
+
                                                 testRows.push({
                                                     key: j,
-                                                    label: sortedDataSource[i].experiments[0].experimentCode + ' [' + formattedDateTime + ']',
+                                                    label:
+                                                        <div>
+                                                            <button style={{ width: '20%', border: '0px', background: 'none', textAlign: 'left' }}>
+                                                                {formattedDateTime}
+                                                            </button>
+                                                            <button style={{ width: '20%', border: '0px', background: 'none', textAlign: 'left' }}>
+                                                                {sortedDataSource[i]?.testCode}
+                                                            </button>
+                                                            <button style={{ width: '50%', border: '0px', background: 'none', textAlign: 'left' }}>
+                                                                {sortedDataSource[i]?.experiments[0]?.experimentCode}
+                                                            </button>
+                                                            <button style={{ width: '10%', border: '0px', background: 'none', textAlign: 'left' }}>
+                                                                <Tag color={tagColor} icon={tagIcon}>{sortedDataSource[i]?.status}</Tag>
+                                                            </button>
+                                                        </div>,
                                                     children: <TestItem
                                                         fullSource={sortedDataSource}
                                                         defaultIndex={i}
                                                         showMode={showMode}
                                                         topicPrompt={initPrompt}
                                                         topicName={topicName}
-                                                    />
+                                                    />,
+                                                    showArrow: sortedDataSource[i]?.status === 'Done'
                                                 });
+                                            }
+                                        }
+                                        else {
+                                            for (const k in sortedDataSource) {
+                                                if (sortedDataSource[k].status === 'Done') {
+                                                    initIndex = k;
+                                                    break;
+                                                }
                                             }
                                         }
                                         return <>
@@ -957,13 +973,19 @@ export default function TestResultCollapseBox({ config, extra = [] }) {
                                                     lg={{ span: 24 }}
                                                 >
                                                     {
-                                                        showMode === 1 ? <TestItem
+                                                        showMode === 1 && initIndex >= 0 ? <TestItem
                                                             fullSource={sortedDataSource}
-                                                            defaultIndex={0}
+                                                            defaultIndex={initIndex}
                                                             showMode={showMode}
                                                             topicPrompt={initPrompt}
                                                             topicName={topicName}
-                                                        /> : <Collapse accordion items={testRows} defaultActiveKey={activeKey} onChange={handleTestChange} />
+                                                        /> : <Collapse
+                                                            collapsible="icon"
+                                                            accordion items={testRows}
+                                                            onChange={(activeKey) => {
+                                                                handleTestChange(activeKey);
+                                                            }}
+                                                        />
                                                     }
                                                 </Col>
                                             </Row>

@@ -73,10 +73,7 @@ namespace RtpRestApi.Services
             {
                 JObject createdBy = new JObject
                 {
-                    ["createdBy"] = new JObject
-                    {
-                        ["$oid"] = adminId
-                    }
+                    ["createdBy"] = adminId
                 };
                 andArray.Add(createdBy);
             }
@@ -127,11 +124,7 @@ namespace RtpRestApi.Services
             filterObj["removed"] = false;
             if (adminId != null)
             {
-                JObject createdBy = new JObject
-                {
-                    ["$oid"] = adminId
-                };
-                filterObj["createdBy"] = createdBy;
+                filterObj["createdBy"] = adminId;
             }
             if (id != null)
             {
@@ -160,27 +153,23 @@ namespace RtpRestApi.Services
         {
             ArtifactResponse artifactResponse = new ArtifactResponse();
             artifactResponse.name = newArtifactRequest.name;
+            artifactResponse.topicId = newArtifactRequest.topic;
             artifactResponse.goal = newArtifactRequest.goal;
             artifactResponse.group = newArtifactRequest.group;
             artifactResponse.promptEnhancers = newArtifactRequest.promptEnhancers;
             artifactResponse.promptOutput = newArtifactRequest.promptOutput;
-            artifactResponse.examples = newArtifactRequest.examples;
             artifactResponse.chatgptSettings = newArtifactRequest.chatgptSettings;
+            artifactResponse.ruleLogic = newArtifactRequest.ruleLogic;
+            artifactResponse.rules = newArtifactRequest.rules;
             artifactResponse.useCache = newArtifactRequest.useCache;
             artifactResponse.cacheTimeoutUnit = newArtifactRequest.cacheTimeoutUnit;
             artifactResponse.cacheTimeoutValue = newArtifactRequest.cacheTimeoutValue;
             artifactResponse.cacheConditions = newArtifactRequest.cacheConditions;
-            artifactResponse.cacheDescription = newArtifactRequest.cacheDescription;
             artifactResponse.createdBy = adminId;
             string tmp = JsonSerializer.Serialize(artifactResponse, SerializeOptions());
             JObject documentObj = JObject.Parse(tmp);
             documentObj.Remove("_id");
             documentObj.Remove("topicObj");
-            documentObj.Remove("createdBy");
-            documentObj["createdBy"] = new JObject
-            {
-                ["$oid"] = adminId
-            };
             documentObj["topic"] = newArtifactRequest.topic;
 
             string res = await _atlasService.InsertOneAsync(_collection, documentObj);

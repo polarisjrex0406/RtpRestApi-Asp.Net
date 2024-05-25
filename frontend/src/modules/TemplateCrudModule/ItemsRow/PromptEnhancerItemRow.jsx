@@ -1,9 +1,6 @@
-import { useState, useEffect } from 'react';
-import { Form, Input, InputNumber, Row, Col, Select } from 'antd';
+import { Form, Input, Row, Col, Select } from 'antd';
 import TextArea from 'antd/es/input/TextArea';
-
 import { DeleteOutlined } from '@ant-design/icons';
-import calculate from '@/utils/calculate';
 
 export default function PromptEnhancerItemRow({ field, remove, current = null }) {
   return (
@@ -28,7 +25,6 @@ export default function PromptEnhancerItemRow({ field, remove, current = null })
               required: true,
             },
           ]}
-        // initialValue={'text'}
         >
           <Select
             options={[
