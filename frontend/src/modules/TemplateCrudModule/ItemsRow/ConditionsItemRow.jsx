@@ -1,7 +1,33 @@
+import { useEffect, useState } from 'react';
+
 import { Form, Input, Col, Select } from 'antd';
 import { DeleteOutlined } from '@ant-design/icons';
 
-export default function ConditionsItemRow({ field, remove, current = null }) {
+export default function ConditionsItemRow({ field, remove, current = null, varsInPrompt }) {
+  const [conType, setConType] = useState('');
+  const [itemOptions, setItemOptions] = useState([]);
+
+  useEffect(() => {
+    if (current != null) {
+      setConType(current?.conditionType);
+    }
+  }, [current]);
+
+  const onTypeChange = (e) => {
+    setConType(e);
+  };
+
+  useEffect(() => {
+    if (varsInPrompt != null && varsInPrompt.length > 0) {
+      const newOptions = varsInPrompt.map((variable) => ({
+        value: variable,
+        label: variable
+      }));
+      setItemOptions(newOptions);
+    }
+    else setItemOptions([]);
+  }, [varsInPrompt]);
+
   return (
     <>
       <Col className="gutter-row" span={4}>
@@ -20,6 +46,7 @@ export default function ConditionsItemRow({ field, remove, current = null }) {
               { value: 'topicprompt', label: 'Topic Prompt' },
               { value: 'key', label: 'Key' },
             ]}
+            onChange={onTypeChange}
           ></Select>
         </Form.Item>
       </Col>
@@ -27,7 +54,14 @@ export default function ConditionsItemRow({ field, remove, current = null }) {
         <Form.Item
           name={[field.name, 'conditionItem']}
         >
-          <Input placeholder="Condition Item" />
+          {conType === 'key' ? (
+            <Select
+              options={itemOptions}
+            />
+          ) : (
+            <Input placeholder="Condition Item" />
+          )}
+
         </Form.Item>
       </Col>
       <Col className="gutter-row" span={3}>
@@ -45,7 +79,7 @@ export default function ConditionsItemRow({ field, remove, current = null }) {
               { value: 'IN', label: 'IN' },
               { value: 'NOTIN', label: 'NOTIN' },
             ]}
-          ></Select>
+          />
         </Form.Item>
       </Col>
       <Col className="gutter-row" span={6}>

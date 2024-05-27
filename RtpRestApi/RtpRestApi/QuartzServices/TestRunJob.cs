@@ -138,13 +138,26 @@ namespace RtpRestApi.QuartzServices
                 TestRequest newTestRequest = new TestRequest();
                 newTestRequest.testCode = testResponse?.testCode;
                 newTestRequest.topic = testResponse?.topic_req;
-                newTestRequest.experiments = testResponse?.experiments_req;
+                newTestRequest.experiments = new List<ExperimentInRequest>();
+                if (testResponse?.experiments_req != null)
+                {                    
+                    foreach (var strExp in testResponse.experiments_req)
+                    {
+                        if (strExp != null)
+                        {
+                            ExperimentInRequest expInReq = new ExperimentInRequest();
+                            expInReq.experiment = strExp;
+                            newTestRequest.experiments.Add(expInReq);
+                        }
+                    }
+                }
 
                 var topicObj = await _topicsService.GetAsync(currentUserId, newTestRequest.topic);
                 if (newTestRequest.experiments != null)
                 {
                     foreach (var expId in newTestRequest.experiments)
                     {
+                        if (expId == null || expId.experiment == null || currentUserId == null) continue;
                         var expObj = await _experimentsService.GetAsync(currentUserId, expId.experiment);
                         if (expObj == null) continue;
                         if (expObj.templates == null || expObj.style == null) continue;

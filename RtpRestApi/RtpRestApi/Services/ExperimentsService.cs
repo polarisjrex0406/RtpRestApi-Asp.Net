@@ -132,28 +132,26 @@ namespace RtpRestApi.Services
             return expObj;
         }
 
-        public async Task<ExperimentResponse?> GetAsync(string? adminId, string? id)
+        public async Task<ExperimentResponse?> GetAsync(string adminId, string id)
         {
+            string res = string.Empty;
             JObject filterObj = new JObject();
             filterObj["removed"] = false;
-            if (adminId != null)
+            if (adminId != null && id != null)
             {
                 JObject createdBy = new JObject
                 {
                     ["$oid"] = adminId
                 };
                 filterObj["createdBy"] = createdBy;
-            }
-            if (id != null)
-            {
                 JObject _id = new JObject
                 {
                     ["$oid"] = id
                 };
                 filterObj["_id"] = _id;
+                res = await _atlasService.FindOneAsync(_collection, filterObj);
             }
-
-            string res = await _atlasService.FindOneAsync(_collection, filterObj);
+                        
             var expObj = new ExperimentResponse();
             try
             {

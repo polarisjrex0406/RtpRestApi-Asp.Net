@@ -192,7 +192,17 @@ public class TestsController : ControllerBase
         TestResponse testResponse = new TestResponse();
         testResponse.testCode = newTestRequest.testCode;
         testResponse.topic_req = newTestRequest.topic;
-        testResponse.experiments_req = newTestRequest.experiments;
+        testResponse.experiments_req = new List<string>();
+        if (newTestRequest.experiments != null)
+        {
+            foreach (var expInReq in newTestRequest.experiments)
+            {
+                if (expInReq != null && expInReq.experiment != null)
+                {
+                    testResponse.experiments_req.Add(expInReq.experiment);
+                }
+            }
+        }
         testResponse.createdBy = CurrentUserId();
         testResponse.experiments = new List<ExperimentInResponse>();
         var topicObj = await _topicsService.GetAsync(CurrentUserId(), newTestRequest.topic);

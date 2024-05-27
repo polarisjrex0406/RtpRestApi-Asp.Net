@@ -8,7 +8,7 @@ namespace RtpRestApi.Services
     {
         private bool CheckOneCondition(string compareItem, string conditionOperator, string conditionValue)
         {
-            bool conditionPassed = false, doublePassed = false;            
+            bool conditionPassed = false, doublePassed = false;
             double tempCompareItem = 0.0, tempConditionValue = 0.0;
             // Try pass to numbers (currently, double)
             if (!compareItem.IsNullOrEmpty() && double.TryParse(compareItem, out tempCompareItem) &&
@@ -30,22 +30,22 @@ namespace RtpRestApi.Services
             if (conditionOperator == "LT")
             {
                 if (doublePassed) conditionPassed = (tempCompareItem < tempConditionValue);
-                else conditionPassed = (string.Compare(compareItem, conditionValue) < 0);
+                else conditionPassed = false;
             }
             if (conditionOperator == "LTE")
             {
                 if (doublePassed) conditionPassed = (tempCompareItem <= tempConditionValue);
-                else conditionPassed = (string.Compare(compareItem, conditionValue) <= 0);
+                else conditionPassed = false;
             }
             if (conditionOperator == "GT")
             {
                 if (doublePassed) conditionPassed = (tempCompareItem > tempConditionValue);
-                else conditionPassed = (string.Compare(compareItem, conditionValue) > 0);
+                else conditionPassed = false;
             }
             if (conditionOperator == "GTE" && string.Compare(compareItem, conditionValue) >= 0)
             {
                 if (doublePassed) conditionPassed = (tempCompareItem >= tempConditionValue);
-                else conditionPassed = (string.Compare(compareItem, conditionValue) >= 0);
+                else conditionPassed = false;
             }
             if (conditionOperator == "IN" && compareItem.IndexOf(conditionValue) > -1)
             {

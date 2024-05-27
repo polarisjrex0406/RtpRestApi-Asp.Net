@@ -35,10 +35,25 @@ const validateUnique = (originName, currentName, oldNames, curTopicId) => {
   };
 };
 
+const extractVariablesFromPrompt = (promptOutput) => {
+  const varsArray = [];
+  const regex = /\{\{(.*?)\}\}/g; // Regular expression to match variables enclosed in double curly braces
+  let match;
+
+  while ((match = regex.exec(promptOutput)) !== null) {
+    if (match[1] !== 'TopicPrompt' && match[1] !== 'LastResponse') varsArray.push(match[1]); // Push the matched variable name to the varsArray
+  }
+
+  return varsArray;
+};
+
 function LoadTemplateForm({ subTotal = 0, current = null }) {
   const translate = useLanguage();
   const addField = useRef(false);
   const addRuleField = useRef(false);
+
+  const [promptEditing, setPromptEditing] = useState('');
+  const [varsInPrompt, setVarsInPrompt] = useState([]);
 
   const [searching, setSearching] = useState(false);
   const [keyword, setKeyWord] = useState('');
@@ -72,6 +87,19 @@ function LoadTemplateForm({ subTotal = 0, current = null }) {
       ...validateUnique(originName, value, oldNames, curTopicId),
       value: value,
     });
+  };
+
+  useEffect(() => {
+    if (current != null) {
+      setPromptEditing(current?.promptOutput);
+      const temp = extractVariablesFromPrompt(current?.promptOutput);
+      setVarsInPrompt([...temp]);
+    }
+  }, [current]);
+
+  const onPromptChange = (e) => {
+    const temp = extractVariablesFromPrompt(e.target.value);
+    setVarsInPrompt([...temp]);
   };
 
   return (
@@ -152,7 +180,7 @@ function LoadTemplateForm({ subTotal = 0, current = null }) {
             label={translate('promptOutput')}
             name="promptOutput"
           >
-            <TextArea style={{ width: '100%' }} />
+            <TextArea style={{ width: '100%' }} value={promptEditing} onChange={onPromptChange} />
           </Form.Item>
         </Col>
       </Row>
@@ -168,7 +196,7 @@ function LoadTemplateForm({ subTotal = 0, current = null }) {
         {(fields, { add, remove }) => (
           <>
             {fields.map((field) => (
-              <PromptEnhancerItemRow key={field.key} remove={remove} field={field} current={current}></PromptEnhancerItemRow>
+              <PromptEnhancerItemRow key={field.key} remove={remove} field={field} current={current} varsInPrompt={varsInPrompt}></PromptEnhancerItemRow>
             ))}
             <Form.Item>
               <Button
@@ -239,8 +267,8 @@ function LoadTemplateForm({ subTotal = 0, current = null }) {
       <Form.List name="rules">
         {(fields, { add, remove }) => (
           <>
-            {fields.map((field) => (
-              <CriteriaRuleItemRow key={field.key} remove={remove} field={field} current={current} />
+            {fields.map((field, index) => (
+              <CriteriaRuleItemRow key={field.key} remove={remove} field={field} current={current?.rules[index]} varsInPrompt={varsInPrompt} />
             ))}
             {curTopicId && (
               <Form.Item>

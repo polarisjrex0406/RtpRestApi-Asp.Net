@@ -1,8 +1,22 @@
+import { useEffect, useState } from 'react';
+
 import { Form, Input, Row, Col, Select } from 'antd';
 import TextArea from 'antd/es/input/TextArea';
 import { DeleteOutlined } from '@ant-design/icons';
 
-export default function PromptEnhancerItemRow({ field, remove, current = null }) {
+export default function PromptEnhancerItemRow({ field, remove, current = null, varsInPrompt = [] }) {
+  const [keyOptions, setKeyOptions] = useState([]);
+  useEffect(() => {
+    if (varsInPrompt != null && varsInPrompt.length > 0) {
+      const newOptions = varsInPrompt.map((variable) => ({
+        value: variable,
+        label: variable
+      }));
+      setKeyOptions(newOptions);
+    }
+    else setKeyOptions([]);
+  }, [varsInPrompt]);
+
   return (
     <Row gutter={[12, 12]} style={{ position: 'relative' }}>
       <Col className="gutter-row" span={8}>
@@ -15,7 +29,9 @@ export default function PromptEnhancerItemRow({ field, remove, current = null })
             },
           ]}
         >
-          <Input placeholder="Key" />
+          <Select
+            options={keyOptions}
+          />
         </Form.Item>
       </Col>
       <Col className="gutter-row" span={8}>

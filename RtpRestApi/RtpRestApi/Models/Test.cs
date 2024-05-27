@@ -51,6 +51,6 @@ namespace RtpRestApi.Models
         public string? createdBy { get; set; }
         public string status { get; set; } = "New";
         public string? topic_req { get; set; }
-        public List<ExperimentInRequest>? experiments_req { get; set; }
+        public List<string>? experiments_req { get; set; }
     }
 }

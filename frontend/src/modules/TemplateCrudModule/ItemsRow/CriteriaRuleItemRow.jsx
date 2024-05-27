@@ -8,7 +8,7 @@ import useLanguage from '@/locale/useLanguage';
 
 import ConditionsItemRow from './ConditionsItemRow';
 
-export default function CriteriaRuleItemRow({ field, remove, current = null }) {
+export default function CriteriaRuleItemRow({ field, remove, current = null, varsInPrompt = [] }) {
   const translate = useLanguage();
   const addConditionsField = useRef(false);
 
@@ -49,8 +49,8 @@ export default function CriteriaRuleItemRow({ field, remove, current = null }) {
             <Form.List name={[field.name, 'conditions']}>
               {(subFields, subOpt) => (
                 <>
-                  {subFields.map((subField) => (
-                    <ConditionsItemRow key={`${uniqueId()}`} remove={subOpt.remove} field={subField} current={current}>
+                  {subFields.map((subField, index) => (
+                    <ConditionsItemRow key={`${uniqueId()}`} remove={subOpt.remove} field={subField} current={current?.conditions[index]} varsInPrompt={varsInPrompt}>
                     </ConditionsItemRow>
                   ))}
                   <Form.Item>
